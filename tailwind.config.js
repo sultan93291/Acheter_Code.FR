@@ -6,6 +6,7 @@ export default {
       colors: {
         orange: "#FFA500",
         light_orange: " #FFF6E6",
+        secondary_orange: "#FF8000",
         white: "#fff",
         light_gray: "#767676",
         transparent_black: "#0000003D",
@@ -14,6 +15,9 @@ export default {
         text_black: "#333",
         text_gray: "#A1A1A1",
         secondary_gray: "#5C5C5C",
+        ocean_blue: "#ADD8E6",
+        red: "#FF0000",
+        primary_gray: "#5C5C5C",
       },
       fontFamily: {
         righteous: '"Righteous", serif',

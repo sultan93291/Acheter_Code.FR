@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Input } from "../Components/Input/Input";
 import Heading from "../Components/Tags/Heading/Heading";
 import { CiSearch } from "react-icons/ci";
@@ -7,11 +7,16 @@ import { ImCoinEuro } from "react-icons/im";
 import Button from "../Components/Tags/Button/Button";
 import { FaRegUser } from "react-icons/fa6";
 
+
 const Navbar = () => {
   const navigate = useNavigate();
   const handleRegister = () => {
     navigate("/register");
   };
+
+  const location = useLocation();
+  console.log(location.pathname);
+  
 
   const socailLinks = [
     {
@@ -132,10 +137,16 @@ const Navbar = () => {
         <ul className="flex flex-row gap-x-[32px]">
           {socailLinks.map((item, index) => {
             return (
-              <li key={index} >
-                <NavLink className={'text-[18px] font-medium font-nunito text-white '}  to={item.redirects} > {item.linkName} </NavLink>
+              <li key={index}>
+                <NavLink
+                  className={`text-[18px] font-medium font-nunito ${location?.pathname === item.redirects ?" text-orange " : "text-white" } `}
+                  to={item.redirects}
+                >
+                  {" "}
+                  {item.linkName}{" "}
+                </NavLink>
               </li>
-            )
+            );
           })}
         </ul>
       </div>
