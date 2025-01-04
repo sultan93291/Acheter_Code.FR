@@ -4,11 +4,35 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar{
+  scroll-behavior: smooth;
+}
 
 @layer components{
-  /* headings start here */
+  /* headings design start here */
   .site_logo{
     @apply text-white font-righteous text-[28px] font-normal; 
   }
-  /* headings ended here */
-}
+  .form_heading{
+    @apply text-[64px] font-nunito text-text_black font-medium leading-[83.146px] tracking-[-0.64px]; 
+  }
+  .form_input_heading{
+    @apply  text-[22.385px] font-medium font-nunito text-text_black leading-[31.979px] tracking-[-0.09px]; 
+  }
+  /* headings design ended here */
+  /* input design started here  */
+  .form_input{
+    @apply w-[614px] rounded-[16px] py-[19.19px] px-[25.58px] bg-white shadow-custom_shadow text-[20px] font-nunito font-normal leading-[38.375px] tracking-[-0.08px] outline-none text-text_gray;    
+  }
+  /* input design ended here */
+  /* button design started here */
+  .form_btn{
+    @apply w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white; 
+  }
+  /* button design ended here  */
+  /* link desgin started here */
+  .form_link{
+    @apply text-xl font-normal text-text_black leading-[38.375px] tracking-[-0.08px]  
+  }
+  /* link design ended here */
+} 

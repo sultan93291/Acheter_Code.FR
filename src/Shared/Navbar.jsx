@@ -57,9 +57,9 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="flex flex-col">
-      <div className="py-6 bg-orange px-[287.5px] flex gap-x-[96px] items-center ">
-        <div className="flex flex-row gap-x-[48px] ">
+    <nav className="flex flex-col ">
+      <div className="py-6 bg-orange justify-center  flex gap-x-[96px] items-center ">
+        <div className="flex flex-row gap-x-[48px] items-center ">
           <Heading
             Variant={"h4"}
             text={"Acheter Code.FR"}
@@ -97,16 +97,16 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
-          <div className="flex flex-row gap-x-5 items-center">
+          <div className="flex flex-row items-center gap-x-5">
             <div className="flex flex-row gap-x-3">
-              <div className="flex cursor-pointer w-12 h-12 rounded-full bg-transparent_black flex-row items-center justify-center">
-                <IoIosCart className="text-white w-5 h-5 " />
+              <div className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer bg-transparent_black">
+                <IoIosCart className="w-5 h-5 text-white " />
               </div>
-              <div className="flex cursor-pointer w-12 h-12 rounded-full bg-transparent_black flex-row items-center justify-center">
-                <ImCoinEuro className="text-white w-5 h-5 " />
+              <div className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer bg-transparent_black">
+                <ImCoinEuro className="w-5 h-5 text-white " />
               </div>
             </div>
-            <div className="flex flex-row gap-x-4 items-center">
+            <div className="flex flex-row items-center gap-x-4">
               <Link className={"text-white font-nunito text-lg "} to={"/"}>
                 Log In
               </Link>
@@ -119,7 +119,7 @@ const Navbar = () => {
                 }
                 text={
                   <div className="flex flex-row items-center gap-x-2">
-                    <FaRegUser className="h-5 w-5 font-bold text-white font-nunito text-lg " />{" "}
+                    <FaRegUser className="w-5 h-5 text-lg font-bold text-white font-nunito " />{" "}
                     Sign Up{" "}
                   </div>
                 }
@@ -128,7 +128,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className=" bg-owl_black py-[26px] px-[396.5px] ">
+      <div className=" bg-owl_black py-[26px] flex items-center justify-center  ">
         <ul className="flex flex-row gap-x-[32px]">
           {socailLinks.map((item, index) => {
             return (

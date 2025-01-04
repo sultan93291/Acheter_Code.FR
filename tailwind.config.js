@@ -10,11 +10,17 @@ export default {
         light_gray: "#767676",
         transparent_black: "#0000003D",
         owl_black: "#052732",
-        light_black: "#052732"
+        light_black: "#052732",
+        text_black: "#333",
+        text_gray: "#A1A1A1",
+        secondary_gray: "#5C5C5C",
       },
       fontFamily: {
         righteous: '"Righteous", serif',
         nunito: '"Nunito Sans", serif',
+      },
+      boxShadow: {
+        custom_shadow: "0px 0px 4px 0px rgba(0, 9, 54, 0.06)",
       },
     },
   },
