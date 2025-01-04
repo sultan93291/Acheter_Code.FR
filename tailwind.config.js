@@ -10,6 +10,7 @@ export default {
         light_gray: "#767676",
         transparent_black: "#0000003D",
         owl_black: "#052732",
+        light_black: "#052732"
       },
       fontFamily: {
         righteous: '"Righteous", serif',
