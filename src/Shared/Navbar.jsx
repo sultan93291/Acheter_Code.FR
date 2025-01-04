@@ -60,16 +60,22 @@ const Navbar = () => {
       redirects: "/",
     },
   ];
+  
+  const handleRootRedirect = () => {
+    navigate('/')
+  }
 
   return (
     <nav className="flex flex-col ">
       <div className="py-6 bg-orange justify-center  flex gap-x-[96px] items-center ">
         <div className="flex flex-row gap-x-[48px] items-center ">
-          <Heading
-            Variant={"h4"}
-            text={"Acheter Code.FR"}
-            className={"site_logo"}
-          />
+          <div onClick={handleRootRedirect} >
+            <Heading
+              Variant={"h4"}
+              text={"Acheter Code.FR"}
+              className={"site_logo cursor-pointer"}
+            />
+          </div>
           <div className="flex w-[395px] h-[57px] bg-white relative rounded-[16px] items-center ">
             <Input
               type={"text"}
@@ -139,7 +145,11 @@ const Navbar = () => {
             return (
               <li key={index}>
                 <NavLink
-                  className={`text-[18px] font-medium font-nunito ${location?.pathname === item.redirects ?" text-orange " : "text-white" } `}
+                  className={`text-[18px] font-medium font-nunito ${
+                    location?.pathname === item.redirects
+                      ? " text-orange "
+                      : "text-white"
+                  } `}
                   to={item.redirects}
                 >
                   {" "}
