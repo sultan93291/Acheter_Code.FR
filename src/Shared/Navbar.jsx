@@ -118,7 +118,7 @@ const Navbar = () => {
                   " p-4 border-[2px] border-solid border-white outline-none rounded-[16px] text-white font-nunito text-lg   "
                 }
                 text={
-                  <div className="flex flex-row items-center gap-x-2">
+                  <div className="flex flex-row items-center text-white gap-x-2">
                     <FaRegUser className="w-5 h-5 text-lg font-bold text-white font-nunito " />{" "}
                     Sign Up{" "}
                   </div>

@@ -12,7 +12,7 @@ const Login = () => {
   const [isShowPass, setisShowPass] = useState(false);
   return (
     <section className="mx-auto bg-[#F8F8F8] flex items-center justify-center h-auto w-full  pt-[64px] pb-[316.29px]">
-      <form className="flex flex-col gap-y-[48px]  items-center " action="">
+      <form className="flex flex-col items-center gap-y-12 " action="">
         <div className="flex flex-col gap-y-[32px] items-center">
           <Heading Variant={"h1"} text={"Login"} className={"form_heading"} />
           <div className="flex flex-col gap-y-[44.79px] ">
