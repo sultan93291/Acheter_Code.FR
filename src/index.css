@@ -28,6 +28,12 @@
   .product_heading{
     @apply font-righteous text-heading_black text-[36px] font-normal;
   }
+  .details_headings{
+    @apply text-lg font-semibold text-text_black font-nunito;
+  }
+   .details_sub_headings{
+    @apply text-lg font-normal text-primary_gray font-nunito;
+  }
   /* headings design ended here */
   /* input design started here  */
   .form_input {

@@ -25,6 +25,7 @@ export default {
         card_gray: "#495B61",
         dark_black: "#171D1F",
         text_orange: "#B57500",
+        border_orange: "#E89600",
       },
       fontFamily: {
         righteous: '"Righteous", serif',
@@ -32,6 +33,7 @@ export default {
       },
       boxShadow: {
         custom_shadow: "0px 0px 4px 0px rgba(0, 9, 54, 0.06)",
+        btn_shadow: "0px 2px 4px 0px rgba(80, 0, 72, 0.14)",
       },
     },
   },
