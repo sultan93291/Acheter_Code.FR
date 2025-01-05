@@ -1,10 +1,13 @@
 import steam from "../../assets/images/Home/steam.png";
-import godWar from "../../assets/images/Home/god_war.png"
+import godWar from "../../assets/images/Home/god_war.png";
 import farming from "../../assets/images/Home/farming.png";
 import roblox from "../../assets/images/Home/roblox.png";
 import xbox from "../../assets/images/Home/xbox.png";
 import clientOne from "../../assets/images/Home/client.svg";
 import clientTwo from "../../assets/images/Home/clientTwo.svg";
+import computer from "../../assets/images/Home/computer.jpeg";
+import gameHub from "../../assets/images/Home/game_hub.jpeg";
+import vr from "../../assets/images/Home/vr.jpeg";
 
 const giftCardData = [
   {
@@ -505,4 +508,66 @@ const ClientReviewCardData = [
   },
 ];
 
-export { giftCardData, bestsellingCardData , upcomingCardData , specailUpcomingCardData , ClientReviewCardData };
+const BlogCardData = [
+  {
+    BgImg: vr,
+    cardTxt: "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
+  },
+  {
+    BgImg: computer,
+    cardTxt:
+      "Why Game Gift Cards Are the Secret Weapon for Stress-Free Gifting",
+  },
+  {
+    BgImg: gameHub,
+    cardTxt: "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
+  },
+  {
+    BgImg: computer,
+    cardTxt:
+      "Why Game Gift Cards Are the Secret Weapon for Stress-Free Gifting",
+  },
+  {
+    BgImg: vr,
+    cardTxt: "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
+  },
+  {
+    BgImg: gameHub,
+    cardTxt: "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
+  },
+  {
+    BgImg: vr,
+    cardTxt: "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
+  },
+  {
+    BgImg: computer,
+    cardTxt:
+      "Why Game Gift Cards Are the Secret Weapon for Stress-Free Gifting",
+  },
+  {
+    BgImg: gameHub,
+    cardTxt: "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
+  },
+  {
+    BgImg: computer,
+    cardTxt:
+      "Why Game Gift Cards Are the Secret Weapon for Stress-Free Gifting",
+  },
+  {
+    BgImg: vr,
+    cardTxt: "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
+  },
+  {
+    BgImg: gameHub,
+    cardTxt: "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
+  },
+];
+
+export {
+  giftCardData,
+  bestsellingCardData,
+  upcomingCardData,
+  specailUpcomingCardData,
+  ClientReviewCardData,
+  BlogCardData,
+};

@@ -19,11 +19,12 @@ export default {
         red: "#FF0000",
         primary_gray: "#5C5C5C",
         secondary_blue: "#9DC5D1",
-        primary_blue: "#D9EDF4;",
+        primary_blue: "#D9EDF4",
         off_blue: "#7B99A3",
         heading_black: "#2A3439",
         card_gray: "#495B61",
         dark_black: "#171D1F",
+        text_orange: "#B57500",
       },
       fontFamily: {
         righteous: '"Righteous", serif',
