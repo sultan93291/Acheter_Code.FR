@@ -3,6 +3,8 @@ import godWar from "../../assets/images/Home/god_war.png"
 import farming from "../../assets/images/Home/farming.png";
 import roblox from "../../assets/images/Home/roblox.png";
 import xbox from "../../assets/images/Home/xbox.png";
+import clientOne from "../../assets/images/Home/client.svg";
+import clientTwo from "../../assets/images/Home/clientTwo.svg";
 
 const giftCardData = [
   {
@@ -476,4 +478,31 @@ const specailUpcomingCardData = [
   },
 ];
 
-export { giftCardData, bestsellingCardData , upcomingCardData , specailUpcomingCardData };
+const ClientReviewCardData = [
+  {
+    clientImg: clientOne,
+    clientName: "Adrian Sami",
+    clientQuote:
+      "I bought a gift card for my nephew’s birthday, and he absolutely loved it! He was so excited to pick out his own game and unlock new skins. It made the perfect gift for a gamer like him!”",
+  },
+  {
+    clientImg: clientTwo,
+    clientName: "James D",
+    clientQuote:
+      "I love how easy it is to buy a gift card and use it immediately. No need to worry about entering payment details every time I want to grab a new game. It's so convenient!",
+  },
+  {
+    clientImg: clientTwo,
+    clientName: "James D",
+    clientQuote:
+      "I love how easy it is to buy a gift card and use it immediately. No need to worry about entering payment details every time I want to grab a new game. It's so convenient!",
+  },
+  {
+    clientImg: clientOne,
+    clientName: "Adrian Sami",
+    clientQuote:
+      "I bought a gift card for my nephew’s birthday, and he absolutely loved it! He was so excited to pick out his own game and unlock new skins. It made the perfect gift for a gamer like him!”",
+  },
+];
+
+export { giftCardData, bestsellingCardData , upcomingCardData , specailUpcomingCardData , ClientReviewCardData };

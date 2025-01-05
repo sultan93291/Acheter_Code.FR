@@ -23,6 +23,7 @@ export default {
         off_blue: "#7B99A3",
         heading_black: "#2A3439",
         card_gray: "#495B61",
+        dark_black: "#171D1F",
       },
       fontFamily: {
         righteous: '"Righteous", serif',
