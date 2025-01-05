@@ -18,6 +18,8 @@ export default {
         ocean_blue: "#ADD8E6",
         red: "#FF0000",
         primary_gray: "#5C5C5C",
+        secondary_blue: "#9DC5D1",
+        primary_blue: "#D9EDF4;",
       },
       fontFamily: {
         righteous: '"Righteous", serif',

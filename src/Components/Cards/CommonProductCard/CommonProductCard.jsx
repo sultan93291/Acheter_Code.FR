@@ -2,13 +2,26 @@ import steam from "../../../assets/images/Home/steam.png";
 import Button from "../../Tags/Button/Button";
 import Heading from "../../Tags/Heading/Heading";
 
-const CommonProductCard = () => {
+const CommonProductCard = ({
+  cardName,
+  cardHeight,
+  bgImg,
+  rating,
+  discountpercentage,
+  heading,
+  subHeading,
+  seller,
+  price,
+  discountPrice
+}) => {
   return (
-    <div className=" w-[303px]  relative h-[532px] rounded-[16px] bg-white shadow-custom_shadow flex flex-col">
+    <div
+      className={`w-[303px]  relative h-${cardHeight} rounded-[16px] bg-white shadow-custom_shadow flex flex-col`}
+    >
       <div className="w-full  h-[327px]  bg-ocean_blue rounded-t-[16px] p-[12px] ">
         <div
           style={{
-            backgroundImage: `url(${steam})`,
+            backgroundImage: `url(${bgImg})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
@@ -29,7 +42,7 @@ const CommonProductCard = () => {
               />
             </svg>
             <Heading
-              text={"4.5"}
+              text={rating}
               Variant={"h6"}
               className={" text-[16px] text-white font-bold font-nunito "}
             />
@@ -37,18 +50,31 @@ const CommonProductCard = () => {
           <div className="py-[10px] px-4 absolute bottom-0 right-0 w-[91px] rounded-tl-[2px] rounded-tr-[14px] rounded-br-[14px] rounded-bl-[14px]  h-[42px] mb-2 mr-2 bg-red  ">
             <Heading
               Variant={"h4"}
-              text={"50% off"}
+              text={`${discountpercentage} off`}
               className={"text-[16px] font-nunito text-white font-semibold"}
             />
           </div>
         </div>
       </div>
       <div className="flex flex-col px-3 py-4 bg-white gap-y-6 rounded-b-[16px] ">
-        <Heading
-          Variant={"h3"}
-          text={"STEAM Gift Cards"}
-          className={" text-text_black text-[18px] font-nunito font-semibold "}
-        />
+        <div>
+          <Heading
+            Variant={"h3"}
+            text={heading}
+            className={
+              " text-text_black text-[18px] font-nunito font-semibold "
+            }
+          />
+          {subHeading && (
+            <Heading
+              Variant={"h3"}
+              text={subHeading}
+              className={
+                " text-text_black text-[18px] font-nunito font-semibold "
+              }
+            />
+          )}
+        </div>
         <div className="flex flex-col gap-y-3 ">
           <div className="flex flex-col gap-y-1">
             <div className="flex flex-row gap-x-[47px] ">
@@ -61,7 +87,7 @@ const CommonProductCard = () => {
               />
               <Heading
                 Variant={"h4"}
-                text={"Giants Software"}
+                text={seller}
                 className={
                   "text-[18px] font-medium font-nunito text-text_black"
                 }
@@ -78,14 +104,14 @@ const CommonProductCard = () => {
               <div className="flex flex-row items-center gap-x-2 ">
                 <Heading
                   Variant={"h4"}
-                  text={"10.00€"}
+                  text={discountPrice}
                   className={
                     "text-[24px] font-semibold font-nunito text-text_black"
                   }
                 />
                 <Heading
                   Variant={"h6"}
-                  text={<del>20.00€</del>}
+                  text={<del> {price} </del>}
                   className={
                     "text-[16px] font-semibold font-nunito text-light_gray"
                   }
