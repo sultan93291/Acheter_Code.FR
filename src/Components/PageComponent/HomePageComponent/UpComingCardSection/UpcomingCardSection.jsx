@@ -12,7 +12,7 @@ import { Image } from '../../../Tags/Image/Image';
 const UpcomingCardSection = () => {
   return (
     <section className="flex flex-col w-full h-auto ">
-      <div className="w-full px-[300px] h-auto py-10 bg-secondary_blue">
+      <div className="w-full px-[235px] h-auto py-10 bg-secondary_blue">
         <Heading
           Variant={"h2"}
           text={"GIFT CARDS"}

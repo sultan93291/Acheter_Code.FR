@@ -21,6 +21,8 @@ export default {
         secondary_blue: "#9DC5D1",
         primary_blue: "#D9EDF4;",
         off_blue: "#7B99A3",
+        heading_black: "#2A3439",
+        card_gray: "#495B61",
       },
       fontFamily: {
         righteous: '"Righteous", serif',
