@@ -7,13 +7,15 @@ import Button from "../Tags/Button/Button";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
-const SwipperSlider = ({ data, cardHeight, cardName }) => {
+const SwipperSlider = ({ data, cardHeight, cardName , customMargin }) => {
   let swiperInstance = null;
   return (
     <div className="relative w-[1285px] h-auto">
       {/* Left Navigation Button */}
       <Button
-        className="absolute left-0 z-20 w-12 h-12 transform ml-[-52px] -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center "
+        className={`absolute left-0 z-20 w-12 h-12 transform  -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center ${
+          customMargin ? "ml-[-60px]" : "ml-[-52px]"
+        } `}
         onClick={() => {
           if (swiperInstance) swiperInstance.slidePrev();
         }}
@@ -50,7 +52,9 @@ const SwipperSlider = ({ data, cardHeight, cardName }) => {
 
       {/* Right Navigation Button */}
       <Button
-        className="absolute text-[26px] right-0 mr-[-50px] z-20 w-12 h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center"
+        className={`absolute text-[26px] right-0 z-20 w-12 h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center ${
+          customMargin ? "mr-[-58px] " : "mr-[-50px] "
+        } `}
         onClick={() => {
           if (swiperInstance) swiperInstance.slideNext();
         }}

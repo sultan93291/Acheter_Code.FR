@@ -1,21 +1,15 @@
-import GiftCardSection from '../../Components/PageComponent/HomePageComponent/GiftCardSection/GiftCardSection'
-import VouchersSection from '../../Components/PageComponent/HomePageComponent/VouchersSection/VouchersSection'
-
+import GiftCardSection from "../../Components/PageComponent/HomePageComponent/GiftCardSection/GiftCardSection";
+import UpcomingCardSection from "../../Components/PageComponent/HomePageComponent/UpComingCardSection/UpcomingCardSection";
+import VouchersSection from "../../Components/PageComponent/HomePageComponent/VouchersSection/VouchersSection";
 
 const Home = () => {
   return (
     <>
       <GiftCardSection />
-      <VouchersSection/>
+      <VouchersSection />
+      <UpcomingCardSection />
     </>
-  )
-}
+  );
+};
 
-export default Home
-
-
-
-
-
-
-
+export default Home;

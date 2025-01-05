@@ -1,11 +1,11 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Input } from "../Components/Input/Input";
 import Heading from "../Components/Tags/Heading/Heading";
 import { CiSearch } from "react-icons/ci";
 import { IoIosCart } from "react-icons/io";
 import { ImCoinEuro } from "react-icons/im";
 import Button from "../Components/Tags/Button/Button";
 import { FaRegUser } from "react-icons/fa6";
+import { Input } from "../Components/Tags/Input/Input";
 
 
 const Navbar = () => {

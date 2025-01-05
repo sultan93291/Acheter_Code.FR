@@ -6,7 +6,7 @@ import Paragraph from "../../../Tags/Paragraph/Paragraph";
 
 const VouchersSection = () => {
   return (
-    <section className="flex  flex-col w-full h-auto border-[2px] border-solid border-orange ">
+    <section className="flex flex-col w-full h-auto ">
       <div className="w-full px-[300px] h-auto py-10 bg-secondary_blue">
         <Heading
           Variant={"h2"}

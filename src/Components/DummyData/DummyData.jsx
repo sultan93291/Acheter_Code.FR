@@ -1,6 +1,8 @@
 import steam from "../../assets/images/Home/steam.png";
 import godWar from "../../assets/images/Home/god_war.png"
 import farming from "../../assets/images/Home/farming.png";
+import roblox from "../../assets/images/Home/roblox.png";
+import xbox from "../../assets/images/Home/xbox.png";
 
 const giftCardData = [
   {
@@ -363,4 +365,115 @@ const upcomingCardData = [
   },
 ];
 
-export { giftCardData, bestsellingCardData , upcomingCardData };
+const specailUpcomingCardData = [
+  {
+    bgImg: roblox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: xbox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: roblox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: xbox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: roblox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: xbox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: roblox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: xbox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: roblox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: xbox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: roblox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+  {
+    bgImg: xbox,
+    rating: "4.5",
+    discountpercentage: "50%",
+    heading: "ROBLOX Gift Cards",
+    seller: "Giants Software",
+    price: "20.00€",
+    discountPrice: "10.00€",
+  },
+];
+
+export { giftCardData, bestsellingCardData , upcomingCardData , specailUpcomingCardData };

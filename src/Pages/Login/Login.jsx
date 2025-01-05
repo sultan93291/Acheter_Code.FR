@@ -1,12 +1,12 @@
 "use client";
 import { Link } from "react-router-dom";
-import { Input } from "../../Components/Input/Input";
 import Heading from "../../Components/Tags/Heading/Heading";
 import Button from "../../Components/Tags/Button/Button";
 import Paragraph from "../../Components/Tags/Paragraph/Paragraph";
 import { CgEye } from "react-icons/cg";
 import { HiOutlineEyeSlash } from "react-icons/hi2";
 import { useState } from "react";
+import { Input } from "../../Components/Tags/Input/Input";
 
 const Login = () => {
   const [isShowPass, setisShowPass] = useState(false);

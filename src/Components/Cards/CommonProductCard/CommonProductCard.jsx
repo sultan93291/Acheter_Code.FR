@@ -12,7 +12,8 @@ const CommonProductCard = ({
   subHeading,
   seller,
   price,
-  discountPrice
+  discountPrice,
+  
 }) => {
   return (
     <div
