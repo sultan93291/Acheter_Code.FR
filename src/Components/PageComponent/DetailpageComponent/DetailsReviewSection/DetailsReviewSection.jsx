@@ -7,7 +7,11 @@ import ReviewSection from "../ReviewSection/ReviewSection";
 const DetailsReviewSection = () => {
   const [isDescreption, setisDescreption] = useState(true);
   return (
-    <section className="w-full h-auto pt-5 pb-[120px] px-[290px]   ">
+    <section
+      className={`w-full h-auto pt-5 ${
+        isDescreption ? "pb-[120px]" : "pb-[140px]"
+      } px-[290px]`}
+    >
       <div className=" flex flex-row gap-x-[80px] relative after:absolute after:w-full after:h-[1px] after:bg-[#B3BAC5] after:bottom-0 after:left-0 after:mb-[-16px] ">
         <Heading
           onClick={() => {

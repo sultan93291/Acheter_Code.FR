@@ -4,6 +4,8 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Home from "../Pages/Home/Home";
 import Detail from "../Pages/Detail/Detail";
+import Blog from "../Pages/Blog/Blog";
+
 
 
 
@@ -19,6 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/register",
+
         element: <Register />,
       },
       {
@@ -28,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/details",
         element: <Detail />,
+      },
+      {
+        path: "/blog/:id",
+        element: <Blog />,
       },
     ],
   },

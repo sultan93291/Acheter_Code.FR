@@ -3,9 +3,9 @@ import { Image } from "../../Tags/Image/Image";
 import vr from "../../../assets/images/Home/vr.jpeg";
 import Paragraph from "../../Tags/Paragraph/Paragraph";
 
-const BlogCard = ({ bgImg, blogTxt }) => {
+const BlogCard = ({ bgImg, blogTxt, onClick }) => {
   return (
-    <div className="w-[400px] relative h-auto rounded-[16px] flex flex-col">
+    <div onClick={onClick} className="w-[400px] cursor-pointer relative h-auto rounded-[16px] flex flex-col">
       <Image
         Src={bgImg}
         className={"w-full h-[240px] object-cover rounded-t-[16px] "}

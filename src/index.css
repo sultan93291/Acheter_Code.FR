@@ -22,20 +22,20 @@
   .card_section_heading {
     @apply text-white font-righteous text-[36px] font-normal;
   }
-  .card_sub_heading{
+  .card_sub_heading {
     @apply text-black font-nunito text-[32px] font-bold;
   }
-  .product_heading{
+  .product_heading {
     @apply font-righteous text-heading_black text-[36px] font-normal;
   }
-  .details_headings{
+  .details_headings {
     @apply text-lg font-semibold text-text_black font-nunito;
   }
-  .details_sub_headings{
+  .details_sub_headings {
     @apply text-lg font-normal text-primary_gray font-nunito;
   }
-  .lg_tittle{
-    @apply text-lg font-semibold text-specail_black font-nunito; 
+  .lg_tittle {
+    @apply text-lg font-semibold text-specail_black font-nunito;
   }
   /* headings design ended here */
   /* input design started here  */
@@ -52,6 +52,10 @@
   .form_link {
     @apply text-xl font-normal text-text_black leading-[38.375px] tracking-[-0.08px];
   }
-  
   /* link design ended here */
+  /* paragraph design started here */
+  .para_style {
+    @apply text-lg font-medium leading-[180%] font-nunito text-secondary_gray ;
+  }
+  /* paragraph design ended here */
 }

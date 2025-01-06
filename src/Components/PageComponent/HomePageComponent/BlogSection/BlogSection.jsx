@@ -12,9 +12,15 @@ import BlogCard from "../../../Cards/BlogCard/BlogCard";
 import blogGift from "../../../../assets/images/Home/blog_gift.png"
 import blogGiftRight from "../../../../assets/images/Home/blog_gift_right.png";
 import { Image } from "../../../Tags/Image/Image";
+import { useNavigate } from "react-router-dom";
+
 
 const BlogSection = () => {
   let swiperInstance = null; // Store the Swiper instance
+  const navigate = useNavigate()
+  const handleBlogRedirect = (id) => {
+    navigate(`blog/${id}`)
+  }
   return (
     <section className="w-full h-[531px] px-[290px] relative my-20 flex flex-col gap-y-10">
       <div className="flex justify-between flow-row">
@@ -56,7 +62,7 @@ const BlogSection = () => {
         >
           {BlogCardData.map((item, index) => (
             <SwiperSlide key={index} className="h-auto">
-              <BlogCard blogTxt={item?.cardTxt} bgImg={item?.BgImg} />
+              <BlogCard onClick={()=>{handleBlogRedirect(item?.id)}}  blogTxt={item?.cardTxt} bgImg={item?.BgImg} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -510,54 +510,66 @@ const ClientReviewCardData = [
 
 const BlogCardData = [
   {
+    id: 1,
     BgImg: vr,
     cardTxt: "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
   },
   {
+    id: 2,
     BgImg: computer,
     cardTxt:
       "Why Game Gift Cards Are the Secret Weapon for Stress-Free Gifting",
   },
   {
+    id: 3,
     BgImg: gameHub,
     cardTxt: "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
   },
   {
+    id: 2,
     BgImg: computer,
     cardTxt:
       "Why Game Gift Cards Are the Secret Weapon for Stress-Free Gifting",
   },
   {
+    id: 1,
     BgImg: vr,
     cardTxt: "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
   },
   {
+    id: 3,
     BgImg: gameHub,
     cardTxt: "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
   },
   {
+    id: 1,
     BgImg: vr,
     cardTxt: "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
   },
   {
+    id: 2,
     BgImg: computer,
     cardTxt:
       "Why Game Gift Cards Are the Secret Weapon for Stress-Free Gifting",
   },
   {
+    id: 3,
     BgImg: gameHub,
     cardTxt: "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
   },
   {
+    id: 2,
     BgImg: computer,
     cardTxt:
       "Why Game Gift Cards Are the Secret Weapon for Stress-Free Gifting",
   },
   {
+    id: 1,
     BgImg: vr,
     cardTxt: "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
   },
   {
+    id: 2,
     BgImg: gameHub,
     cardTxt: "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
   },
