@@ -1,8 +1,8 @@
 
 
-const Heading = ({Variant, text, className}) => {
+const Heading = ({Variant, text, className , onClick}) => {
   return (
-    <Variant className={className} > {text} </Variant>
+    <Variant className={className} onClick={onClick} > {text} </Variant>
   )
 }
 
