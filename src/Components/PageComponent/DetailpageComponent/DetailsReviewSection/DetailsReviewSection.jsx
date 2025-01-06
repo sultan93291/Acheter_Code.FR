@@ -1,32 +1,37 @@
-'use client'
+"use client";
 import { useState } from "react";
 import Heading from "../../../Tags/Heading/Heading";
+import DetailsSection from "../DetailsSection/DetailsSection";
+import ReviewSection from "../ReviewSection/ReviewSection";
 
 const DetailsReviewSection = () => {
-  const [isReview, setisReview] = useState(true)
+  const [isDescreption, setisDescreption] = useState(true);
   return (
-    <section className="w-full h-auto pt-5 pb-[120px] px-[300px]   ">
-      <div className="flex flex-row gap-x-[80px] relative after:absolute after:w-full after:h-[1px] after:bg-[#B3BAC5] after:bottom-0 after:left-0 after:mb-[-16px] ">
+    <section className="w-full h-auto pt-5 pb-[120px] px-[290px]   ">
+      <div className=" flex flex-row gap-x-[80px] relative after:absolute after:w-full after:h-[1px] after:bg-[#B3BAC5] after:bottom-0 after:left-0 after:mb-[-16px] ">
         <Heading
           onClick={() => {
-            setisReview(true);
+            setisDescreption(true);
           }}
           Variant={"h4"}
           text={"DESCRIPTION"}
           className={`text-2xl font-bold cursor-pointer transition-colors ease-in-out  duration-150  font-nunito ${
-            isReview ? "text-orange" : "text-text_black"
+            isDescreption ? "text-orange" : "text-text_black"
           } `}
         />
         <Heading
           onClick={() => {
-            setisReview(false);
+            setisDescreption(false);
           }}
           Variant={"h4"}
           text={"REVIEWS"}
           className={`text-2xl font-bold cursor-pointer  font-nunito ${
-            !isReview ? "text-orange" : "text-text_black"
+            !isDescreption ? "text-orange" : "text-text_black"
           } `}
         />
+      </div>
+      <div className={` ${isDescreption ? "pt-[42px]" : "pt-[34px]"} `}>
+        {isDescreption ? <DetailsSection /> : <ReviewSection />}
       </div>
     </section>
   );

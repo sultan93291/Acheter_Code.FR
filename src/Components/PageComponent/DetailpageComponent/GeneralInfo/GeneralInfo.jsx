@@ -38,7 +38,7 @@ const GeneralInfo = () => {
   };
 
   return (
-    <section className="h-auto   px-[300px]  py-[60px] flex flex-row gap-x-[115.5px] ">
+    <section className="h-auto   px-[290px]  py-[60px] flex flex-row gap-x-[115.5px] ">
       <Image
         Src={roblox}
         AltTxt={"not found"}
