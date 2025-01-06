@@ -85,7 +85,7 @@ const Register = () => {
           text={
             <>
               Already have an account?
-              <Link className="font-medium underline " to={"/"}>
+              <Link className="font-medium underline " to={"/login"}>
                 Login
               </Link>
             </>

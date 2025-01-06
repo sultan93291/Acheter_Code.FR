@@ -13,9 +13,7 @@ const SwipperSlider = ({ data, cardHeight, cardName , customMargin }) => {
     <div className="relative w-[1285px] h-auto">
       {/* Left Navigation Button */}
       <Button
-        className={`absolute left-0 z-20 w-12 h-12 transform  -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center ${
-          customMargin ? "ml-[-60px]" : "ml-[-52px]"
-        } `}
+        className={`absolute left-0 z-20 w-12 h-12 transform  -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center ml-[-52px] `}
         onClick={() => {
           if (swiperInstance) swiperInstance.slidePrev();
         }}
@@ -52,9 +50,7 @@ const SwipperSlider = ({ data, cardHeight, cardName , customMargin }) => {
 
       {/* Right Navigation Button */}
       <Button
-        className={`absolute text-[26px] right-0 z-20 w-12 h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center ${
-          customMargin ? "mr-[-58px] " : "mr-[-50px] "
-        } `}
+        className={`absolute text-[26px] right-0 z-20 w-12 h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center mr-[-50px]`}
         onClick={() => {
           if (swiperInstance) swiperInstance.slideNext();
         }}

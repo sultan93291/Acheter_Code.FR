@@ -94,7 +94,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 className={"text-white font-nunito text-lg "}
-                to={"/home"}
+                to={"/"}
               >
                 Home
               </NavLink>
@@ -118,7 +118,7 @@ const Navbar = () => {
               </div>
             </div>
             <div className="flex flex-row items-center gap-x-4">
-              <Link className={"text-white font-nunito text-lg "} to={"/"}>
+              <Link  className={"text-white font-nunito text-lg "} to={"/login"}>
                 Log In
               </Link>
               <Button
