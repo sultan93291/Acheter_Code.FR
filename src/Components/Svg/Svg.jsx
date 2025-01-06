@@ -115,4 +115,25 @@ const EmailDeliveryIcon = () => {
   );
 };
 
-export { CheckIcon, SupportIcon, DollarIcon, EmailDeliveryIcon };
+const FullStarIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="17"
+      height="16"
+      viewBox="0 0 17 16"
+      fill="none"
+    >
+      <path
+        d="M8.63283 0C8.27658 0 7.92033 0.184375 7.73595 0.55625L5.69533 4.69375L1.1297 5.35625C0.310952 5.475 -0.0171727 6.48438 0.576577 7.0625L3.8797 10.2812L3.09845 14.8281C2.95783 15.6438 3.8172 16.2656 4.54845 15.8813L8.63283 13.7375V0Z"
+        fill="#FF8800"
+      />
+      <path
+        d="M8.57811 0C8.93436 0 9.29061 0.184375 9.47499 0.55625L11.5156 4.69375L16.0812 5.35625C16.9 5.475 17.2281 6.48438 16.6344 7.0625L13.3312 10.2812L14.1125 14.8281C14.2531 15.6438 13.3937 16.2656 12.6625 15.8813L8.57811 13.7375V0Z"
+        fill="#FF8800"
+      />
+    </svg>
+  );
+};
+
+export { CheckIcon, SupportIcon, DollarIcon, EmailDeliveryIcon, FullStarIcon };

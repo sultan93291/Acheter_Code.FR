@@ -27,6 +27,9 @@ export default {
         text_orange: "#B57500",
         border_orange: "#E89600",
         deep_ocean: "#E6F3F7",
+        shade_black: "#272727",
+        specail_black: "#242424",
+        light_gray: "#C2C8CA",
       },
       fontFamily: {
         righteous: '"Righteous", serif',
