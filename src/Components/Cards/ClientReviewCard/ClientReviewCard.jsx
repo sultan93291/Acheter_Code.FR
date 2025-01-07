@@ -4,7 +4,7 @@ import Heading from "../../Tags/Heading/Heading";
 import Paragraph from "../../Tags/Paragraph/Paragraph";
 import quote from "../../../assets/images/Home/quote.svg";
 
-const ClientReviewCard = ({clientImg, clientName, clientQuote }) => {
+const ClientReviewCard = ({ clientImg, clientName, clientQuote }) => {
   console.log(quote);
 
   return (
@@ -25,7 +25,11 @@ const ClientReviewCard = ({clientImg, clientName, clientQuote }) => {
         className={`text-dark_black text-lg font-nunito font-normal leading-[180%] text-center relative  `}
         text={
           <>
-            <Image Src={quote} AltTxt={'not found'} className={'absolute top-0 left-0 mt-1 ml-[-24px]'} />
+            <Image
+              Src={quote}
+              AltTxt={"not found"}
+              className={"absolute top-0 left-0 mt-1 ml-[-24px]"}
+            />
             {clientQuote}
           </>
         }

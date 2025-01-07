@@ -9,25 +9,26 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { BlogCardData } from "../../../DummyData/DummyData";
 import BlogCard from "../../../Cards/BlogCard/BlogCard";
-import blogGift from "../../../../assets/images/Home/blog_gift.png"
+import blogGift from "../../../../assets/images/Home/blog_gift.png";
 import blogGiftRight from "../../../../assets/images/Home/blog_gift_right.png";
 import { Image } from "../../../Tags/Image/Image";
 import { useNavigate } from "react-router-dom";
 
-
 const BlogSection = () => {
   let swiperInstance = null; // Store the Swiper instance
-  const navigate = useNavigate()
-  const handleBlogRedirect = (id) => {
-    navigate(`blog/${id}`)
-  }
+  const navigate = useNavigate();
+  const handleBlogRedirect = id => {
+    navigate(`blog/${id}`);
+  };
   return (
     <section className="w-full h-[531px] px-[290px] relative my-20 flex flex-col gap-y-10">
       <div className="flex justify-between flow-row">
         <Heading
           Variant={"h4"}
           text={"READ OUR BLOGS"}
-          className={"product_heading "}
+          className={
+            "font-righteous text-heading_black text-[36px] font-normal "
+          }
         />
         <div className="flex flex-row items-center gap-x-3">
           <Button
@@ -62,7 +63,13 @@ const BlogSection = () => {
         >
           {BlogCardData.map((item, index) => (
             <SwiperSlide key={index} className="h-auto">
-              <BlogCard onClick={()=>{handleBlogRedirect(item?.id)}}  blogTxt={item?.cardTxt} bgImg={item?.BgImg} />
+              <BlogCard
+                onClick={() => {
+                  handleBlogRedirect(item?.id);
+                }}
+                blogTxt={item?.cardTxt}
+                bgImg={item?.BgImg}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

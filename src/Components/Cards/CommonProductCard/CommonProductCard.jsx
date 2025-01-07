@@ -13,7 +13,6 @@ const CommonProductCard = ({
   seller,
   price,
   discountPrice,
-  
 }) => {
   return (
     <div

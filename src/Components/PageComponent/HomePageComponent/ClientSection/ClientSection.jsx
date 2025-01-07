@@ -22,13 +22,15 @@ const ClientSection = () => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
-      className="w-full h-[531px] px-[290px] py-20 flex flex-col gap-y-10"
+      className="w-full h-[531px] px-[300px] py-20 flex flex-col gap-y-10"
     >
       <div className="flex justify-between flow-row">
         <Heading
           Variant={"h4"}
           text={"WHAT OUR CLIENTS SAY"}
-          className={"product_heading text-white"}
+          className={
+            "font-righteous  text-[36px] font-normal text-white"
+          }
         />
         <div className="flex flex-row items-center gap-x-3">
           <Button
@@ -63,7 +65,11 @@ const ClientSection = () => {
         >
           {ClientReviewCardData.map((item, index) => (
             <SwiperSlide key={index} className="h-auto">
-              <ClientReviewCard clientImg={item.clientImg} clientName={item.clientName} clientQuote={item.clientQuote}  />
+              <ClientReviewCard
+                clientImg={item.clientImg}
+                clientName={item.clientName}
+                clientQuote={item.clientQuote}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

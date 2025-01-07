@@ -1,8 +1,10 @@
-import { bestsellingCardData , upcomingCardData } from "../../../DummyData/DummyData";
+import {
+  bestsellingCardData,
+  upcomingCardData,
+} from "../../../DummyData/DummyData";
 import SwipperSlider from "../../../SwipperSlider/SwipperSlider";
 import Heading from "../../../Tags/Heading/Heading";
 import Paragraph from "../../../Tags/Paragraph/Paragraph";
-
 
 const VouchersSection = () => {
   return (
@@ -11,7 +13,7 @@ const VouchersSection = () => {
         <Heading
           Variant={"h2"}
           text={"SALE VOUCHERS"}
-          className={"card_section_heading"}
+          className={"text-white font-righteous text-[36px] font-normal"}
         />
       </div>
       <div className="flex flex-col px-[300px] h-auto py-8 bg-primary_blue gap-y-[64px]">
@@ -19,7 +21,7 @@ const VouchersSection = () => {
           <Heading
             Variant={"h4"}
             text={"Bestselling Vouchers"}
-            className={"card_sub_heading"}
+            className={"text-black font-nunito text-[32px] font-bold"}
           />
           <SwipperSlider
             data={bestsellingCardData}
@@ -31,7 +33,7 @@ const VouchersSection = () => {
           <Heading
             Variant={"h4"}
             text={"Upcoming Vouchers"}
-            className={"card_sub_heading"}
+            className={"text-black font-nunito text-[32px] font-bold"}
           />
           <SwipperSlider
             data={upcomingCardData}

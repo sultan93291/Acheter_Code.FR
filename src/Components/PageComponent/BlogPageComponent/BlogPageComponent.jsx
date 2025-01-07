@@ -4,7 +4,7 @@ import { Image } from "../../Tags/Image/Image";
 import { BlogCardData } from "../../DummyData/DummyData";
 import Heading from "../../Tags/Heading/Heading";
 import Paragraph from "../../Tags/Paragraph/Paragraph";
-import cod from "../../../assets/images/Details/cod.jpeg"
+import cod from "../../../assets/images/Details/cod.jpeg";
 import vr from "../../../assets/images/Details/vr.png";
 
 const BlogPageComponent = ({ id }) => {
@@ -169,10 +169,10 @@ const BlogPageComponent = ({ id }) => {
               }
               className={"para_style"}
             />
-            <div className="flex flex-col gap-y-6 ">
+            <div className="flex flex-col gap-y-10 ">
               {giftCardBenefits.map((item, index) => {
                 return (
-                  <div className="flex flex-col gap-y-[2px] " key={item?.id}>
+                  <div className="flex flex-col gap-y-2 " key={item?.id}>
                     <Paragraph
                       className={"para_style"}
                       text={`${item?.id}. ${item?.heading} `}
@@ -196,43 +196,41 @@ const BlogPageComponent = ({ id }) => {
             text={"MORE BLOGS FROM US"}
             className={" text-2xl text-text_black font-bold leading-[150%] "}
           />
-          <div className="flex flex-col gap-y-5 " >
-            {
-              moreBlogData.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={`flex flex-row gap-x-6 p-[10px] rounded-[8px] ease-in duration-150 hover:bg-[#FFFBF4] shadow-custom_shadow group `}
-                  >
-                    <Image
-                      Src={item.bgImg}
-                      AltTxt={"not found"}
+          <div className="flex flex-col gap-y-5 ">
+            {moreBlogData.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className={`flex flex-row gap-x-6 p-[10px] rounded-[8px] ease-in duration-150 hover:bg-[#FFFBF4] shadow-custom_shadow group `}
+                >
+                  <Image
+                    Src={item.bgImg}
+                    AltTxt={"not found"}
+                    className={
+                      " w-[88px] h-[88px] rounded-[6px] object-cover  "
+                    }
+                  />
+                  <div className="flex flex-col gap-y-2">
+                    <Heading
+                      Variant={"h4"}
+                      text={item?.heading}
                       className={
-                        " w-[88px] h-[88px] rounded-[6px] object-cover  "
+                        "text-[14px] font-bold font-nunito leading-[150%] text-secondary_gray group-hover:text-text_black"
                       }
                     />
-                    <div className="flex flex-col gap-y-2">
-                      <Heading
-                        Variant={"h4"}
-                        text={item?.heading}
-                        className={
-                          "text-[14px] font-bold font-nunito leading-[150%] text-secondary_gray group-hover:text-text_black"
-                        }
-                      />
-                      <Heading
-                        Variant={"h2"}
-                        text={
-                          "Boost Your Gaming Experience with Sale Vouchers and Gift Cards"
-                        }
-                        className={
-                          " text-[20px] text-text_black font-bold font-nunito "
-                        }
-                      />
-                    </div>
+                    <Heading
+                      Variant={"h2"}
+                      text={
+                        "Boost Your Gaming Experience with Sale Vouchers and Gift Cards"
+                      }
+                      className={
+                        " text-[20px] text-text_black font-bold font-nunito "
+                      }
+                    />
                   </div>
-                );
-              })
-            }
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

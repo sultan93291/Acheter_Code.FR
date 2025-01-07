@@ -7,6 +7,7 @@ const Blog = () => {
   const { id } = useParams();
   return (
     <BlogPageComponent id={ id} />
+
   )
 }
 

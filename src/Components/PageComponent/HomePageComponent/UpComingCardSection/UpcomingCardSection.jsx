@@ -13,17 +13,16 @@ import CommonProductCard from "../../../Cards/CommonProductCard/CommonProductCar
 import Button from "../../../Tags/Button/Button";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 
-
 const UpcomingCardSection = () => {
   let swiperInstance = null;
-  let swiperInstanceTwo = null
+  let swiperInstanceTwo = null;
   return (
     <section className="flex flex-col w-full h-auto ">
       <div className="w-full px-[300px] h-auto py-10 bg-secondary_blue">
         <Heading
           Variant={"h2"}
           text={"GIFT CARDS"}
-          className={"card_section_heading"}
+          className={"text-white font-righteous text-[36px] font-normal"}
         />
       </div>
       <div
@@ -40,7 +39,7 @@ const UpcomingCardSection = () => {
             <Heading
               Variant={"h4"}
               text={"Upcoming Cards"}
-              className={"card_sub_heading"}
+              className={"text-black font-nunito text-[32px] font-bold"}
             />
             <div className="flex flex-row items-center gap-x-3">
               <Button
@@ -108,7 +107,9 @@ const UpcomingCardSection = () => {
             <Heading
               Variant={"h4"}
               text={"Best Selling Cards"}
-              className={"card_sub_heading text-white "}
+              className={
+                " font-nunito text-[32px] font-bold text-white "
+              }
             />
             <div className="flex flex-row items-center gap-x-3">
               <Button

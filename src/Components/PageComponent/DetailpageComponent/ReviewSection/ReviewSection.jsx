@@ -12,7 +12,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import Paragraph from "../../../Tags/Paragraph/Paragraph";
-import glassMan from "../../../../assets/images/Details/glassMan.png"
+import glassMan from "../../../../assets/images/Details/glassMan.png";
 
 const ReviewSection = () => {
   const swiperRef = useRef(null); // Ref to the Swiper instance

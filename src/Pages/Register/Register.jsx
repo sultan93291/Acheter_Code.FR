@@ -11,13 +11,15 @@ import { Input } from "../../Components/Tags/Input/Input";
 const Register = () => {
   const [isShowPass, setisShowPass] = useState(false);
   return (
-    <section className="mx-auto bg-[#F8F8F8] flex items-center justify-center h-auto w-full  pt-[64px] pb-[316.29px]">
+    <section className="mx-auto bg-[#F8F8F8] flex items-center justify-center h-auto w-full  pt-[64px] pb-[84.29px]">
       <form className="flex flex-col items-center gap-y-12 " action="">
         <div className="flex flex-col gap-y-[32px] items-center">
           <Heading
             Variant={"h1"}
             text={"Create Your Account"}
-            className={"form_heading"}
+            className={
+              "text-[64px] font-nunito text-text_black font-medium leading-[83.146px] tracking-[-0.64px]"
+            }
           />
           <div className="flex flex-col gap-y-[44.79px] ">
             <div className="flex flex-row gap-y-8">
@@ -26,7 +28,9 @@ const Register = () => {
                   <Heading
                     Variant={"h5"}
                     text={"Nickname"}
-                    className={"form_input_heading"}
+                    className={
+                      "text-[22.385px] font-medium font-nunito text-text_black leading-[31.979px] tracking-[-0.09px];"
+                    }
                   />
                   <Input
                     type={"text"}
@@ -38,7 +42,9 @@ const Register = () => {
                   <Heading
                     Variant={"h5"}
                     text={"Email"}
-                    className={"form_input_heading"}
+                    className={
+                      "text-[22.385px] font-medium font-nunito text-text_black leading-[31.979px] tracking-[-0.09px];"
+                    }
                   />
                   <Input
                     type={"email"}
@@ -50,7 +56,9 @@ const Register = () => {
                   <Heading
                     Variant={"h5"}
                     text={"Password"}
-                    className={"form_input_heading"}
+                    className={
+                      "text-[22.385px] font-medium font-nunito text-text_black leading-[31.979px] tracking-[-0.09px];"
+                    }
                   />
                   <div className="relative flex flex-row">
                     <Input
@@ -77,7 +85,12 @@ const Register = () => {
                 </div>
               </div>
             </div>
-            <Button className={"form_btn"} text={"Register"} />
+            <Button
+              className={
+                "form_btn text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white "
+              }
+              text={"Register"}
+            />
           </div>
         </div>
         <Paragraph

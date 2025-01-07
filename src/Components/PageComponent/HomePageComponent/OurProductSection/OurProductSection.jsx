@@ -33,7 +33,7 @@ const OurProductSection = () => {
   ];
   return (
     <section
-      className="py-20 px-[280px] flex flex-col gap-y-10 "
+      className="py-20 px-[300px] flex flex-col gap-y-10 "
       style={{
         background: "linear-gradient(0deg, #D9EDF4 0%, #D9EDF4 100%), #F7FBFD",
       }}
@@ -41,11 +41,16 @@ const OurProductSection = () => {
       <Heading
         Variant={"h4"}
         text={"WHY OUR PRODUCTS"}
-        className={"product_heading "}
+        className={"font-righteous text-heading_black text-[36px] font-normal "}
       />
       <div className="flex flex-row gap-x-5">
         {FacilitiesCardInfo.map((item, index) => (
-          <FacilitiesCard key={index} heading={item.heading} subHeading={item.subHeading} Svg={item.svg}   />
+          <FacilitiesCard
+            key={index}
+            heading={item.heading}
+            subHeading={item.subHeading}
+            Svg={item.svg}
+          />
         ))}
       </div>
     </section>
