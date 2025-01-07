@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { Button } from "@/components/ui/button"; // Tailwind styled Button component
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"; // Popover components
-import { Calendar } from "@/components/ui/Calendar"; // Import the Calendar component
+import Button from "@/Components/Tags/Button/Button";
+import { Calendar } from "@/Components/ui/calendar";
 
 // DatePicker Component
 export function DatePicker() {
