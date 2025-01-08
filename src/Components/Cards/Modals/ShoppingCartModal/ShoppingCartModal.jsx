@@ -7,6 +7,7 @@ import DeliveryCard from "../../DeliveryCard/DeliveryCard";
 import Button from "@/Components/Tags/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { createPortal } from "react-dom";
 
 const ShoppingCartModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -67,9 +68,9 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
     navigate("/checkout");
   };
 
-  return (
+  return createPortal(
     <div
-      className={`fixed inset-0 h-[955px] flex  items-start justify-end z-50 bg-black bg-opacity-50 ${
+      className={`fixed top-0 right-0 h-[955px] w-auto flex items-start z-50 bg-black bg-opacity-50 ${
         isOpen
           ? "opacity-100 visible"
           : "opacity-0 invisible pointer-events-none"
@@ -146,7 +147,8 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
