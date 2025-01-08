@@ -1,24 +1,40 @@
 import { Image } from "@/Components/Tags/Image/Image";
-import React, { useState } from "react";
-import random from "../../../assets/images/Home/computer.jpeg";
 import Heading from "@/Components/Tags/Heading/Heading";
+import { useDispatch } from "react-redux";
+import { decreaseQuantity, increaseQuantity } from "@/redux/features/CartSlice";
 
-const DeliveryCard = () => {
-  const [counterValue, setcounterValue] = useState(1);
+const DeliveryCard = ({
+  heading,
+  cartImg,
+  quantity,
+  price,
+  id,
+  isShoppingCart,
+  isHrLine,
+}) => {
+  const dispatch = useDispatch();
 
   const decreaseCounterValue = () => {
-    if (counterValue > 1) {
-      setcounterValue(counterValue - 1);
-    }
+    dispatch(decreaseQuantity({ id: id }));
   };
 
   const increaseCounterValue = () => {
-    setcounterValue(counterValue + 1);
+    dispatch(increaseQuantity({ id: id }));
   };
+
   return (
-    <div className="flex flex-row h-auto p-[16px] items-center justify-between relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#ADD8E6] after:opacity-50  ">
+    <div
+      className={`flex flex-row items-center justify-between ${
+        isShoppingCart
+          ? ` h-auto p-4 ${
+              isHrLine &&
+              "relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#ADD8E6] after:opacity-50"
+            }  `
+          : " p-5 bg-white shadow-custom_shadow rounded-[16px] "
+      }`}
+    >
       <Image
-        Src={random}
+        Src={cartImg}
         AltTxt={"not found"}
         className={"w-[64px] h-[64px] rounded-[8px] "}
       />
@@ -26,10 +42,11 @@ const DeliveryCard = () => {
         <div className="flex flex-row gap-x-6 ">
           <Heading
             Variant={"h4"}
-            text={"Roblox Gift Card 10€ (Email Delivery) "}
+            text={heading}
             className={" text-lg font-semibold text-text_black font-nunito "}
           />
           <svg
+            className="cursor-pointer"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="25"
@@ -79,7 +96,7 @@ const DeliveryCard = () => {
               </svg>
             </div>
             <div className="w-[59px] border-l-[1px]  border-r-[1px] border-solid border-ocean_blue px-6 flex items-center text-lg font-bold font-nunito text-secondary_gray  ">
-              {counterValue}
+              {quantity}
             </div>
             <div
               onClick={() => {
@@ -99,7 +116,7 @@ const DeliveryCard = () => {
             </div>
           </div>
           <Heading
-            text={"2 x 10€ = 20€"}
+            text={`${quantity} x ${price}€ = ${quantity * price}`}
             Variant={"h4"}
             className={" text-lg font-semibold font-nunito text-[#6B4500] "}
           />

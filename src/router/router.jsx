@@ -5,6 +5,8 @@ import Register from "../Pages/Register/Register";
 import Home from "../Pages/Home/Home";
 import Detail from "../Pages/Detail/Detail";
 import Blog from "../Pages/Blog/Blog";
+import Checkout from "@/Pages/Checkout/Checkout";
+
 
 
 
@@ -35,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/blog/:id",
         element: <Blog />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
     ],
   },

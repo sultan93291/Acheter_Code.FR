@@ -1,17 +1,36 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Heading from "../../../Tags/Heading/Heading";
 import Paragraph from "../../../Tags/Paragraph/Paragraph";
 import { RxCross2 } from "react-icons/rx";
 import DeliveryCard from "../../DeliveryCard/DeliveryCard";
 import Button from "@/Components/Tags/Button/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ShoppingCartModal = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
   const handleClose = () => {
     if (onClose) {
       onClose();
     }
   };
+
+  const shoppingCartData = useSelector(
+    state => state?.cartSlice?.shoppingCartData
+  );
+
+  const subtotalArr = [];
+
+  const SUBTOTAL = shoppingCartData.map((item, index) => {
+    const { price, quantity } = item;
+    const total = price * quantity;
+    subtotalArr.push(total);
+  });
+
+  const total = subtotalArr.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+  }, 0);
 
   const elementRef = useRef(null);
 
@@ -43,6 +62,10 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
       document.body.classList.remove("overflow-hidden");
     };
   }, [isOpen]);
+
+  const handleCheckOutRedirect = () => {
+    navigate("/checkout");
+  };
 
   return (
     <div
@@ -78,9 +101,25 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
         </div>
         <div className="flex flex-col gap-y-[220px]">
           <div className="flex flex-col">
-            <DeliveryCard />
-            <DeliveryCard />
-            <DeliveryCard />
+            {shoppingCartData.map((item, index) => {
+              return (
+                <DeliveryCard
+                  key={index}
+                  heading={item.heading}
+                  cartImg={item.cartImg}
+                  quantity={item.quantity}
+                  price={item.price}
+                  id={item?.id}
+                  isShoppingCart={true}
+                  isHrLine={
+                    item.id ===
+                    shoppingCartData[shoppingCartData.length - 1]?.id
+                      ? false
+                      : true
+                  }
+                />
+              );
+            })}
           </div>
           <div className="relative flex flex-col items-center gap-y-8 after:absolute after:w-full after:h-[1px] after:bg-text_gray after:top-0 after:left-0 after:mt-[-20px]">
             <div className="flex flex-row justify-between w-full">
@@ -90,12 +129,15 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
                 className={"text-lg font-nunito font-semibold  text-text_black"}
               />
               <Heading
-                text={"80€"}
+                text={`${total}€`}
                 Variant={"h5"}
                 className={"text-lg font-nunito font-semibold  text-text_black"}
               />
             </div>
             <Button
+              onClick={() => {
+                handleCheckOutRedirect();
+              }}
               className={
                 "w-[450px] bg-orange py-[16px] px-5 rounded-[16px] h-[57px] text-lg font-nunito text-white "
               }
