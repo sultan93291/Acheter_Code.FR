@@ -82,7 +82,7 @@ const Login = () => {
             </div>
             <Button
               className={
-                "form_btn text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white "
+                "w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto  text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white "
               }
               text={"Login"}
             />
