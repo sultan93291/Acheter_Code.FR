@@ -102,7 +102,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`fixed inset-0 h-[950px] flex  items-start justify-end z-50 bg-black bg-opacity-50 ${
+      className={`fixed inset-0 h-auto  flex  items-start justify-end z-50 bg-black bg-opacity-50 ${
         isOpen
           ? "opacity-100 visible"
           : "opacity-0 invisible pointer-events-none"
@@ -129,7 +129,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
             />
           </div>
         </div>
-        <div className="flex flex-col overflow-y-scroll h-[820px] gap-y-8 ">
+        <div className="flex flex-col overflow-y-scroll h-[820px] pb-10 gap-y-8 ">
           <div className="flex flex-row justify-between ">
             <div className="relative">
               <Input

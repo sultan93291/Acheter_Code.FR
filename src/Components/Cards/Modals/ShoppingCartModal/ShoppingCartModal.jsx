@@ -100,7 +100,7 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-y-[220px]">
+        <div className="flex flex-col gap-y-[180px]">
           <div className="flex flex-col">
             {shoppingCartData.map((item, index) => {
               return (
@@ -122,7 +122,7 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
               );
             })}
           </div>
-          <div className="relative flex flex-col items-center gap-y-8 after:absolute after:w-full after:h-[1px] after:bg-text_gray after:top-0 after:left-0 after:mt-[-20px]">
+          <div className="relative flex flex-col items-center gap-y-8  after:absolute after:w-full after:h-[1px] after:bg-text_gray after:top-0 after:left-0 after:mt-[-20px]">
             <div className="flex flex-row justify-between w-full">
               <Heading
                 text={"SUBTOTAL"}
