@@ -94,7 +94,9 @@ const Register = () => {
           </div>
         </div>
         <Paragraph
-          className={"flex flex-row gap-x-2 form_link "}
+          className={
+            "flex flex-row gap-x-2 text-xl font-normal text-text_black leading-[38.375px] tracking-[-0.08px] "
+          }
           text={
             <>
               Already have an account?
