@@ -5,11 +5,42 @@ import Button from "../../Components/Tags/Button/Button";
 import Paragraph from "../../Components/Tags/Paragraph/Paragraph";
 import { CgEye } from "react-icons/cg";
 import { HiOutlineEyeSlash } from "react-icons/hi2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../../Components/Tags/Input/Input";
+import axios from "axios";
 
 const Register = () => {
   const [isShowPass, setisShowPass] = useState(false);
+  const [isconfirmPass, setisConfirmPass] = useState(false);
+  
+
+  const handleFormData = e => {
+    const { name, value } = e.target;
+    setuserData({ ...userData, [name]: value });
+  };
+
+  const handleRegister = e => {
+    e.preventDefault();
+    axios({
+      method: "post",
+      url: "https://borisdessy.softvencefsd.xyz/api/users/register",
+      data: {
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
+        password_confirmation: userData.confirm_password,
+      },
+    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  console.log(userData);
+
   return (
     <section className="mx-auto bg-[#F8F8F8] flex items-center justify-center h-auto w-full  pt-[64px] pb-[84.29px]">
       <form className="flex flex-col items-center gap-y-12 " action="">
@@ -33,6 +64,10 @@ const Register = () => {
                     }
                   />
                   <Input
+                    onChange={e => {
+                      handleFormData(e);
+                    }}
+                    name={"name"}
                     type={"text"}
                     className={"form_input"}
                     placeholder={"Enter your nickname"}
@@ -47,6 +82,10 @@ const Register = () => {
                     }
                   />
                   <Input
+                    name={"email"}
+                    onChange={e => {
+                      handleFormData(e);
+                    }}
                     type={"email"}
                     className={"form_input"}
                     placeholder={"Enter your email "}
@@ -54,6 +93,9 @@ const Register = () => {
                 </div>
                 <div className="flex flex-col gap-y-2 ">
                   <Heading
+                    onChange={e => {
+                      handleFormData(e);
+                    }}
                     Variant={"h5"}
                     text={"Password"}
                     className={
@@ -62,6 +104,10 @@ const Register = () => {
                   />
                   <div className="relative flex flex-row">
                     <Input
+                      name={"password"}
+                      onChange={e => {
+                        handleFormData(e);
+                      }}
                       type={isShowPass ? "text" : "password"}
                       className={"form_input pr-[80px] "}
                       placeholder={" Set password"}
@@ -83,9 +129,50 @@ const Register = () => {
                     )}
                   </div>
                 </div>
+                <div className="flex flex-col gap-y-2 ">
+                  <Heading
+                    onChange={e => {
+                      handleFormData(e);
+                    }}
+                    Variant={"h5"}
+                    text={"Confirm Password"}
+                    className={
+                      "text-[22.385px] font-medium font-nunito text-text_black leading-[31.979px] tracking-[-0.09px];"
+                    }
+                  />
+                  <div className="relative flex flex-row">
+                    <Input
+                      name={"confirm_password"}
+                      onChange={e => {
+                        handleFormData(e);
+                      }}
+                      type={isconfirmPass ? "text" : "password"}
+                      className={"form_input pr-[80px] "}
+                      placeholder={" Confirm password"}
+                    />
+                    {isconfirmPass ? (
+                      <HiOutlineEyeSlash
+                        onClick={() => {
+                          setisConfirmPass(!isconfirmPass);
+                        }}
+                        className="absolute h-[31.979px] w-[31.979px] cursor-pointer   right-0 mr-[25.58px] transform -translate-y-1/2 top-1/2 text-light_gray "
+                      />
+                    ) : (
+                      <CgEye
+                        onClick={() => {
+                          setisConfirmPass(!isconfirmPass);
+                        }}
+                        className="absolute h-[31.979px] w-[31.979px] cursor-pointer   right-0 mr-[25.58px] transform -translate-y-1/2 top-1/2 text-light_gray "
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
             <Button
+              onClick={e => {
+                handleRegister(e);
+              }}
               className={
                 "w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white "
               }

@@ -7,9 +7,43 @@ import { CgEye } from "react-icons/cg";
 import { HiOutlineEyeSlash } from "react-icons/hi2";
 import { useState } from "react";
 import { Input } from "../../Components/Tags/Input/Input";
+import axios from "axios";
+
 
 const Login = () => {
   const [isShowPass, setisShowPass] = useState(false);
+  const [userData, setuserData] = useState({
+    email: "",
+    password: "",
+  });
+  
+  const handleFormData = e => {
+    const { name, value } = e.target;
+    setuserData({ ...userData, [name]: value });
+  };
+
+  console.log(userData);
+  
+
+  
+  const handleLogin = e => {
+    e.preventDefault();
+    axios({
+      method: "post",
+      url: "https://borisdessy.softvencefsd.xyz/api/users/login",
+      data: {
+        email: userData.email,
+        password: userData.password,
+      },
+    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <section className="mx-auto bg-[#F8F8F8] flex items-center justify-center h-auto w-full  pt-[64px] pb-[80.29px]">
       <form className="flex flex-col items-center gap-y-12 " action="">
@@ -35,8 +69,13 @@ const Login = () => {
                     />
                     <Input
                       type={"email"}
+                      name={"email"}
                       className={"form_input"}
                       placeholder={"Enter your email "}
+                      value={userData.email}
+                      onChange={e => {
+                        handleFormData(e);
+                      }}
                     />
                   </div>
                   <div className="flex flex-col gap-y-2 ">
@@ -52,6 +91,11 @@ const Login = () => {
                         type={isShowPass ? "text" : "password"}
                         className={"form_input pr-[80px] "}
                         placeholder={" Enter password"}
+                        name={"password"}
+                        onChange={e => {
+                          handleFormData(e);
+                        }}
+                        value={userData.password}
                       />
                       {isShowPass ? (
                         <HiOutlineEyeSlash
@@ -81,6 +125,9 @@ const Login = () => {
               </Link>
             </div>
             <Button
+              onClick={e => {
+                handleLogin(e);
+              }}
               className={
                 "w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto  text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white "
               }
