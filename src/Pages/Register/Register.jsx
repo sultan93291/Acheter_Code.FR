@@ -1,5 +1,5 @@
 "use client";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Heading from "../../Components/Tags/Heading/Heading";
 import Button from "../../Components/Tags/Button/Button";
 import Paragraph from "../../Components/Tags/Paragraph/Paragraph";
@@ -9,11 +9,18 @@ import { useEffect, useState } from "react";
 import { Input } from "../../Components/Tags/Input/Input";
 import axios from "axios";
 
+
 const Register = () => {
   const [isShowPass, setisShowPass] = useState(false);
   const [isconfirmPass, setisConfirmPass] = useState(false);
-  
+  const [userData, setuserData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  });
 
+  const navigate = useNavigate();
   const handleFormData = e => {
     const { name, value } = e.target;
     setuserData({ ...userData, [name]: value });
@@ -32,7 +39,10 @@ const Register = () => {
       },
     })
       .then(res => {
-        console.log(res);
+        console.log(res.status);
+        if (res.status===201) {
+          navigate("/login")
+        }
       })
       .catch(err => {
         console.log(err);
