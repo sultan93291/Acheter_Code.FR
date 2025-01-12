@@ -16,6 +16,7 @@ const CommonProductCard = ({
   seller,
   price,
   discountPrice,
+  id,
 }) => {
   const [isopen, setisopen] = useState(false);
   return (
@@ -100,7 +101,7 @@ const CommonProductCard = ({
                   Variant={"h4"}
                   text={seller}
                   className={
-                    "text-[18px] font-medium font-nunito text-text_black"
+                    "text-[18px] font-medium font-nunito text-text_black truncate "
                   }
                 />
               </div>
@@ -115,7 +116,7 @@ const CommonProductCard = ({
                 <div className="flex flex-row items-center gap-x-2 ">
                   <Heading
                     Variant={"h4"}
-                    text={discountPrice}
+                    text={`${discountPrice}`}
                     className={
                       "text-[24px] font-semibold font-nunito text-text_black"
                     }

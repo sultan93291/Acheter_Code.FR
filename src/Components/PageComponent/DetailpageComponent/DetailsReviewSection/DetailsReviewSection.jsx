@@ -6,6 +6,8 @@ import ReviewSection from "../ReviewSection/ReviewSection";
 
 const DetailsReviewSection = () => {
   const [isDescreption, setisDescreption] = useState(true);
+  console.log(isDescreption);
+  
   return (
     <section
       className={`w-full h-auto pt-5 ${

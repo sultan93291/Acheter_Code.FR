@@ -6,43 +6,65 @@ import CommonProductCard from "../Cards/CommonProductCard/CommonProductCard";
 import Button from "../Tags/Button/Button";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { useState, useRef, useEffect } from "react";
 
-const SwipperSlider = ({ data, cardHeight, cardName , customMargin }) => {
-  let swiperInstance = null;
+const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
+  const swiperInstance = useRef(null); // Use a ref to persist swiper instance
+  const [isSwiperInitialized, setIsSwiperInitialized] = useState(false);
+
+  // Handle initialization and set state when swiper is ready
+  useEffect(() => {
+    if (swiperInstance.current) {
+      setIsSwiperInitialized(true);
+    }
+  }, [swiperInstance.current]);
+
+  const handleNav = () => {
+    console.log("Navigation button clicked");
+  };
+
   return (
     <div className="relative w-[1285px] h-auto">
       {/* Left Navigation Button */}
+
       <Button
-        className={`absolute left-0 z-20 w-12 h-12 transform  -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center ml-[-52px] `}
+        className={`absolute left-0 z-20 w-12 h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center ml-[-52px]  `}
         onClick={() => {
-          if (swiperInstance) swiperInstance.slidePrev();
+          if (swiperInstance.current) {
+            swiperInstance.current.slidePrev();
+          }
         }}
-        disabled={swiperInstance?.isBeginning}
+        disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
         text={<IoIosArrowRoundBack className="w-8 h-8" />}
       />
 
       {/* Swiper */}
       <Swiper
         modules={[Navigation]}
-        onSwiper={swiper => (swiperInstance = swiper)} // Capture the Swiper instance
-        slidesPerView={4} // Adjust the number of visible slides
-        spaceBetween={20} // Custom gap between slides
-        loop={true} // Enable looping if necessary
+        onSwiper={swiper => {
+          swiperInstance.current = swiper; // Set the swiper instance on initialization
+        }}
+        slidesPerView={4}
+        spaceBetween={20}
+        loop={true}
       >
         {/* Slides */}
-        {data.map((item, index) => (
-          <SwiperSlide key={index} className="h-auto ">
+        {data.map(item => (
+          <SwiperSlide key={item?.id} className="h-auto">
             <CommonProductCard
-              cardName={cardName}
+              id={item?.id}
+              cardName={item?.card_name}
               cardHeight={cardHeight}
-              bgImg={item?.bgImg}
-              rating={item?.rating}
-              discountpercentage={item?.discountpercentage}
-              seller={item?.seller}
-              heading={item?.heading}
+              bgImg={`https://borisdessy.softvencefsd.xyz/${item?.image}`}
+              rating={item?.reviews_avg_rating}
+              discountpercentage={`${Math.floor(
+                ((item?.price - item?.discount) / item?.price) * 100
+              )}%`}
+              seller={item?.seller_name}
+              heading={item?.platform_name}
               price={item?.price}
               subHeading={item?.subHeading}
-              discountPrice={item?.discountPrice}
+              discountPrice={item?.discount}
             />
           </SwiperSlide>
         ))}
@@ -52,9 +74,11 @@ const SwipperSlider = ({ data, cardHeight, cardName , customMargin }) => {
       <Button
         className={`absolute text-[26px] right-0 z-20 w-12 h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center mr-[-50px]`}
         onClick={() => {
-          if (swiperInstance) swiperInstance.slideNext();
+          if (swiperInstance.current) {
+            swiperInstance.current.slideNext();
+          }
         }}
-        disabled={swiperInstance?.isEnd}
+        disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
         text={<IoIosArrowRoundForward className="w-8 h-8" />}
       />
     </div>

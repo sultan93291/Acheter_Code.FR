@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   bestsellingCardData,
   upcomingCardData,
@@ -5,8 +6,43 @@ import {
 import SwipperSlider from "../../../SwipperSlider/SwipperSlider";
 import Heading from "../../../Tags/Heading/Heading";
 import Paragraph from "../../../Tags/Paragraph/Paragraph";
+import { useEffect, useState } from "react";
 
 const VouchersSection = () => {
+  const [bestSeliingDatas, setbestSeliingDatas] = useState();
+  const [upComingDatas, setUpcomingDatas] = useState();
+
+  useEffect(() => {
+    bestSellingData();
+    upComingData();
+  });
+
+  const bestSellingData = () => {
+    axios({
+      method: "get",
+      url: `https://borisdessy.softvencefsd.xyz/api/upcoming-vouchers`,
+    })
+      .then(res => {
+        setbestSeliingDatas(res?.data?.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const upComingData = () => {
+    axios({
+      method: "get",
+      url: `https://borisdessy.softvencefsd.xyz/api/upcoming-vouchers`,
+    })
+      .then(res => {
+        setUpcomingDatas(res?.data?.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <section className="flex flex-col w-full h-auto ">
       <div className="w-full px-[300px] h-auto py-10 bg-secondary_blue">
@@ -24,7 +60,7 @@ const VouchersSection = () => {
             className={"text-black font-nunito text-[32px] font-bold"}
           />
           <SwipperSlider
-            data={bestsellingCardData}
+            data={bestSeliingDatas ? bestSeliingDatas : bestsellingCardData}
             cardHeight={"570px"}
             cardName={"Bestselling Vouchers"}
           />
@@ -36,7 +72,7 @@ const VouchersSection = () => {
             className={"text-black font-nunito text-[32px] font-bold"}
           />
           <SwipperSlider
-            data={upcomingCardData}
+            data={upComingDatas ? upComingDatas : upcomingCardData}
             cardHeight={"570px"}
             cardName={"Upcoming Vouchers"}
           />

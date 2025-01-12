@@ -8,62 +8,78 @@ import Button from "../Components/Tags/Button/Button";
 import { FaRegUser } from "react-icons/fa6";
 import { Input } from "../Components/Tags/Input/Input";
 import PurchaseHistoryModal from "../Components/Cards/Modals/PurchaseHistoryModal/PurchaseHistoryModal";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AddFundModal from "@/Components/Cards/Modals/AddFundModal/AddFundModal";
-
+import { AuthContext } from "@/Provider/AuthProvider/AuthProvider";
+import { setFilterCardData } from "@/redux/features/filterCardSlice";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const [isopen, setisopen] = useState(false);
-   const [isFundopen, setisFundopen] = useState(false);
+  const [isFundopen, setisFundopen] = useState(false);
+  const [FilterCardnames, setFilterCardnames] = useState("STEAM");
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleRegister = () => {
     navigate("/register");
   };
 
+  const { isAuthenticated } = useContext(AuthContext);
+  console.log(isAuthenticated);
+
   const location = useLocation();
   console.log(location.pathname);
+
+  useEffect(() => {
+    handleFilterData(FilterCardnames);
+  });
+
+  const handleFilterData = FilterCardname => {
+    setFilterCardnames(FilterCardname);
+    axios({
+      method: "get",
+      url: `https://borisdessy.softvencefsd.xyz/api/filter/cards?platform=${FilterCardname}`,
+    })
+      .then(res => {
+        dispatch(setFilterCardData(res?.data?.data));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const socailLinks = [
     {
       linkName: "STEAM",
-      redirects: "/",
     },
     {
       linkName: "GOOGLE STORE",
-      redirects: "/",
     },
     {
       linkName: "APPLE STORE",
-      redirects: "/",
     },
     {
       linkName: "XBOX",
-      redirects: "/",
     },
     {
       linkName: "PLAYSTATION",
-      redirects: "/",
     },
     {
       linkName: "FORTNITE",
-      redirects: "/",
     },
     {
       linkName: "ROBLOX",
-      redirects: "/",
     },
     {
       linkName: "MINECRAFT",
-      redirects: "/",
     },
     {
       linkName: "PC",
-      redirects: "/",
     },
     {
       linkName: "MOBILE",
-      redirects: "/",
     },
   ];
 
@@ -86,7 +102,11 @@ const Navbar = () => {
         isFundOpen={isFundopen}
       />
       <nav className="flex flex-col ">
-        <div className="py-6 bg-orange justify-center  flex gap-x-[96px] items-center ">
+        <div
+          className={`py-6 bg-orange justify-center   flex items-center ${
+            isAuthenticated ? " justify-between px-[300px] " : "gap-x-[96px] "
+          }  `}
+        >
           <div className="flex flex-row gap-x-[48px] items-center ">
             <div onClick={handleRootRedirect}>
               <Heading
@@ -133,31 +153,44 @@ const Navbar = () => {
                 <div className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer bg-transparent_black">
                   <IoIosCart className="w-5 h-5 text-white " />
                 </div>
-                <div onClick={()=>{setisFundopen(true)}}  className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer bg-transparent_black">
+                <div
+                  onClick={() => {
+                    setisFundopen(true);
+                  }}
+                  className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer bg-transparent_black"
+                >
                   <ImCoinEuro className="w-5 h-5 text-white " />
                 </div>
               </div>
-              <div className="flex flex-row items-center gap-x-4">
-                <Link
-                  className={"text-white font-nunito text-lg "}
-                  to={"/login"}
-                >
-                  Log In
-                </Link>
-                <Button
-                  onClick={() => {
-                    handleRegister();
-                  }}
-                  className={
-                    " p-4 border-[2px] border-solid border-white outline-none rounded-[16px] text-white font-nunito text-lg   "
-                  }
-                  text={
-                    <div className="flex flex-row items-center text-white gap-x-2">
-                      <FaRegUser className="w-5 h-5 text-lg font-bold text-white font-nunito " />{" "}
-                      Sign Up{" "}
-                    </div>
-                  }
-                />
+              <div
+                className={` flex flex-row items-center ${
+                  isAuthenticated ? `justify-between` : " gap-x-4"
+                }`}
+              >
+                {!isAuthenticated && (
+                  <Link
+                    className={"text-white font-nunito text-lg "}
+                    to={"/login"}
+                  >
+                    Log In
+                  </Link>
+                )}
+                {!isAuthenticated && (
+                  <Button
+                    onClick={() => {
+                      handleRegister();
+                    }}
+                    className={
+                      " p-4 border-[2px] border-solid border-white outline-none rounded-[16px] text-white font-nunito text-lg   "
+                    }
+                    text={
+                      <div className="flex flex-row items-center text-white gap-x-2">
+                        <FaRegUser className="w-5 h-5 text-lg font-bold text-white font-nunito " />{" "}
+                        Sign Up{" "}
+                      </div>
+                    }
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -167,17 +200,19 @@ const Navbar = () => {
             {socailLinks.map((item, index) => {
               return (
                 <li key={index}>
-                  <NavLink
-                    className={`text-[18px] font-medium font-nunito ${
-                      location?.pathname === item.redirects
+                  <div
+                    onClick={() => {
+                      handleFilterData(item.linkName);
+                    }}
+                    className={`text-[18px] font-medium font-nunito ease-in-out duration-150 cursor-pointer ${
+                      item?.linkName === FilterCardnames
                         ? " text-white "
                         : "text-orange"
                     } `}
-                    to={item.redirects}
                   >
                     {" "}
                     {item.linkName}{" "}
-                  </NavLink>
+                  </div>
                 </li>
               );
             })}

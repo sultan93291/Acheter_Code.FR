@@ -1,5 +1,5 @@
 "use client";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Heading from "../../Components/Tags/Heading/Heading";
 import Button from "../../Components/Tags/Button/Button";
 import Paragraph from "../../Components/Tags/Paragraph/Paragraph";
@@ -8,7 +8,8 @@ import { HiOutlineEyeSlash } from "react-icons/hi2";
 import { useState } from "react";
 import { Input } from "../../Components/Tags/Input/Input";
 import axios from "axios";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setLoggedInUserData } from "@/redux/features/loggedInUserSlice";
 
 const Login = () => {
   const [isShowPass, setisShowPass] = useState(false);
@@ -16,16 +17,20 @@ const Login = () => {
     email: "",
     password: "",
   });
-  
+
+  const dispatch = useDispatch();
+
+  const loggedInUserData = useSelector(
+    state => state.loggedInUserSlice.loggedInUserData
+  );
+
   const handleFormData = e => {
     const { name, value } = e.target;
     setuserData({ ...userData, [name]: value });
   };
 
-  console.log(userData);
-  
+  const navigate = useNavigate();
 
-  
   const handleLogin = e => {
     e.preventDefault();
     axios({
@@ -38,6 +43,13 @@ const Login = () => {
     })
       .then(res => {
         console.log(res);
+        if (res.status === 200) {
+          console.log();
+          localStorage.setItem("token", res?.data?.data?.token);
+          navigate("/");
+          window.location.reload();
+          
+        }
       })
       .catch(err => {
         console.log(err);

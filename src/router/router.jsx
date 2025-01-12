@@ -6,6 +6,8 @@ import Home from "../Pages/Home/Home";
 import Detail from "../Pages/Detail/Detail";
 import Blog from "../Pages/Blog/Blog";
 import Checkout from "@/Pages/Checkout/Checkout";
+import PubliceRouteProtector from "@/RouterProtector/PublicRouteProtector/PublicRouteProtector";
+
 
 
 
@@ -19,12 +21,20 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <PubliceRouteProtector>
+            <Login />
+          </PubliceRouteProtector>
+        ),
       },
       {
         path: "/register",
 
-        element: <Register />,
+        element: (
+          <PubliceRouteProtector>
+            <Register />
+          </PubliceRouteProtector>
+        ),
       },
       {
         path: "/",
