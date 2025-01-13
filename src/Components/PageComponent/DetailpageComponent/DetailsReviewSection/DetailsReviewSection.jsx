@@ -3,15 +3,10 @@ import { useState } from "react";
 import Heading from "../../../Tags/Heading/Heading";
 import DetailsSection from "../DetailsSection/DetailsSection";
 import ReviewSection from "../ReviewSection/ReviewSection";
-import { useParams } from "react-router-dom";
 
 
-const DetailsReviewSection = () => {
+const DetailsReviewSection = ({data}) => {
   const [isDescreption, setisDescreption] = useState(true);
-  console.log(isDescreption);
-  const { id } = useParams()
-  console.log(id);
-  
   
   return (
     <section
@@ -42,7 +37,7 @@ const DetailsReviewSection = () => {
         />
       </div>
       <div className={` ${isDescreption ? "pt-[42px]" : "pt-[34px]"} `}>
-        {isDescreption ? <DetailsSection /> : <ReviewSection />}
+        {isDescreption ? <DetailsSection data={data} /> : <ReviewSection data={data} />}
       </div>
     </section>
   );

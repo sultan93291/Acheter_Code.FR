@@ -60,9 +60,6 @@
   }
 }
 
-
-
-
 @layer components {
   /* headings design start here */
   .site_logo {
@@ -113,11 +110,31 @@
     @apply text-lg font-medium leading-[180%] font-nunito text-secondary_gray;
   }
   .purchase_product_detils {
-    @apply text-lg  font-medium font-nunito text-secondary_gray;
+    @apply text-lg   font-medium font-nunito text-secondary_gray;
   }
   /* paragraph design ended here */
-}
 
+  /* descreption design started here */
+  .descretption_wrapper {
+    @apply flex flex-col gap-y-6;
+  }
+  .descretption_wrapper strong {
+    @apply text-2xl text-dark_black font-nunito font-semibold;
+  }
+
+  .descretption_wrapper p {
+    @apply text-lg font-nunito font-normal text-secondary_gray leading-[180%];
+  }
+
+  .descretption_wrapper li {
+    @apply font-nunito text-lg font-medium text-secondary_gray;
+  }
+  .descretption_wrapper ul {
+    @apply flex flex-col gap-y-5 list-disc   pl-5;
+  }
+
+  /* descreption design ended here */
+}
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -126,3 +143,4 @@
   background: var(--primary);
   border-radius: 10px;
 }
+

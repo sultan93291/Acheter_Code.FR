@@ -6,29 +6,14 @@ import Heading from "../../../Tags/Heading/Heading";
 import Paragraph from "../../../Tags/Paragraph/Paragraph";
 import Button from "../../../Tags/Button/Button";
 import ShoppingCartModal from "@/Components/Cards/Modals/ShoppingCartModal/ShoppingCartModal";
+import { useNavigate } from "react-router-dom";
 
-
-const GeneralInfo = () => {
+const GeneralInfo = ({ data }) => {
   const [currentIndex, setcurrentIndex] = useState();
   const [counterValue, setcounterValue] = useState(1);
   const [isopen, setisopen] = useState(false);
 
-  const availableAmount = [
-    "1€",
-    "2€",
-    "3€",
-    "4€",
-    "5€",
-    "10€",
-    "11€",
-    "15€",
-    "20€",
-    "25€",
-    "30€",
-    "35€",
-    "40€",
-    "+11",
-  ];
+  const navigate = useNavigate();
 
   const decreaseCounterValue = () => {
     if (counterValue > 1) {
@@ -50,7 +35,7 @@ const GeneralInfo = () => {
       />
       <section className="h-auto   px-[290px]  py-[60px] flex flex-row gap-x-[115.5px] ">
         <Image
-          Src={roblox}
+          Src={`https://borisdessy.softvencefsd.xyz/${data?.image}`}
           AltTxt={"not found"}
           className={" w-[558px] h-[627px] object-cover rounded-[16px] "}
         />
@@ -63,7 +48,10 @@ const GeneralInfo = () => {
                   Variant={"h6"}
                   text={"Platform:"}
                 />
-                <Paragraph text={"Roblox"} className={"details_sub_headings"} />
+                <Paragraph
+                  text={data?.platform_name}
+                  className={"details_sub_headings"}
+                />
               </div>
               <div className="flex flex-row gap-x-[120px] items-center ">
                 <Heading
@@ -71,7 +59,10 @@ const GeneralInfo = () => {
                   Variant={"h6"}
                   text={"Usage:"}
                 />
-                <Paragraph text={"Global"} className={"details_sub_headings"} />
+                <Paragraph
+                  text={data?.usage}
+                  className={"details_sub_headings"}
+                />
               </div>
               <div className="flex flex-row gap-x-[105px] items-center  ">
                 <Heading
@@ -84,11 +75,14 @@ const GeneralInfo = () => {
                   name="version"
                   id="version"
                 >
-                  <option value="us">United States</option>
-                  <option value="uk">United Kingdom</option>
-                  <option value="canada">Canada</option>
-                  <option value="itally">Itally</option>
-                  <option value="germam">Germany</option>
+                  {data?.card_countries.map((item, index) => {
+                    return (
+                      <option key={item.id} value={item.name}>
+                        {" "}
+                        {item.name}{" "}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             </div>
@@ -111,7 +105,7 @@ const GeneralInfo = () => {
                   text={"Available Amount"}
                 />
                 <div className="flex flex-row flex-wrap  gap-4 w-[591px] ">
-                  {availableAmount.map((item, index) => {
+                  {data?.card_avaiale_amounts?.map((item, index) => {
                     return (
                       <div
                         onClick={() => {
@@ -123,12 +117,12 @@ const GeneralInfo = () => {
                             ? " bg-light_orange  border-solid border-border_orange  "
                             : "bg-white border-transparent "
                         }   shadow-custom_shadow cursor-pointer ${
-                          index === availableAmount.length - 1
+                          index === data?.card_avaiale_amounts?.length - 1
                             ? "text-secondary_orange"
                             : ""
                         }  `}
                       >
-                        {item}
+                        {`${item?.value}€`}
                       </div>
                     );
                   })}
@@ -153,7 +147,7 @@ const GeneralInfo = () => {
               </svg>
               <Heading
                 Variant={"h3"}
-                text={"550 in stock"}
+                text={`${data?.stock} in stock `}
                 className={"text-2xl text-text_black font-semibold "}
               />
             </div>
@@ -199,6 +193,9 @@ const GeneralInfo = () => {
                 </div>
               </div>
               <Button
+                onClick={() => {
+                  navigate("/checkout");
+                }}
                 text={"BUY NOW"}
                 className={
                   "text-lg rounded-[16px] shadow-btn_shadow bg-orange leading-[164%] font-nunito font-medium text-white py-[10px] px-5 "

@@ -14,7 +14,8 @@ import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import Paragraph from "../../../Tags/Paragraph/Paragraph";
 import glassMan from "../../../../assets/images/Details/glassMan.png";
 
-const ReviewSection = () => {
+
+const ReviewSection = ({data}) => {
   const swiperRef = useRef(null); // Ref to the Swiper instance
 
   return (
@@ -23,7 +24,9 @@ const ReviewSection = () => {
       <Heading
         Variant={"h3"}
         text={"Customers Reviews"}
-        className={"card_sub_heading text-shade_black "}
+        className={
+          " font-nunito text-[32px] font-bold text-shade_black "
+        }
       />
 
       {/* Main Content */}

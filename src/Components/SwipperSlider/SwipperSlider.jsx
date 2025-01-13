@@ -8,6 +8,7 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useState, useRef, useEffect } from "react";
 
+
 const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
   const swiperInstance = useRef(null); // Use a ref to persist swiper instance
   const [isSwiperInitialized, setIsSwiperInitialized] = useState(false);

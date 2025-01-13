@@ -73,7 +73,7 @@ export default {
       },
       fontFamily: {
         righteous: 'Righteous", serif',
-        nunito: 'Nunito Sans", serif',
+        nunito: 'Nunito Sans, serif',
       },
       boxShadow: {
         custom_shadow: "0px 0px 4px 0px rgba(0, 9, 54, 0.06)",
