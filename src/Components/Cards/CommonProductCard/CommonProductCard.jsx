@@ -4,6 +4,8 @@ import steam from "../../../assets/images/Home/steam.png";
 import Button from "../../Tags/Button/Button";
 import Heading from "../../Tags/Heading/Heading";
 import ShoppingCartModal from "../Modals/ShoppingCartModal/ShoppingCartModal";
+import { useNavigate } from "react-router-dom";
+
 
 const CommonProductCard = ({
   cardName,
@@ -19,6 +21,11 @@ const CommonProductCard = ({
   id,
 }) => {
   const [isopen, setisopen] = useState(false);
+    const navigate = useNavigate();
+  const handleDetailsRedirect = () => {
+    navigate(`/details/${id}`)
+  }
+
   return (
     <>
       <ShoppingCartModal
@@ -30,7 +37,12 @@ const CommonProductCard = ({
       <div
         className={`w-[303px]  relative h-${cardHeight} rounded-[16px] bg-white shadow-custom_shadow flex flex-col`}
       >
-        <div className="w-full  h-[327px]  bg-ocean_blue rounded-t-[16px] p-[12px] ">
+        <div
+          onClick={() => {
+            handleDetailsRedirect();
+          }}
+          className="w-full  h-[327px]  bg-ocean_blue rounded-t-[16px] p-[12px] cursor-pointer "
+        >
           <div
             style={{
               backgroundImage: `url(${bgImg})`,
@@ -71,10 +83,13 @@ const CommonProductCard = ({
         <div className="flex flex-col px-3 py-4 bg-white gap-y-6 rounded-b-[16px] ">
           <div>
             <Heading
+              onClick={() => {
+                handleDetailsRedirect();
+              }}
               Variant={"h3"}
               text={heading}
               className={
-                " text-text_black text-[18px] font-nunito font-semibold "
+                " text-text_black text-[18px] font-nunito font-semibold cursor-pointer "
               }
             />
             {subHeading && (

@@ -11,14 +11,17 @@ import PurchaseHistoryModal from "../Components/Cards/Modals/PurchaseHistoryModa
 import { useContext, useEffect, useState } from "react";
 import AddFundModal from "@/Components/Cards/Modals/AddFundModal/AddFundModal";
 import { AuthContext } from "@/Provider/AuthProvider/AuthProvider";
-import { setFilterCardData } from "@/redux/features/filterCardSlice";
+import { setFilterCardData , setActiveFilterCardName } from "@/redux/features/filterCardSlice";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Navbar = () => {
   const [isopen, setisopen] = useState(false);
   const [isFundopen, setisFundopen] = useState(false);
-  const [FilterCardnames, setFilterCardnames] = useState("STEAM");
+  const FilterCardnames = useSelector(
+    state => state.filterCardDataSlice.activeFilterCardName
+  ); 
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,7 +40,14 @@ const Navbar = () => {
   });
 
   const handleFilterData = FilterCardname => {
-    setFilterCardnames(FilterCardname);
+    dispatch(setActiveFilterCardName(FilterCardname))
+
+    if (FilterCardnames !== FilterCardname) {
+      if (location !== "/") {
+        navigate("/");
+      }
+    }
+
     axios({
       method: "get",
       url: `https://borisdessy.softvencefsd.xyz/api/filter/cards?platform=${FilterCardname}`,

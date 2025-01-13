@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-  filterCardData:[]
+  filterCardData: [],
+  activeFilterCardName:'STEAM'
 };
 
 export const filterCardSlice = createSlice({
@@ -12,8 +13,11 @@ export const filterCardSlice = createSlice({
     setFilterCardData: (state, action) => {
       state.filterCardData = action.payload;
     },
+    setActiveFilterCardName: (state, action) => {
+      state.activeFilterCardName = action.payload;
+    },
   },
 });
 
-export const { setFilterCardData } = filterCardSlice.actions;
+export const { setFilterCardData , setActiveFilterCardName } = filterCardSlice.actions;
 export default filterCardSlice.reducer;
