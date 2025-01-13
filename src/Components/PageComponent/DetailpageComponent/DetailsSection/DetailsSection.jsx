@@ -44,28 +44,14 @@ const DetailsSection = data => {
           />
           <div className="flex flex-row items-center gap-x-3">
             <Button
-              onClick={() => {
-                if (swiperInstance.current) {
-                  swiperInstance.current.slidePrev();
-                }
-              }}
-              disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
+              onClick={() => swiperInstance.current?.slidePrev()}
               text={<IoIosArrowRoundBack className="w-8 h-8" />}
-              className={
-                "h-12 w-12 flex items-center justify-center border-[1px] text-2xl border-solid border-black rounded-full text-black"
-              }
+              className="h-12 w-12 flex items-center justify-center border-[1px] text-2xl border-solid border-black rounded-full text-black"
             />
             <Button
-              onClick={() => {
-                if (swiperInstance.current) {
-                  swiperInstance.current.slideNext();
-                }
-              }}
-              disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
+              onClick={() => swiperInstance.current?.slideNext()}
               text={<IoIosArrowRoundForward />}
-              className={
-                "h-12 w-12 flex items-center justify-center text-black text-2xl border-[1px] border-solid border-black rounded-full"
-              }
+              className="h-12 w-12 flex items-center justify-center text-black text-2xl border-[1px] border-solid border-black rounded-full"
             />
           </div>
         </div>
