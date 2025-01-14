@@ -1,7 +1,23 @@
-
-
-export const Input = ({ type, className, placeholder, onChange, value , name }) => {
+export const Input = ({
+  type,
+  className,
+  placeholder,
+  onChange,
+  value,
+  name,
+  defaultValue,
+  disabled
+}) => {
   return (
-    <input name={name} type={type} className={className} placeholder={placeholder} onChange={onChange} value={value}   />
-  )
-}
+    <input
+      name={name}
+      defaultValue={defaultValue}
+      type={type}
+      className={className}
+      placeholder={placeholder}
+      onChange={onChange}
+      value={value}
+      disabled={disabled}
+    />
+  );
+};

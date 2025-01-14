@@ -1,10 +1,11 @@
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import Heading from "../../../Tags/Heading/Heading";
-import { EmptyStar, FullStarIcon } from "../../../Svg/Svg";
+import { FullStarIcon } from "../../../Svg/Svg";
 import { Image } from "../../../Tags/Image/Image";
 import half_star from "../../../../assets/images/Details/halfStar.png";
 import empty_star from "../../../../assets/images/Details/empty_star.png";
-import star_group from "../../../../assets/images/Details/starGroup.png";
+import full_star from "../../../../assets/images/Details/full_star.png";
 import Button from "../../../Tags/Button/Button";
 import { Input } from "../../../Tags/Input/Input";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,12 +15,45 @@ import "swiper/css/navigation";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import Paragraph from "../../../Tags/Paragraph/Paragraph";
 import glassMan from "../../../../assets/images/Details/glassMan.png";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { comment } from "postcss";
 
 const ReviewSection = ({ data }) => {
   const swiperRef = useRef(null); // Ref to the Swiper instance
-  const [reviewData, setreviewData] = useState({});
+  const [reviewData, setreviewData] = useState();
+  const loggedInuserData = useSelector(
+    state => state.loggedInUserSlice.loggedInUserData
+  );
 
-  console.log("i'm main data", data);
+  const navigate = useNavigate();
+
+  const [totalTrueRatings, setTotalTrueRatings] = useState(0);
+
+  const [ratingStore, setRatingStore] = useState([
+    {
+      id: "1",
+      isRating: false,
+    },
+    {
+      id: "2",
+      isRating: false,
+    },
+    {
+      id: "3",
+      isRating: false,
+    },
+    {
+      id: "4",
+      isRating: false,
+    },
+    {
+      id: "5",
+      isRating: false,
+    },
+  ]);
+  const { id } = useParams();
 
   const generateStars = rating => {
     const starIcons = [];
@@ -35,8 +69,80 @@ const ReviewSection = ({ data }) => {
     return starIcons;
   };
 
+  console.log(loggedInuserData);
+
   console.log("average rating", data?.card?.reviews_count);
   const reviewStars = generateStars(parseFloat(data?.card?.reviews_avg_rating));
+
+  const handleRating = id => {
+    setRatingStore(prev => {
+      return prev.map((item, index) => {
+        const currentIndex = prev.findIndex(obj => obj.id === id);
+
+        // Check if all previous IDs are true before toggling the current one
+        const allPreviousTrue = prev
+          .slice(0, currentIndex)
+          .every(obj => obj.isRating);
+
+        // Check if no later IDs are true before toggling the current one to false
+        const noLaterTrue = prev
+          .slice(currentIndex + 1)
+          .every(obj => !obj.isRating);
+
+        if (item.id === id) {
+          if (item.isRating) {
+            return noLaterTrue ? { ...item, isRating: false } : item;
+          } else {
+            return allPreviousTrue ? { ...item, isRating: true } : item;
+          }
+        }
+        return item;
+      });
+    });
+
+    // Update the total true ratings
+    setTotalTrueRatings(
+      ratingStore.filter(item =>
+        item.id === id ? !item.isRating : item.isRating
+      ).length
+    );
+  };
+  const handleReviewData = e => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+
+    if (!loggedInuserData.id) {
+      navigate("/login");
+    } else {
+      axios({
+        method: "post",
+        url: "https://borisdessy.softvencefsd.xyz/api/review/store",
+        data: {
+          user_id: loggedInuserData?.id,
+          card_id: id,
+          rating: totalTrueRatings,
+          comment: reviewData,
+          token: token,
+        },
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(
+          setRatingStore(prevState =>
+            prevState.map(rating => ({
+              ...rating,
+              isRating: false, // Reset isRating to false for each item
+            }))
+          ),
+          setTotalTrueRatings(0),
+          setreviewData("")
+        );
+    }
+  };
 
   return (
     <section className="flex flex-col gap-y-[36px]">
@@ -127,13 +233,31 @@ const ReviewSection = ({ data }) => {
                 className={"lg_tittle capitalize"}
                 text={"Add Your Rating"}
               />
-              <Image
-                Src={star_group}
-                AltTxt={"not found"}
-                className={"w-[99.5px] h-4 bg-cover"}
-              />
+              <div className="flex flex-row gap-x-2">
+                {ratingStore.map((item, index) => {
+                  return (
+                    <div
+                      onClick={() => {
+                        handleRating(item?.id);
+                      }}
+                    >
+                      <Image
+                        key={index}
+                        Src={item.isRating ? full_star : empty_star}
+                        AltTxt={"not found"}
+                        className={"w-4 h-4 bg-cover cursor-pointer "}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            <form className="flex flex-col gap-y-6">
+            <form
+              onSubmit={e => {
+                handleReviewData(e);
+              }}
+              className="flex flex-col gap-y-6"
+            >
               <div className="flex flex-col gap-y-8">
                 <div className="flex flex-col gap-y-2">
                   <Heading
@@ -146,7 +270,17 @@ const ReviewSection = ({ data }) => {
                     className={
                       "outline-none py-[15px] px-4 rounded-[16px] border-[1px] border-solid border-light_gray text-[16px] font-nunito font-medium text-text_gray"
                     }
-                    placeholder={"John Doe"}
+                    placeholder={
+                      loggedInuserData.name
+                        ? loggedInuserData?.name
+                        : "John Doe"
+                    }
+                    disabled={true}
+                    defaultValue={
+                      loggedInuserData?.name
+                        ? loggedInuserData?.name
+                        : "John Doe"
+                    }
                   />
                 </div>
                 <div className="flex flex-col gap-y-2">
@@ -156,14 +290,21 @@ const ReviewSection = ({ data }) => {
                     text={"Write Your Review"}
                   />
                   <textarea
+                    onChange={e => {
+                      setreviewData(e.target.value);
+                    }}
                     className={
                       "outline-none py-[10px] px-4 rounded-[16px] border-[1px] border-solid border-light_gray text-[16px] font-nunito font-medium text-text_gray"
                     }
+                    value={reviewData}
                     placeholder={"Write here"}
                   ></textarea>
                 </div>
               </div>
               <Button
+                disabled={
+                  !id || !totalTrueRatings || !reviewData ? true : false
+                }
                 text={"SUBMIT REVIEWS"}
                 className={
                   "text-lg rounded-[16px] shadow-btn_shadow bg-orange leading-[164%] font-nunito font-medium text-white py-[10px] px-5 w-[194px]"
@@ -189,14 +330,14 @@ const ReviewSection = ({ data }) => {
             >
               {data.card.reviews.map((review, index) => {
                 const reviewStars = generateStars(review.rating);
-                console.log(review?.comment);
+                
 
                 return (
                   <SwiperSlide key={index}>
                     <div className=" w-[762px] h-auto py-6 pl-[68px] pr-[96px] bg-white  shadow-custom_shadow rounded-[16px] flex flex-col gap-y-4 ">
                       <div className="flex flex-row items-center gap-x-4    ">
                         <Image
-                          Src={glassMan}
+                          Src={ review?.user?.avatar ? review?.user?.avatar: glassMan}
                           AltTxt={"not found"}
                           className={
                             " w-[72px] h-[72px] rounded-full object-cover  "
