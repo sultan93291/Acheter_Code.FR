@@ -153,4 +153,33 @@ const VisaIcon = () => {
   );
 };
 
-export { CheckIcon, SupportIcon, DollarIcon, EmailDeliveryIcon, FullStarIcon , VisaIcon };
+const EmptyStar = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="9"
+      height="16"
+      viewBox="0 0 9 16"
+      fill="none"
+    >
+      <g clip-path="url(#clip0_10085_8282)">
+        <path
+          d="M0.0859213 12.0406L3.9703 14.0844L3.22967 9.75937L6.37342 6.69688L2.02967 6.06563L0.0859213 2.12812V0C0.442171 0 0.798422 0.184375 0.982797 0.55625L3.02342 4.69375L7.58905 5.35625C8.4078 5.475 8.73592 6.48438 8.14217 7.0625L4.83905 10.2812L5.6203 14.8281C5.76092 15.6438 4.90155 16.2656 4.1703 15.8813L0.0859213 13.7375V12.0406Z"
+          fill="#FF8800"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_10085_8282">
+          <rect
+            width="8.36"
+            height="16"
+            fill="white"
+            transform="translate(0.109375)"
+          />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+}
+
+export { CheckIcon, SupportIcon, DollarIcon, EmailDeliveryIcon, FullStarIcon , VisaIcon , EmptyStar };

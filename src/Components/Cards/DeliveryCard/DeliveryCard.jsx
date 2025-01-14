@@ -56,21 +56,21 @@ const DeliveryCard = ({
             <path
               d="M4.5 5.5V22.5H19.5V5.5H4.5Z"
               stroke="#FF5630"
-              stroke-width="2.2"
-              stroke-linejoin="round"
+              strokeWidth="2.2"
+              strokeLinejoin="round"
             />
             <path
               d="M10 10.5V17M14 10.5V17M2 5.5H22"
               stroke="#FF5630"
-              stroke-width="2.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M8 5.5L9.6445 2.5H14.3885L16 5.5H8Z"
               stroke="#FF5630"
-              stroke-width="2.2"
-              stroke-linejoin="round"
+              strokeWidth="2.2"
+              strokeLinejoin="round"
             />
           </svg>
         </div>

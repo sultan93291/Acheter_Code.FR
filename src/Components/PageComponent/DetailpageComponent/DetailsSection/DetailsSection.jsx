@@ -12,13 +12,14 @@ import CommonProductCard from "../../../Cards/CommonProductCard/CommonProductCar
 import { likedProduct } from "../../../DummyData/DummyData";
 import ReactHtmlParser from "html-react-parser";
 
-const DetailsSection = data => {
+const DetailsSection = Data => {
+  const data = Data.Data;
   const desCreptionData =
-    typeof data?.data?.card.description === "string"
-      ? data?.data?.card.description
-      : String(data?.data?.card.description);
+    typeof data?.card?.description === "string"
+      ? data?.card?.description
+      : String(data?.card?.description);
 
-  console.log("details section", data?.data?.othersProduct);
+  console.log("details section", data?.othersProduct );
 
   const swiperInstance = useRef(null); // Use a ref to persist swiper instance
   const [isSwiperInitialized, setIsSwiperInitialized] = useState(false);
@@ -66,7 +67,7 @@ const DetailsSection = data => {
             loop={true}
           >
             {/* Slides */}
-            {data?.data?.othersProduct.map((item, index) => (
+            {data?.othersProduct.map((item, index) => (
               <SwiperSlide key={item?.id} className="h-auto ">
                 <CommonProductCard
                   id={item?.id}

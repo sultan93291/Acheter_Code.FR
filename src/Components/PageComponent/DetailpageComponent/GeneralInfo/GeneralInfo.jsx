@@ -77,7 +77,7 @@ const GeneralInfo = ({ data }) => {
                 >
                   {data?.card_countries.map((item, index) => {
                     return (
-                      <option key={item.id} value={item.name}>
+                      <option key={index} value={item.name}>
                         {" "}
                         {item.name}{" "}
                       </option>

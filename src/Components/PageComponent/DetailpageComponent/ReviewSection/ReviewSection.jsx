@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import Heading from "../../../Tags/Heading/Heading";
-import { FullStarIcon } from "../../../Svg/Svg";
+import { EmptyStar, FullStarIcon } from "../../../Svg/Svg";
 import { Image } from "../../../Tags/Image/Image";
 import half_star from "../../../../assets/images/Details/halfStar.png";
+import empty_star from "../../../../assets/images/Details/empty_star.png";
 import star_group from "../../../../assets/images/Details/starGroup.png";
 import Button from "../../../Tags/Button/Button";
 import { Input } from "../../../Tags/Input/Input";
@@ -14,9 +15,28 @@ import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import Paragraph from "../../../Tags/Paragraph/Paragraph";
 import glassMan from "../../../../assets/images/Details/glassMan.png";
 
-
-const ReviewSection = ({data}) => {
+const ReviewSection = ({ data }) => {
   const swiperRef = useRef(null); // Ref to the Swiper instance
+  const [reviewData, setreviewData] = useState({});
+
+  console.log("i'm main data", data);
+
+  const generateStars = rating => {
+    const starIcons = [];
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 !== 0;
+    const emptyStars = 5 - Math.ceil(rating);
+
+    for (let i = 0; i < fullStars; i++) starIcons.push(<FullStarIcon />);
+    if (halfStar) starIcons.push(<Image Src={half_star} AltTxt="half-star" />);
+    for (let i = 0; i < emptyStars; i++)
+      starIcons.push(<Image Src={empty_star} AltTxt="half-star" />);
+
+    return starIcons;
+  };
+
+  console.log("average rating", data?.card?.reviews_count);
+  const reviewStars = generateStars(parseFloat(data?.card?.reviews_avg_rating));
 
   return (
     <section className="flex flex-col gap-y-[36px]">
@@ -24,9 +44,7 @@ const ReviewSection = ({data}) => {
       <Heading
         Variant={"h3"}
         text={"Customers Reviews"}
-        className={
-          " font-nunito text-[32px] font-bold text-shade_black "
-        }
+        className={" font-nunito text-[32px] font-bold text-shade_black "}
       />
 
       {/* Main Content */}
@@ -38,60 +56,66 @@ const ReviewSection = ({data}) => {
             <div className="flex flex-row gap-x-[44px] items-center">
               <Heading
                 Variant={"h2"}
-                text={"4.5"}
+                text={parseFloat(data?.card?.reviews_avg_rating).toFixed(1)}
                 className={"text-[40px] font-nunito text-black font-semibold"}
               />
               <div className="flex flex-col gap-y-[4px]">
                 <Heading
                   Variant={"h5"}
-                  text={"10k Reviews"}
+                  text={` ${data?.card?.reviews_count} Reviews `}
                   className={"text-lg text-black font-nunito font-semibold"}
                 />
                 <div className="flex flex-row items-center gap-x-2">
-                  <FullStarIcon />
-                  <FullStarIcon />
-                  <FullStarIcon />
-                  <FullStarIcon />
-                  <Image Src={half_star} AltTxt={"not found"} />
+                  {/* {review stars} */}
+                  {reviewStars}
                 </div>
               </div>
             </div>
 
             {/* Star Ratings Breakdown */}
             <div className="flex flex-col items-center gap-y-4">
-              {[5, 4, 3, 2, 1].map((star, index) => {
-                const percentages = [90, 70, 40, 30, 0];
-                return (
-                  <div
-                    key={index}
-                    className="flex flex-row items-center gap-x-2"
-                  >
-                    <div className="flex flex-row items-center justify-center gap-x-2">
+              {data?.reviews
+                .slice()
+                .reverse()
+                .map((star, index) => {
+                  let reviewPercent = Number(
+                    star.reviewPercentages.replace("%", "")
+                  );
+
+                  return (
+                    <div
+                      key={index}
+                      className="flex flex-row items-center gap-x-2"
+                    >
+                      {/* Star Heading */}
+                      <div className="flex flex-row items-center justify-center gap-x-2">
+                        <Heading
+                          Variant={"h6"}
+                          text={star?.value}
+                          className={"text-lg font-semibold font-nunito"}
+                        />
+                        <FullStarIcon />
+                      </div>
+
+                      {/* Progress Bar */}
+                      <div className="w-[305px] h-[9px] rounded-[16px] bg-light_gray relative">
+                        <div
+                          className="absolute bg-orange top-0 left-0 h-full rounded-[16px]"
+                          style={{
+                            width: `${reviewPercent}%`, // Dynamically set the width of the progress bar
+                          }}
+                        ></div>
+                      </div>
+
+                      {/* Percentage Heading */}
                       <Heading
                         Variant={"h6"}
-                        text={`${star}`}
-                        className={"text-lg font-semibold font-nunito"}
+                        text={` ${reviewPercent} %`}
+                        className={`text-lg  font-semibold font-nunito w-[45px] `}
                       />
-                      <FullStarIcon />
                     </div>
-                    <div className="w-[305px] h-[9px] rounded-[16px] bg-light_gray relative">
-                      <div
-                        className="absolute bg-orange top-0 left-0 h-full rounded-[16px]"
-                        style={{
-                          width: `${percentages[index]}%`,
-                        }}
-                      ></div>
-                    </div>
-                    <Heading
-                      Variant={"h6"}
-                      text={`${percentages[index]}%`}
-                      className={`text-lg ${
-                        index === 4 && "w-[39px]"
-                      } font-semibold font-nunito`}
-                    />
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
           </div>
 
@@ -163,45 +187,44 @@ const ReviewSection = ({data}) => {
                 nextEl: ".nav-next",
               }}
             >
-              {[0, 1, 2, 3, 4, 5, 6, 7].map((review, index) => (
-                <SwiperSlide key={index}>
-                  <div className=" w-[762px] h-auto py-6 pl-[68px] pr-[96px] bg-white  shadow-custom_shadow rounded-[16px] flex flex-col gap-y-4 ">
-                    <div className="flex flex-row items-center gap-x-4 ">
-                      <Image
-                        Src={glassMan}
-                        AltTxt={"not found"}
-                        className={
-                          " w-[72px] h-[72px] rounded-full object-cover  "
-                        }
-                      />
-                      <div className="flex flex-col gap-y-[4px]  ">
-                        <Heading
-                          Variant={"h5"}
-                          text={"Adrian Sami"}
+              {data.card.reviews.map((review, index) => {
+                const reviewStars = generateStars(review.rating);
+                console.log(review?.comment);
+
+                return (
+                  <SwiperSlide key={index}>
+                    <div className=" w-[762px] h-auto py-6 pl-[68px] pr-[96px] bg-white  shadow-custom_shadow rounded-[16px] flex flex-col gap-y-4 ">
+                      <div className="flex flex-row items-center gap-x-4    ">
+                        <Image
+                          Src={glassMan}
+                          AltTxt={"not found"}
                           className={
-                            "text-lg text-black font-nunito font-semibold"
+                            " w-[72px] h-[72px] rounded-full object-cover  "
                           }
                         />
-                        <div className="flex flex-row items-center gap-x-2">
-                          <FullStarIcon />
-                          <FullStarIcon />
-                          <FullStarIcon />
-                          <FullStarIcon />
-                          <Image Src={half_star} AltTxt={"not found"} />
+                        <div className="flex flex-col gap-y-[4px]  ">
+                          <Heading
+                            Variant={"h5"}
+                            text={review?.user?.name}
+                            className={
+                              "text-lg text-black font-nunito font-semibold"
+                            }
+                          />
+                          <div className="flex flex-row items-center gap-x-2">
+                            {reviewStars}
+                          </div>
                         </div>
                       </div>
+                      <Paragraph
+                        className={
+                          "text-lg font-nunito font-normal leading-[180%] text-[#253858] h-[96px] ellipsis overflow-y-hidden   "
+                        }
+                        text={review?.comment}
+                      />
                     </div>
-                    <Paragraph
-                      className={
-                        "text-lg font-nunito font-normal leading-[180%] text-[#253858]  "
-                      }
-                      text={
-                        "I bought a gift card for my nephew’s birthday, and he absolutely loved it! He was so excited to pick out his own game and unlock new skins. It made the perfect gift for a gamer like him!”"
-                      }
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
 
             {/* Navigation Buttons */}

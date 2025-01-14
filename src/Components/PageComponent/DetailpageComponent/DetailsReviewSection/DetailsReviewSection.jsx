@@ -5,8 +5,11 @@ import DetailsSection from "../DetailsSection/DetailsSection";
 import ReviewSection from "../ReviewSection/ReviewSection";
 
 
+
 const DetailsReviewSection = ({data}) => {
   const [isDescreption, setisDescreption] = useState(true);
+console.log('details review section' , data);
+  
   
   return (
     <section
@@ -37,7 +40,7 @@ const DetailsReviewSection = ({data}) => {
         />
       </div>
       <div className={` ${isDescreption ? "pt-[42px]" : "pt-[34px]"} `}>
-        {isDescreption ? <DetailsSection data={data} /> : <ReviewSection data={data} />}
+        {isDescreption ? <DetailsSection Data={data} /> : <ReviewSection data={data} />}
       </div>
     </section>
   );
