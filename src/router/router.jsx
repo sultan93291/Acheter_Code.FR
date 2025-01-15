@@ -7,6 +7,7 @@ import Detail from "../Pages/Detail/Detail";
 import Blog from "../Pages/Blog/Blog";
 import Checkout from "@/Pages/Checkout/Checkout";
 import PubliceRouteProtector from "@/RouterProtector/PublicRouteProtector/PublicRouteProtector";
+import GlobalSearch from "@/Pages/GlobalSearch/GlobalSearch";
 
 
 
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
         path: "/checkout",
         element: <Checkout />,
       },
+      {
+        path: "/search",
+        element:<GlobalSearch/>
+      }
     ],
   },
 ]);

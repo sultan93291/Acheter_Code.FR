@@ -6,7 +6,6 @@ import Heading from "../../Tags/Heading/Heading";
 import ShoppingCartModal from "../Modals/ShoppingCartModal/ShoppingCartModal";
 import { useNavigate } from "react-router-dom";
 
-
 const CommonProductCard = ({
   cardName,
   cardHeight,
@@ -21,10 +20,10 @@ const CommonProductCard = ({
   id,
 }) => {
   const [isopen, setisopen] = useState(false);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleDetailsRedirect = () => {
-    navigate(`/details/${id}`)
-  }
+    navigate(`/details/${id}`);
+  };
 
   return (
     <>
@@ -131,14 +130,14 @@ const CommonProductCard = ({
                 <div className="flex flex-row items-center gap-x-2 ">
                   <Heading
                     Variant={"h4"}
-                    text={`${discountPrice}`}
+                    text={`${discountPrice}€`}
                     className={
                       "text-[24px] font-semibold font-nunito text-text_black"
                     }
                   />
                   <Heading
                     Variant={"h6"}
-                    text={<del> {price} </del>}
+                    text={<del> {`${price}€`} </del>}
                     className={
                       "text-[16px] font-semibold font-nunito text-light_gray"
                     }

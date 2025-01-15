@@ -1,76 +1,81 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import Heading from "../Components/Tags/Heading/Heading";
 import Paragraph from "../Components/Tags/Paragraph/Paragraph";
-import { useState } from "react";
-import { setActiveFilterCardName, setFilterCardData } from "@/redux/features/filterCardSlice";
+import { useEffect, useState } from "react";
+import {
+  setActiveFilterCardName,
+  setFilterCardData,
+} from "@/redux/features/filterCardSlice";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 
 
 const Footer = () => {
   const FilterCardnames = useSelector(
     state => state.filterCardDataSlice.activeFilterCardName
-  ); 
+  );
   const navigate = useNavigate();
   const handleRootRedirect = () => {
     navigate("/");
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const socailLinks = [
-      {
-        linkName: "STEAM",
-      },
-      {
-        linkName: "GOOGLE STORE",
-      },
-      {
-        linkName: "APPLE STORE",
-      },
-      {
-        linkName: "XBOX",
-      },
-      {
-        linkName: "PLAYSTATION",
-      },
-      {
-        linkName: "FORTNITE",
-      },
-      {
-        linkName: "ROBLOX",
-      },
-      {
-        linkName: "MINECRAFT",
-      },
-      {
-        linkName: "PC",
-      },
-      {
-        linkName: "MOBILE",
-      },
-    ];
+  const socailLinks = [
+    {
+      linkName: "STEAM",
+    },
+    {
+      linkName: "GOOGLE STORE",
+    },
+    {
+      linkName: "APPLE STORE",
+    },
+    {
+      linkName: "XBOX",
+    },
+    {
+      linkName: "PLAYSTATION",
+    },
+    {
+      linkName: "FORTNITE",
+    },
+    {
+      linkName: "ROBLOX",
+    },
+    {
+      linkName: "MINECRAFT",
+    },
+    {
+      linkName: "PC",
+    },
+    {
+      linkName: "MOBILE",
+    },
+  ];
+
+  useEffect(() => {
+    handleFilterData(FilterCardnames);
+  }, [location, FilterCardnames]);
 
   const handleFilterData = FilterCardname => {
-    dispatch(setActiveFilterCardName(FilterCardname))
+    if (location.pathname === "/") {
+      dispatch(setActiveFilterCardName(FilterCardname));
 
-    if (FilterCardnames !== FilterCardname) {
-      if (location !== "/") {
-        navigate("/");
-      }
-    }
-
-    axios({
-      method: "get",
-      url: `https://borisdessy.softvencefsd.xyz/api/filter/cards?platform=${FilterCardname}`,
-    })
-      .then(res => {
-        dispatch(setFilterCardData(res?.data?.data));
+      axios({
+        method: "get",
+        url: `https://borisdessy.softvencefsd.xyz/api/filter/cards?platform=${FilterCardname}`,
       })
-      .catch(err => {
-        console.log(err);
-      });
+        .then(res => {
+          dispatch(setFilterCardData(res?.data?.data));
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   };
+
   return (
     <footer className="flex relative flex-col bg-owl_black items-center pt-[40px] gap-y-[34px] after:absolute after:content-[''] after:w-full  after:bottom-0 after:left-0 after:h-[1px] after:mb-[68px] after:bg-[#D9EDF4] ">
       <div onClick={handleRootRedirect}>

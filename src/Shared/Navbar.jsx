@@ -11,9 +11,14 @@ import PurchaseHistoryModal from "../Components/Cards/Modals/PurchaseHistoryModa
 import { useContext, useEffect, useState } from "react";
 import AddFundModal from "@/Components/Cards/Modals/AddFundModal/AddFundModal";
 import { AuthContext } from "@/Provider/AuthProvider/AuthProvider";
-import { setFilterCardData , setActiveFilterCardName } from "@/redux/features/filterCardSlice";
+import {
+  setFilterCardData,
+  setActiveFilterCardName,
+} from "@/redux/features/filterCardSlice";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { useRef } from "react";
+
 
 
 const Navbar = () => {
@@ -21,7 +26,11 @@ const Navbar = () => {
   const [isFundopen, setisFundopen] = useState(false);
   const FilterCardnames = useSelector(
     state => state.filterCardDataSlice.activeFilterCardName
-  ); 
+  );
+
+  const [suggestion, setsuggestion] = useState();
+  const [isSuggestion, setisSuggestion] = useState(true);
+  const suggestionRef = useRef();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,27 +46,49 @@ const Navbar = () => {
 
   useEffect(() => {
     handleFilterData(FilterCardnames);
-  });
+  }, [location, FilterCardnames]);
 
-  const handleFilterData = FilterCardname => {
-    dispatch(setActiveFilterCardName(FilterCardname))
-
-    if (FilterCardnames !== FilterCardname) {
-      if (location !== "/") {
-        navigate("/");
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        suggestionRef.current &&
+        !suggestionRef.current.contains(event.target)
+      ) {
+        setisSuggestion(false);
       }
     }
 
-    axios({
-      method: "get",
-      url: `https://borisdessy.softvencefsd.xyz/api/filter/cards?platform=${FilterCardname}`,
-    })
-      .then(res => {
-        dispatch(setFilterCardData(res?.data?.data));
+    // Attach the event listener to document
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Clean up the event listener when component unmounts
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  console.log(suggestion);
+
+  const handleSearchData = filterData => {
+    navigate(`/search/?filter=${filterData}`);
+    // window.reload()
+  };
+
+  const handleFilterData = FilterCardname => {
+    if (location.pathname === "/") {
+      dispatch(setActiveFilterCardName(FilterCardname));
+
+      axios({
+        method: "get",
+        url: `https://borisdessy.softvencefsd.xyz/api/filter/cards?platform=${FilterCardname}`,
       })
-      .catch(err => {
-        console.log(err);
-      });
+        .then(res => {
+          dispatch(setFilterCardData(res?.data?.data));
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   };
 
   const socailLinks = [
@@ -113,7 +144,7 @@ const Navbar = () => {
       />
       <nav className="flex flex-col ">
         <div
-          className={`py-6 bg-orange justify-center   flex items-center ${
+          className={`py-6 bg-orange justify-center relative   flex items-center ${
             isAuthenticated ? " justify-between px-[300px] " : "gap-x-[96px] "
           }  `}
         >
@@ -127,17 +158,53 @@ const Navbar = () => {
                 }
               />
             </div>
-            <div className="flex w-[395px] h-[57px] bg-white relative rounded-[16px] items-center ">
+            <div
+              onClick={() => {
+                setisSuggestion(true);
+              }}
+              className="flex w-[395px]  h-[57px] bg-white relative rounded-[16px] items-center "
+            >
               <Input
                 type={"text"}
                 className={
                   "h-full w-[340px] rounded-[16px] px-5 outline-none font-nunito text-[18px] font-normal text-light_gray  "
                 }
                 placeholder={"Search what you need"}
+                value={suggestion ? suggestion : ""}
               />
               <div className="w-[56px] h-full bg-light_orange  border-l-[1px] border-solid border-orange rounded-r-[16px] cursor-pointer flex flex-row items-center justify-center ">
                 <CiSearch className="w-[28px] h-[28px] text-orange font-bold " />
               </div>
+              {isSuggestion && (
+                <div
+                  ref={suggestionRef}
+                  className="h-[101px] ease-in duration-150 w-[340px] top-0 left-0 mt-[70px] z-[99999] bg-[#FFF6E6] absolute shadow-custom_shadow   "
+                >
+                  <div
+                    onClick={event => {
+                      event.stopPropagation(); // Prevent propagation to the document listener
+                      setsuggestion("Sale vouchers");
+                      setisSuggestion(false);
+                      handleSearchData("Sale vouchers");
+                    }}
+                    className="h-[49px] w-full px-8 py-3 text-[#5c5c5c] cursor-pointer text-lg font-normal font-nunito "
+                  >
+                    Sale vouchers
+                  </div>
+                  <hr className="bg-orange h-[1px] w-full border-none" />
+                  <div
+                    onClick={event => {
+                      event.stopPropagation(); // Prevent propagation to the document listener
+                      setsuggestion("Gift cards");
+                      setisSuggestion(false);
+                      handleSearchData("Gift cards");
+                    }}
+                    className="h-[49px] w-full  px-8 py-3 text-[#5c5c5c] cursor-pointer text-lg font-normal font-nunito "
+                  >
+                    Gift cards
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex flex-row gap-x-[50px] items-center ">
