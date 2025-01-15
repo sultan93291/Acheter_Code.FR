@@ -20,6 +20,10 @@ const Register = () => {
     confirm_password: "",
   });
 
+  const SiteURl = import.meta.env.VITE_SITE_URL;
+  console.log('site url' , SiteURl);
+  
+
   const navigate = useNavigate();
   const handleFormData = e => {
     const { name, value } = e.target;
@@ -30,7 +34,7 @@ const Register = () => {
     e.preventDefault();
     axios({
       method: "post",
-      url: "https://borisdessy.softvencefsd.xyz/api/users/register",
+      url: `${SiteURl}/api/users/register`,
       data: {
         name: userData.name,
         email: userData.email,

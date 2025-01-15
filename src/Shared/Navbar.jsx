@@ -28,6 +28,8 @@ const Navbar = () => {
     state => state.filterCardDataSlice.activeFilterCardName
   );
 
+  const SiteURl = import.meta.env.VITE_SITE_URL;
+
   const [suggestion, setsuggestion] = useState();
   const [isSuggestion, setisSuggestion] = useState(true);
   const suggestionRef = useRef();
@@ -80,7 +82,7 @@ const Navbar = () => {
 
       axios({
         method: "get",
-        url: `https://borisdessy.softvencefsd.xyz/api/filter/cards?platform=${FilterCardname}`,
+        url: `${SiteURl}/api/filter/cards?platform=${FilterCardname}`,
       })
         .then(res => {
           dispatch(setFilterCardData(res?.data?.data));
@@ -170,7 +172,7 @@ const Navbar = () => {
                   "h-full w-[340px] rounded-[16px] px-5 outline-none font-nunito text-[18px] font-normal text-light_gray  "
                 }
                 placeholder={"Search what you need"}
-                value={suggestion ? suggestion : ""}
+                defaultValue={suggestion ? suggestion : ""}
               />
               <div className="w-[56px] h-full bg-light_orange  border-l-[1px] border-solid border-orange rounded-r-[16px] cursor-pointer flex flex-row items-center justify-center ">
                 <CiSearch className="w-[28px] h-[28px] text-orange font-bold " />

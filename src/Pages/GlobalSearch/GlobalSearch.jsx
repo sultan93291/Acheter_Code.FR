@@ -25,6 +25,7 @@ const GlobalSearch = () => {
   // Parse query parameters
   const queryParams = new URLSearchParams(location.search);
   const filter = queryParams.get("filter");
+  const SiteURl = import.meta.env.VITE_SITE_URL;
 
   console.log(filter);
 
@@ -34,7 +35,7 @@ const GlobalSearch = () => {
     // Use `dataName` directly in the API call
     axios({
       method: "get",
-      url: `https://borisdessy.softvencefsd.xyz/api/filter/cards?platform=${dataName}`, // Use dataName
+      url: `${SiteURl}/api/filter/cards?platform=${dataName}`, // Use dataName
     })
       .then(res => {
         console.log(res?.data?.data);

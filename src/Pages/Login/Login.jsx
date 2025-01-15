@@ -19,6 +19,7 @@ const Login = () => {
   });
 
   const dispatch = useDispatch();
+  const SiteURl = import.meta.env.VITE_SITE_URL;
 
   const loggedInUserData = useSelector(
     state => state.loggedInUserSlice.loggedInUserData
@@ -35,7 +36,7 @@ const Login = () => {
     e.preventDefault();
     axios({
       method: "post",
-      url: "https://borisdessy.softvencefsd.xyz/api/users/login",
+      url: `${SiteURl}/api/users/login`,
       data: {
         email: userData.email,
         password: userData.password,

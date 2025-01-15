@@ -7,7 +7,8 @@ import SwipperSlider from "../../../SwipperSlider/SwipperSlider";
 const GiftCardSection = () => {
  const giftCardDataSlice = useSelector(
    state => state?.filterCardDataSlice?.filterCardData
- );
+  );
+
 
   console.log(giftCardDataSlice);
   
