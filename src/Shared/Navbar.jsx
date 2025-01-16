@@ -31,7 +31,7 @@ const Navbar = () => {
   const SiteURl = import.meta.env.VITE_SITE_URL;
 
   const [suggestion, setsuggestion] = useState();
-  const [isSuggestion, setisSuggestion] = useState(true);
+  const [isSuggestion, setisSuggestion] = useState(false);
   const suggestionRef = useRef();
 
   const dispatch = useDispatch();
