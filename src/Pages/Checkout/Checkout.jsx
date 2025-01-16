@@ -11,10 +11,13 @@ import Navbar from "./../../Shared/Navbar";
 
 const Checkout = () => {
   const dispatch = useDispatch();
+  const SiteURl = import.meta.env.VITE_SITE_URL;
+
   const [userData, setuserData] = useState({
     country: "",
     notes: "",
     email: "",
+    name: "",
   });
 
   const shoppingCartData = useSelector(
@@ -50,25 +53,36 @@ const Checkout = () => {
 
   const handleCheckOutDataSubmit = () => {
     const order_cards = shoppingCartData.map(item => ({
-      id: item?.id,
+      card_id: item?.id,
       quantity: item?.quantity,
-      price: item?.price,
+      unit_price: item?.price,
     }));
 
     const token = localStorage.getItem("token");
 
+    // Ensure order_cards is not empty and total_price is valid
+    console.log("Mapped order_cards:", order_cards);
+    console.log("Formatted total price:", formattedTotal);
+
+    if (!order_cards.length || !formattedTotal) {
+      console.error("Missing required fields: order_cards or total_price");
+      return; // Stop if data is incomplete
+    }
+
     // Create the final object
-    const cardDetails = {
-      order_cards, // Assign the mapped array here
-      total_price: formattedTotal,
-      note: "please handle with care",
-    };
+    
 
     if (loggedInUserData.id) {
       axios({
         method: "post",
+        url: `${SiteURl}/api/users/create-order`,
         data: {
-          cardDetails,
+          order_cards: order_cards,
+          total_price: formattedTotal,
+          note: userData.notes,
+          name: userData.name,
+          email: userData.email, // Fixed typo here from emai -> email
+          country: userData.country,
         },
         headers: {
           Authorization: `Bearer ${token}`, // Adding the token to the headers
@@ -79,13 +93,22 @@ const Checkout = () => {
         })
         .catch(err => {
           console.log(err);
+        })
+        .finally(() => {
+          setuserData({
+            name: "",
+            email: "",
+            country: "",
+            notes: "",
+          });
+          localStorage.removeItem("cart");
         });
     } else {
       navigate("/login");
     }
 
     // You can now use `cardDetails` as needed (e.g., send it to an API)
-    console.log(" this is the full ", cardDetails);
+    console.log("This is the full cardDetails object:", cardDetails);
   };
 
   console.log(userData, "user data");
@@ -99,21 +122,29 @@ const Checkout = () => {
           className={" text-2xl font-bold text-black font-nunito"}
         />
         <div className="flex flex-col gap-y-6 ">
-          <div className="flex flex-col gap-y-4 h-[600px]  overflow-y-scroll ">
-            {shoppingCartData.map((item, index) => {
-              return (
-                <DeliveryCard
-                  key={index}
-                  heading={item?.heading}
-                  cartImg={item?.cartImg}
-                  quantity={item?.quantity}
-                  price={item?.price}
-                  id={item?.id}
-                  isShoppingCart={false}
-                />
-              );
-            })}
-          </div>
+          {shoppingCartData.length ? (
+            <div className="flex flex-col gap-y-4 h-[600px]  overflow-y-scroll ">
+              {shoppingCartData.map((item, index) => {
+                return (
+                  <DeliveryCard
+                    key={index}
+                    heading={item?.heading}
+                    cartImg={item?.cartImg}
+                    quantity={item?.quantity}
+                    price={item?.price}
+                    id={item?.id}
+                    isShoppingCart={false}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <Heading
+              text={"Nothing to show in cart"}
+                className={"text-lg font-bold text-card_gray font-nunito"}
+                Variant="h4"
+            />
+          )}
         </div>
         <div className="relative flex flex-col items-center gap-y-12 ">
           <div className="flex flex-row justify-between w-full">
@@ -158,8 +189,11 @@ const Checkout = () => {
               className={
                 "w-[734px] rounded-[12px] p-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
               }
-              defaultValue={loggedInUserData?.name}
-              disabled={loggedInUserData?.name ? true : false}
+              onChange={e => {
+                handleUserData(e);
+              }}
+              value={userData.name}
+              name={"name"}
             />
           </div>
           <div className="flex flex-col gap-y-2 ">
