@@ -41,9 +41,7 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
 
   console.log("fund modal", TransictionHistory);
 
-  TransictionHistory.map((item, index) => {
-    console.log("single transaction history", item);
-  });
+
 
   const transictionHistoryHedings = [
     "Date & Time",

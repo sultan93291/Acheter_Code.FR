@@ -6,15 +6,35 @@ import Button from "@/Components/Tags/Button/Button";
 import DeliveryCard from "@/Components/Cards/DeliveryCard/DeliveryCard";
 import Heading from "@/Components/Tags/Heading/Heading";
 import { Input } from "@/Components/Tags/Input/Input";
+import axios from "axios";
+import Navbar from "./../../Shared/Navbar";
 
 const Checkout = () => {
+  const dispatch = useDispatch();
+  const [userData, setuserData] = useState({
+    country: "",
+    notes: "",
+    email: "",
+  });
+
   const shoppingCartData = useSelector(
     state => state?.cartSlice?.shoppingCartData
   );
 
+  const loggedInUserData = useSelector(
+    state => state?.loggedInUserSlice?.loggedInUserData
+  );
+
+  console.log("loggedin user data", loggedInUserData.name);
+
   const subtotalArr = [];
 
-  const SUBTOTAL = shoppingCartData.map((item, index) => {
+  const handleUserData = e => {
+    const { name, value } = e.target;
+    setuserData({ ...userData, [name]: value });
+  };
+
+  const SUBTOTAL = shoppingCartData?.map((item, index) => {
     const { price, quantity } = item;
     const total = price * quantity;
     subtotalArr.push(total);
@@ -23,24 +43,71 @@ const Checkout = () => {
   const total = subtotalArr.reduce((accumulator, currentValue) => {
     return accumulator + currentValue;
   }, 0);
+
+  const navigate = useNavigate();
+
+  const formattedTotal = total.toFixed(2);
+
+  const handleCheckOutDataSubmit = () => {
+    const order_cards = shoppingCartData.map(item => ({
+      id: item?.id,
+      quantity: item?.quantity,
+      price: item?.price,
+    }));
+
+    const token = localStorage.getItem("token");
+
+    // Create the final object
+    const cardDetails = {
+      order_cards, // Assign the mapped array here
+      total_price: formattedTotal,
+      note: "please handle with care",
+    };
+
+    if (loggedInUserData.id) {
+      axios({
+        method: "post",
+        data: {
+          cardDetails,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`, // Adding the token to the headers
+        },
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      navigate("/login");
+    }
+
+    // You can now use `cardDetails` as needed (e.g., send it to an API)
+    console.log(" this is the full ", cardDetails);
+  };
+
+  console.log(userData, "user data");
+
   return (
-    <section className="w-full h-auto pt-20 pb-[194px] flex bg-[#F8F8F8] flex-row gap-x-12 px-[300px] ">
+    <section className="w-full h-auto overflow-hidden pt-20 pb-[194px] flex bg-[#F8F8F8] flex-row gap-x-12 px-[300px] ">
       <div className="flex flex-col  gap-y-8 w-[538px] ">
         <Heading
           Variant={"h4"}
           text={"Shopping Details"}
           className={" text-2xl font-bold text-black font-nunito"}
         />
-        <div className="flex flex-col gap-y-6">
-          <div className="flex flex-col gap-y-4 ">
+        <div className="flex flex-col gap-y-6 ">
+          <div className="flex flex-col gap-y-4 h-[600px]  overflow-y-scroll ">
             {shoppingCartData.map((item, index) => {
               return (
                 <DeliveryCard
                   key={index}
-                  heading={item.heading}
-                  cartImg={item.cartImg}
-                  quantity={item.quantity}
-                  price={item.price}
+                  heading={item?.heading}
+                  cartImg={item?.cartImg}
+                  quantity={item?.quantity}
+                  price={item?.price}
                   id={item?.id}
                   isShoppingCart={false}
                 />
@@ -56,19 +123,19 @@ const Checkout = () => {
               className={"text-lg font-nunito font-semibold  text-text_black"}
             />
             <Heading
-              text={`${total}€`}
+              text={`${formattedTotal}€`}
               Variant={"h5"}
               className={"text-lg font-nunito font-semibold  text-text_black"}
             />
           </div>
           <Button
             onClick={() => {
-              handleCheckOutRedirect();
+              handleCheckOutDataSubmit();
             }}
             className={
               "w-[538px] bg-orange py-[16px] px-5 rounded-[16px] h-[57px] text-lg font-nunito text-white "
             }
-            text={`PAY ${total}€ `}
+            text={`PAY ${formattedTotal}€ `}
           />
         </div>
       </div>
@@ -91,6 +158,8 @@ const Checkout = () => {
               className={
                 "w-[734px] rounded-[12px] p-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
               }
+              defaultValue={loggedInUserData?.name}
+              disabled={loggedInUserData?.name ? true : false}
             />
           </div>
           <div className="flex flex-col gap-y-2 ">
@@ -105,6 +174,11 @@ const Checkout = () => {
               className={
                 "w-[734px] rounded-[12px] p-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
               }
+              onChange={e => {
+                handleUserData(e);
+              }}
+              value={userData.country}
+              name={"country"}
             />
           </div>
           <div className="flex flex-col gap-y-2 ">
@@ -119,6 +193,11 @@ const Checkout = () => {
               className={
                 "w-[734px] rounded-[12px] p-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
               }
+              onChange={e => {
+                handleUserData(e);
+              }}
+              value={userData.email}
+              name={"email"}
             />
           </div>
           <div className="flex flex-col gap-y-2 ">
@@ -131,9 +210,13 @@ const Checkout = () => {
               className={
                 "w-[734px] rounded-[12px] h-[160px] py-4 px-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
               }
-              name=""
+              name="notes"
               id=""
               placeholder="Write any kind of notes"
+              onChange={e => {
+                handleUserData(e);
+              }}
+              value={userData.notes}
             ></textarea>
           </div>
         </form>

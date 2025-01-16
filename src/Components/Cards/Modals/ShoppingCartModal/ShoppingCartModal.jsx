@@ -8,6 +8,8 @@ import Button from "@/Components/Tags/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
+import { upcomingCardData } from "@/Components/DummyData/DummyData";
+
 
 const ShoppingCartModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -17,13 +19,15 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
     }
   };
 
+  const dispatch = useDispatch();
+
   const shoppingCartData = useSelector(
     state => state?.cartSlice?.shoppingCartData
   );
 
   const subtotalArr = [];
 
-  const SUBTOTAL = shoppingCartData.map((item, index) => {
+  const SUBTOTAL = shoppingCartData?.map((item, index) => {
     const { price, quantity } = item;
     const total = price * quantity;
     subtotalArr.push(total);
@@ -32,6 +36,8 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
   const total = subtotalArr.reduce((accumulator, currentValue) => {
     return accumulator + currentValue;
   }, 0);
+
+  const formattedTotal = total.toFixed(2);
 
   const elementRef = useRef(null);
 
@@ -70,9 +76,9 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
 
   return createPortal(
     <div
-      className={`fixed top-0 right-0 h-[955px] w-auto flex items-start z-50 bg-black bg-opacity-50 ${
+      className={`fixed top-0 right-0 h-[955px] w-auto flex items-start z-50 bg-black  ${
         isOpen
-          ? "opacity-100 visible"
+          ? "bg-opacity-100 visible "
           : "opacity-0 invisible pointer-events-none"
       } transition-opacity duration-300 ease-out`}
       style={{ display: isOpen ? "flex" : "none" }}
@@ -100,23 +106,21 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-y-[180px]">
-          <div className="flex flex-col">
-            {shoppingCartData.map((item, index) => {
+        <div className="flex flex-col gap-y-[170px]">
+          <div className="flex flex-col overflow-y-scroll h-[536px]  ">
+            {shoppingCartData?.map((item, index) => {
               return (
                 <DeliveryCard
                   key={index}
-                  heading={item.heading}
-                  cartImg={item.cartImg}
-                  quantity={item.quantity}
-                  price={item.price}
+                  heading={item?.heading}
+                  cartImg={item?.cartImg}
+                  quantity={item?.quantity}
+                  price={item?.price}
                   id={item?.id}
                   isShoppingCart={true}
                   isHrLine={
-                    item.id ===
+                    item?.id !==
                     shoppingCartData[shoppingCartData.length - 1]?.id
-                      ? false
-                      : true
                   }
                 />
               );
@@ -130,7 +134,7 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
                 className={"text-lg font-nunito font-semibold  text-text_black"}
               />
               <Heading
-                text={`${total}€`}
+                text={`${formattedTotal}€`}
                 Variant={"h5"}
                 className={"text-lg font-nunito font-semibold  text-text_black"}
               />

@@ -1,7 +1,11 @@
 import { Image } from "@/Components/Tags/Image/Image";
 import Heading from "@/Components/Tags/Heading/Heading";
 import { useDispatch } from "react-redux";
-import { decreaseQuantity, increaseQuantity } from "@/redux/features/CartSlice";
+import {
+  setCardData,
+  decreaseQuantity,
+  increaseQuantity,
+} from "@/redux/features/CartSlice";
 
 const DeliveryCard = ({
   heading,
@@ -22,6 +26,23 @@ const DeliveryCard = ({
     dispatch(increaseQuantity({ id: id }));
   };
 
+  const handleCartDelete = id => {
+    // Retrieve the cart from localStorage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Filter out the item with the matching id
+    const updatedCart = cart.filter(item => item.id !== id);
+
+    // Save the updated cart to localStorage
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    console.log(`Product with id ${id} has been deleted.`);
+    console.log("Updated Cart:", updatedCart);
+
+    // Dispatch the updated cart to Redux
+    dispatch(setCardData({ Data: updatedCart }));
+  };
+
   return (
     <div
       className={`flex flex-row items-center justify-between ${
@@ -39,13 +60,16 @@ const DeliveryCard = ({
         className={"w-[64px] h-[64px] rounded-[8px] "}
       />
       <div className="flex flex-col gap-y-5 ">
-        <div className="flex flex-row gap-x-6 ">
+        <div className="flex flex-row justify-between  ">
           <Heading
             Variant={"h4"}
             text={heading}
             className={" text-lg font-semibold text-text_black font-nunito "}
           />
           <svg
+            onClick={() => {
+              handleCartDelete(id);
+            }}
             className="cursor-pointer"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -116,7 +140,7 @@ const DeliveryCard = ({
             </div>
           </div>
           <Heading
-            text={`${quantity} x ${price}€ = ${quantity * price}`}
+            text={`${quantity} x ${price}€ = ${(quantity * price).toFixed(2)}`}
             Variant={"h4"}
             className={" text-lg font-semibold font-nunito text-[#6B4500] "}
           />

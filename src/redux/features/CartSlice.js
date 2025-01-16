@@ -3,36 +3,17 @@ import steam from "../../assets/images/Cart/steam.png";
 import roblox from "../../assets/images/Cart/roblox.png";
 
 const initialState = {
-  shoppingCartData: [
-    {
-      id: 1,
-      heading: "Roblox Gift Card 10€ (Email Delivery) ",
-      cartImg: steam,
-      quantity: 2,
-      price: 10,
-    },
-    {
-      id: 2,
-      heading: "Roblox Gift Card 10€ (Email Delivery) ",
-      cartImg: roblox,
-      quantity: 2,
-      price: 10,
-    },
-    {
-      id: 3,
-      heading: "Roblox Gift Card 10€ (Email Delivery) ",
-      cartImg: steam,
-      quantity: 2,
-      price: 10,
-    },
-    {
-      id: 4,
-      heading: "Roblox Gift Card 10€ (Email Delivery) ",
-      cartImg: roblox,
-      quantity: 2,
-      price: 10,
-    },
-  ],
+  shoppingCartData: (() => {
+    try {
+      return JSON.parse(localStorage.getItem("cart")) || [];
+    } catch (error) {
+      console.error(
+        "Failed to parse shoppingCartData from localStorage:",
+        error
+      );
+      return [];
+    }
+  })(),
 };
 
 export const cartSlice = createSlice({
@@ -46,6 +27,15 @@ export const cartSlice = createSlice({
         item.quantity += 1;
       }
     },
+    setCardData: (state, action) => {
+      const { Data } = action.payload;
+      if (Array.isArray(Data)) {
+        state.shoppingCartData = Data;
+        localStorage.setItem("cart", JSON.stringify(Data));
+      } else {
+        console.error("Invalid data format for shoppingCartData:", Data);
+      }
+    },
     decreaseQuantity: (state, action) => {
       const { id } = action.payload;
       const item = state.shoppingCartData.find(item => item.id === id);
@@ -56,5 +46,6 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { increaseQuantity, decreaseQuantity } = cartSlice.actions;
+export const { increaseQuantity, decreaseQuantity, setCardData } =
+  cartSlice.actions;
 export default cartSlice.reducer;

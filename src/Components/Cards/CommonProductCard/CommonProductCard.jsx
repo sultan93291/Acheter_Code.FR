@@ -5,6 +5,9 @@ import Button from "../../Tags/Button/Button";
 import Heading from "../../Tags/Heading/Heading";
 import ShoppingCartModal from "../Modals/ShoppingCartModal/ShoppingCartModal";
 import { useNavigate } from "react-router-dom";
+import { setCardData } from "@/redux/features/CartSlice";
+import { useDispatch } from "react-redux";
+setCardData;
 
 const CommonProductCard = ({
   cardName,
@@ -25,10 +28,49 @@ const CommonProductCard = ({
     navigate(`/details/${id}`);
   };
 
-  const handleCartDataArr = (id) => {
-    console.log(id);
-    
-  }
+  const dispatch = useDispatch();
+
+  const handleCartDataArr = (
+    id,
+    cardName,
+    discountPrice,
+    bgImg,
+    quantity = 2
+  ) => {
+    console.log(
+      `Adding/updating product: ID = ${id}, Name = ${cardName}, Price = ${discountPrice}, Quantity = ${quantity}`
+    );
+
+    // Retrieve the cart from localStorage, or use an empty array if it doesn't exist
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Check if the item with the same id already exists in the cart
+    const existingProductIndex = cart.findIndex(item => item.id === id);
+
+    if (existingProductIndex === -1) {
+      // If the item doesn't exist, add the new product to the cart
+      const newProduct = {
+        id,
+        heading: cardName,
+        price: discountPrice,
+        cartImg: bgImg,
+        quantity,
+      };
+
+      cart.push(newProduct);
+      console.log("Product added:", newProduct);
+    } else {
+      // If the item exists, update the quantity
+      cart[existingProductIndex].quantity += quantity;
+      console.log("Product quantity updated:", cart[existingProductIndex]);
+    }
+
+    // Save the updated cart to localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Dispatch the updated cart to Redux
+    dispatch(setCardData({ Data: cart }));
+  };
 
   return (
     <>
@@ -154,7 +196,7 @@ const CommonProductCard = ({
           <Button
             onClick={() => {
               setisopen(true);
-              handleCartDataArr(id)
+              handleCartDataArr(id, cardName, discountPrice, bgImg);
             }}
             className={
               "w-[194px] rounded-[12px] leading-[164%] font-nunito font-medium text-[18px]  bg-orange h-auto py-[10px] flex items-center flex-row gap-x-2 uppercase  justify-center text-white   "
