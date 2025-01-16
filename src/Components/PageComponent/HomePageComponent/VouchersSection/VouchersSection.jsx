@@ -12,6 +12,8 @@ const VouchersSection = () => {
   const [bestSeliingDatas, setbestSeliingDatas] = useState();
   const [upComingDatas, setUpcomingDatas] = useState();
 
+    const SiteURl = import.meta.env.VITE_SITE_URL;
+
   useEffect(() => {
     bestSellingData();
     upComingData();
@@ -20,7 +22,7 @@ const VouchersSection = () => {
   const bestSellingData = () => {
     axios({
       method: "get",
-      url: `https://borisdessy.softvencefsd.xyz/api/upcoming-vouchers`,
+      url: `${SiteURl}/api/upcoming-vouchers`,
     })
       .then(res => {
         setbestSeliingDatas(res?.data?.data);
@@ -33,7 +35,7 @@ const VouchersSection = () => {
   const upComingData = () => {
     axios({
       method: "get",
-      url: `https://borisdessy.softvencefsd.xyz/api/upcoming-vouchers`,
+      url: `${SiteURl}/api/upcoming-vouchers`,
     })
       .then(res => {
         setUpcomingDatas(res?.data?.data);

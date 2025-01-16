@@ -9,9 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { VisaIcon } from "@/Components/Svg/Svg";
-
-
-
+import axios from "axios";
 
 const AddFundModal = ({ isFundOpen, onFundClose }) => {
   const navigate = useNavigate();
@@ -20,6 +18,32 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
       onFundClose();
     }
   };
+  const [TransictionHistory, setTransictionHistory] = useState([]);
+
+  const SiteURl = import.meta.env.VITE_SITE_URL;
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    axios({
+      method: "get",
+      url: `${SiteURl}/api/users/transaction-history`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(res => {
+        setTransictionHistory(res?.data?.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  console.log("fund modal", TransictionHistory);
+
+  TransictionHistory.map((item, index) => {
+    console.log("single transaction history", item);
+  });
 
   const transictionHistoryHedings = [
     "Date & Time",
@@ -139,7 +163,7 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
 
   return createPortal(
     <div
-      className={`fixed top-0 right-0 h-[955px] w-auto flex items-start z-50 bg-black bg-opacity-50 ${
+      className={`fixed top-0 right-0 h-[955px] overflow-y-hidden w-auto flex items-start z-50 ${
         isFundOpen
           ? "opacity-100 visible"
           : "opacity-0 invisible pointer-events-none"
@@ -205,57 +229,76 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
                 "  text-[20px] p-[10px] leading-[180%] text-text_black font-nunito font-semibold  "
               }
             />
-            <div className="w-[790px] h-auto px-5 rounded-[16px] py-3 bg-white shadow-custom_shadow  ">
-              <div className="flex flex-row justify-between relative after:absolute after:h-[1px] after:w-full after:bg-[#253858] after:bottom-0 after:left-0 after:mb-[-18px] ">
-                {transictionHistoryHedings.map((item, index) => {
-                  return (
-                    <Heading
-                      key={index}
-                      text={item}
-                      Variant={"h3"}
-                      className={
-                        "  text-[18px] leading-[180%] text-text_black font-nunito font-semibold  "
-                      }
-                    />
-                  );
-                })}
-              </div>
-              <div className="mt-[18px] h-[500px] pb-[50px] overflow-y-scroll ">
-                {transitionHistoryData.map((item, index) => {
-                  const CardIcon = item.cardType; // Assign the component to a variable
-                  return (
-                    <div
-                      key={index}
-                      className="flex flex-row py-6 gap-x-[95px] relative after:absolute "
-                    >
+            {TransictionHistory.length ? (
+              <div className="w-[790px] h-auto px-5 rounded-[16px] py-3 bg-white shadow-custom_shadow  ">
+                <div className="flex flex-row justify-between relative after:absolute after:h-[1px] after:w-full after:bg-[#253858] after:bottom-0 after:left-0 after:mb-[-18px] ">
+                  {transictionHistoryHedings.map((item, index) => {
+                    return (
                       <Heading
-                        text={item.date}
-                        Variant="h3"
-                        className="text-[18px] leading-[180%] text-text_black font-nunito font-semibold  after:absolute  items-center after:w-full after:h-[1px] after:border-b-2 after:border-dotted  after:bottom-0 after:left-0  after:opacity-50 after:border-text_gray  "
+                        key={index}
+                        text={item}
+                        Variant={"h3"}
+                        className={
+                          "  text-[18px] leading-[180%] text-text_black font-nunito font-semibold  "
+                        }
                       />
-                      <Heading
-                        text={item.transictionNo}
-                        Variant="h3"
-                        className="text-[18px] leading-[180%] text-text_black font-nunito font-semibold"
-                      />
-                      <Heading
-                        text={item.transictionType}
-                        Variant="h3"
-                        className="text-[18px] leading-[180%] text-text_black font-nunito font-semibold"
-                      />
-                      {CardIcon && <CardIcon className=" w-[50px] " />}{" "}
-                      <div className="flex flex-row items-start w-[80px] ">
+                    );
+                  })}
+                </div>
+                <div className="mt-[18px] h-[360px] pb-[20px] overflow-y-scroll ">
+                  {TransictionHistory.map((item, index) => {
+                    const dateString = "2025-01-16T03:53:10.000000Z";
+                    const date = new Date(dateString);
+
+                    // Format the date as MM/DD/YYYY
+                    const formattedDate = date.toLocaleDateString("en-US");
+
+                    return (
+                      <div
+                        key={item.id}
+                        className="flex flex-row py-6 gap-x-[85px] relative after:absolute items-center "
+                      >
                         <Heading
-                          text={item.amount}
+                          text={formattedDate}
                           Variant="h3"
-                          className="text-[18px]   leading-[180%] text-text_black font-nunito font-semibold"
+                          className={`text-[18px] leading-[180%] text-text_black font-nunito font-semibold  after:absolute  items-center after:w-full after:h-[1px] after:border-b-2 after:border-dotted  after:bottom-0 after:left-0  after:border-text_gray ${
+                            index === TransictionHistory.length - length - 1
+                              ? "after:opacity-0"
+                              : "after:opacity-50"
+                          }`}
                         />
+                        <Heading
+                          text={item.transection_number}
+                          Variant="h3"
+                          className="text-[18px] leading-[180%] text-text_black font-nunito font-semibold"
+                        />
+                        <Heading
+                          text={item.transaction_type}
+                          Variant="h3"
+                          className="text-[14px] w-[165px]   overflow-x-hidden   leading-[180%] text-text_black font-nunito font-semibold"
+                        />
+                        <div className=" h-[40px] flex items-center justify-center border-[2px] border-solid border-text_black  text-[9px] w-[150px] rounded-[8px] leading-[180%] text-text_black font-nunito font-bold  ">
+                          <Paragraph text={item.card_type} />
+                        </div>
+                        <div className="flex flex-row items-start w-[80px] ">
+                          <Heading
+                            text={`${item.amount}€`}
+                            Variant="h3"
+                            className="text-[18px] flex items-start justify-start    leading-[180%] text-text_black font-nunito font-semibold"
+                          />
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+            ) : (
+              <Heading
+                text={`No transaction history`}
+                Variant="h3"
+                className="text-[18px] pl-2 flex items-start justify-start    leading-[180%] text-text_black font-nunito font-semibold"
+              />
+            )}
           </div>
         </div>
       </div>

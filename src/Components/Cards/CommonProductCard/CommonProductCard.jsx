@@ -25,6 +25,11 @@ const CommonProductCard = ({
     navigate(`/details/${id}`);
   };
 
+  const handleCartDataArr = (id) => {
+    console.log(id);
+    
+  }
+
   return (
     <>
       <ShoppingCartModal
@@ -149,6 +154,7 @@ const CommonProductCard = ({
           <Button
             onClick={() => {
               setisopen(true);
+              handleCartDataArr(id)
             }}
             className={
               "w-[194px] rounded-[12px] leading-[164%] font-nunito font-medium text-[18px]  bg-orange h-auto py-[10px] flex items-center flex-row gap-x-2 uppercase  justify-center text-white   "
