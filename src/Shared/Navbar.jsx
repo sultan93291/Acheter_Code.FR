@@ -18,6 +18,7 @@ import {
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
+import { setUserBalences } from "@/redux/features/CartSlice";
 
 
 
@@ -25,7 +26,7 @@ const Navbar = () => {
   const [isopen, setisopen] = useState(false);
   const [isFundopen, setisFundopen] = useState(false);
   const FilterCardnames = useSelector(
-    state => state.filterCardDataSlice.activeFilterCardName
+    state => state.cartSlice.activeFilterCardName
   );
 
   const SiteURl = import.meta.env.VITE_SITE_URL;
@@ -74,6 +75,26 @@ const Navbar = () => {
   const handleSearchData = filterData => {
     navigate(`/search/?filter=${filterData}`);
     // window.reload()
+  };
+
+  const setUserBalence = () => {
+    const SiteURl = import.meta.env.VITE_SITE_URL;
+    const token = localStorage.getItem("token");
+
+    axios({
+      method: "get",
+      url: `${SiteURl}/api/users/user-balance`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(res => {
+        console.log(res?.data?.data?.balance, "i'm usere balence");
+        dispatch(setUserBalences(res?.data?.data?.balance));
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const handleFilterData = FilterCardname => {
@@ -229,9 +250,12 @@ const Navbar = () => {
             </ul>
             <div className="flex flex-row items-center gap-x-5">
               <div className="flex flex-row gap-x-3">
-                <div onClick={() => {
-                  navigate("/checkout");
-                }}  className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer bg-transparent_black">
+                <div
+                  onClick={() => {
+                    navigate("/checkout");
+                  }}
+                  className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer bg-transparent_black"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="21"
@@ -259,6 +283,7 @@ const Navbar = () => {
                 <div
                   onClick={() => {
                     setisFundopen(true);
+                    setUserBalence();
                   }}
                   className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer bg-transparent_black"
                 >

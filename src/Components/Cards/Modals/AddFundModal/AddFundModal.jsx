@@ -20,6 +20,8 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
   };
   const [TransictionHistory, setTransictionHistory] = useState([]);
 
+  const Balence = useSelector(state => state.cartSlice.userBalence);
+
   const SiteURl = import.meta.env.VITE_SITE_URL;
 
   useEffect(() => {
@@ -32,6 +34,8 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
       },
     })
       .then(res => {
+        console.log(res.data);
+
         setTransictionHistory(res?.data?.data);
       })
       .catch(err => {
@@ -40,8 +44,6 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
   }, []);
 
   console.log("fund modal", TransictionHistory);
-
-
 
   const transictionHistoryHedings = [
     "Date & Time",
@@ -202,7 +204,7 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
                 }
               />
               <Heading
-                text={"7,500€"}
+                text={`${Balence ? Balence :"7500"}€`}
                 Variant={"h2"}
                 className={
                   " text-[56px]  text-[#04212A] font-nunito font-semibold "

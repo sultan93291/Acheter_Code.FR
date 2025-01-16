@@ -14,6 +14,7 @@ const initialState = {
       return [];
     }
   })(),
+  userBalence:""
 };
 
 export const cartSlice = createSlice({
@@ -47,9 +48,17 @@ export const cartSlice = createSlice({
       state.shoppingCartData = [];
       localStorage.setItem("cart", JSON.stringify([])); // Clear cart in localStorage
     },
+    setUserBalences: (state, action) => {
+      state.userBalence = action.payload;
+    }
   },
 });
 
-export const { increaseQuantity, decreaseQuantity, setCardData ,emptyCart } =
-  cartSlice.actions;
+export const {
+  increaseQuantity,
+  decreaseQuantity,
+  setCardData,
+  emptyCart,
+  setUserBalences,
+} = cartSlice.actions;
 export default cartSlice.reducer;
