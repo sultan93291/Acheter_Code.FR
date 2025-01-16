@@ -8,6 +8,9 @@ import Heading from "@/Components/Tags/Heading/Heading";
 import { Input } from "@/Components/Tags/Input/Input";
 import axios from "axios";
 import Navbar from "./../../Shared/Navbar";
+import { emptyCart } from "@/redux/features/CartSlice";
+
+
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -29,6 +32,7 @@ const Checkout = () => {
   );
 
   console.log("loggedin user data", loggedInUserData.name);
+
 
   const subtotalArr = [];
 
@@ -101,7 +105,8 @@ const Checkout = () => {
             country: "",
             notes: "",
           });
-          localStorage.removeItem("cart");
+          dispatch(emptyCart())
+          
         });
     } else {
       navigate("/login");
