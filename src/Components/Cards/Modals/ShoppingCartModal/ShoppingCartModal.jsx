@@ -76,7 +76,7 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
 
   return createPortal(
     <div
-      className={`fixed top-0 right-0 h-[955px] w-auto flex items-start z-50 bg-black  ${
+      className={`fixed top-0 right-0 h-[100vh] w-auto flex items-start z-50 bg-black  ${
         isOpen
           ? "bg-opacity-100 visible "
           : "opacity-0 invisible pointer-events-none"
