@@ -161,7 +161,7 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
 
   return createPortal(
     <div
-      className={`fixed top-0 right-0 h-[955px] overflow-y-hidden w-auto flex items-start z-50 ${
+      className={`fixed top-0 right-0 h-[100vh] overflow-y-hidden w-auto flex items-start z-50 ${
         isFundOpen
           ? "opacity-100 visible"
           : "opacity-0 invisible pointer-events-none"
