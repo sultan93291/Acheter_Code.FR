@@ -20,13 +20,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
 import { setUserBalences } from "@/redux/features/CartSlice";
 
-
-
 const Navbar = () => {
   const [isopen, setisopen] = useState(false);
   const [isFundopen, setisFundopen] = useState(false);
   const FilterCardnames = useSelector(
-    state => state.cartSlice.activeFilterCardName
+    state => state.filterCardDataSlice.activeFilterCardName
   );
 
   const SiteURl = import.meta.env.VITE_SITE_URL;
@@ -74,7 +72,7 @@ const Navbar = () => {
 
   const handleSearchData = filterData => {
     navigate(`/search/?filter=${filterData}`);
-    // window.reload()
+    window.reload();
   };
 
   const setUserBalence = () => {
