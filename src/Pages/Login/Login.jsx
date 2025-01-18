@@ -10,6 +10,9 @@ import { Input } from "../../Components/Tags/Input/Input";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedInUserData } from "@/redux/features/loggedInUserSlice";
+import { toast } from "react-toastify";
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 const Login = () => {
   const [isShowPass, setisShowPass] = useState(false);
@@ -17,6 +20,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const SiteURl = import.meta.env.VITE_SITE_URL;
@@ -33,6 +37,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = e => {
+    setLoading(true)
     e.preventDefault();
     axios({
       method: "post",
@@ -45,15 +50,19 @@ const Login = () => {
       .then(res => {
         console.log(res);
         if (res.status === 200) {
+          setLoading(false);
+          toast.success(res?.data?.message);
           console.log();
           localStorage.setItem("token", res?.data?.data?.token);
-          navigate("/");
-          window.location.reload();
-          
+          setTimeout(() => {
+            navigate("/");
+            window.location.reload();
+          }, 3000);
         }
       })
       .catch(err => {
         console.log(err);
+        setLoading(false);
       });
   };
 
@@ -144,7 +153,15 @@ const Login = () => {
               className={
                 "w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto  text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white "
               }
-              text={"Login"}
+              text={
+                <>
+                  {loading ? (
+                    <ClipLoader color="#fff" loading={loading} size={40} />
+                  ) : (
+                    "Login"
+                  )}
+                </>
+              }
             />
           </div>
         </div>

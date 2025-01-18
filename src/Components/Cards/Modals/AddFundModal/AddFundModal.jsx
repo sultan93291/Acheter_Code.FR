@@ -204,7 +204,7 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
                 }
               />
               <Heading
-                text={`${Balence ? Balence :"7500"}€`}
+                text={`${Balence ? Balence : "0"}€`}
                 Variant={"h2"}
                 className={
                   " text-[56px]  text-[#04212A] font-nunito font-semibold "

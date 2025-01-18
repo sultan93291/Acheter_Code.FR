@@ -8,7 +8,8 @@ import { HiOutlineEyeSlash } from "react-icons/hi2";
 import { useEffect, useState } from "react";
 import { Input } from "../../Components/Tags/Input/Input";
 import axios from "axios";
-
+import ClipLoader from "react-spinners/ClipLoader";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [isShowPass, setisShowPass] = useState(false);
@@ -20,9 +21,9 @@ const Register = () => {
     confirm_password: "",
   });
 
+  const [loading, setLoading] = useState(false);
   const SiteURl = import.meta.env.VITE_SITE_URL;
-  console.log('site url' , SiteURl);
-  
+  console.log("site url", SiteURl);
 
   const navigate = useNavigate();
   const handleFormData = e => {
@@ -31,6 +32,7 @@ const Register = () => {
   };
 
   const handleRegister = e => {
+    setLoading(true);
     e.preventDefault();
     axios({
       method: "post",
@@ -44,12 +46,22 @@ const Register = () => {
     })
       .then(res => {
         console.log(res.status);
-        if (res.status===201) {
-          navigate("/login")
+        if (res.status === 201) {
+          toast.success(res?.data?.message);
+          setLoading(false);
+          setTimeout(() => {
+            navigate("/login");
+          }, 3000);
+        } else {
+          toast.error(res.message);
+          console.log(res.data);
         }
       })
       .catch(err => {
         console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -190,7 +202,15 @@ const Register = () => {
               className={
                 "w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white "
               }
-              text={"Register"}
+              text={
+                <>
+                  {loading ? (
+                    <ClipLoader color="#fff" loading={loading} size={40} />
+                  ) : (
+                    "Register"
+                  )}
+                </>
+              }
             />
           </div>
         </div>
