@@ -52,13 +52,12 @@ const Register = () => {
           setTimeout(() => {
             navigate("/login");
           }, 3000);
-        } else {
-          toast.error(res.message);
-          console.log(res.data);
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err?.response?.data.message, "this is hte error");
+        setLoading(false);
+        toast.error(err?.response?.data.data);
       })
       .finally(() => {
         setLoading(false);
@@ -205,7 +204,7 @@ const Register = () => {
               text={
                 <>
                   {loading ? (
-                    <ClipLoader color="#fff" loading={loading} size={40} />
+                    <ClipLoader color="#fff" loading={loading} size={25} />
                   ) : (
                     "Register"
                   )}

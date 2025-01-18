@@ -61,8 +61,9 @@ const Login = () => {
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err?.response?.data.message , 'this is hte error');
         setLoading(false);
+        toast.error(err?.response?.data.message);
       });
   };
 
@@ -156,7 +157,7 @@ const Login = () => {
               text={
                 <>
                   {loading ? (
-                    <ClipLoader color="#fff" loading={loading} size={40} />
+                    <ClipLoader color="#fff" loading={loading} size={25} />
                   ) : (
                     "Login"
                   )}
