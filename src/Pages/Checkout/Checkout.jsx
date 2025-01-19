@@ -9,8 +9,7 @@ import { Input } from "@/Components/Tags/Input/Input";
 import axios from "axios";
 import Navbar from "./../../Shared/Navbar";
 import { emptyCart } from "@/redux/features/CartSlice";
-
-
+import { setCheckout } from "@/redux/features/loggedInUserSlice";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -32,7 +31,6 @@ const Checkout = () => {
   );
 
   console.log("loggedin user data", loggedInUserData.name);
-
 
   const subtotalArr = [];
 
@@ -74,7 +72,6 @@ const Checkout = () => {
     }
 
     // Create the final object
-    
 
     if (loggedInUserData.id) {
       axios({
@@ -105,11 +102,11 @@ const Checkout = () => {
             country: "",
             notes: "",
           });
-          dispatch(emptyCart())
-          
+          dispatch(emptyCart());
         });
     } else {
       navigate("/login");
+      dispatch(setCheckout());
     }
 
     // You can now use `cardDetails` as needed (e.g., send it to an API)
@@ -146,8 +143,8 @@ const Checkout = () => {
           ) : (
             <Heading
               text={"Nothing to show in cart"}
-                className={"text-lg font-bold text-card_gray font-nunito"}
-                Variant="h4"
+              className={"text-lg font-bold text-card_gray font-nunito"}
+              Variant="h4"
             />
           )}
         </div>

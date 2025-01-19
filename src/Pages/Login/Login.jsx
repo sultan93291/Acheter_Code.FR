@@ -9,10 +9,9 @@ import { useState } from "react";
 import { Input } from "../../Components/Tags/Input/Input";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoggedInUserData } from "@/redux/features/loggedInUserSlice";
+import { setCheckout, setLoggedInUserData } from "@/redux/features/loggedInUserSlice";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
-
 
 const Login = () => {
   const [isShowPass, setisShowPass] = useState(false);
@@ -29,6 +28,8 @@ const Login = () => {
     state => state.loggedInUserSlice.loggedInUserData
   );
 
+  const isCheckout = useSelector(state => state?.loggedInUserSlice?.isCheckout);
+
   const handleFormData = e => {
     const { name, value } = e.target;
     setuserData({ ...userData, [name]: value });
@@ -37,7 +38,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = e => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
     axios({
       method: "post",
@@ -55,13 +56,20 @@ const Login = () => {
           console.log();
           localStorage.setItem("token", res?.data?.data?.token);
           setTimeout(() => {
-            navigate("/");
-            window.location.reload();
+            if (isCheckout) {
+              dispatch(setCheckout());
+              navigate("/checkout");
+              window.location.reload();
+            } else {
+              navigate("/");
+              window.location.reload();
+            }
+            
           }, 3000);
         }
       })
       .catch(err => {
-        console.log(err?.response?.data.message , 'this is hte error');
+        console.log(err?.response?.data.message, "this is hte error");
         setLoading(false);
         toast.error(err?.response?.data.message);
       });
