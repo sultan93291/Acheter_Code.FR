@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { comment } from "postcss";
+import { toast } from "react-toastify";
 
 const ReviewSection = ({ data }) => {
   const swiperRef = useRef(null); // Ref to the Swiper instance
@@ -126,10 +127,14 @@ const ReviewSection = ({ data }) => {
         },
       })
         .then(res => {
+          if (res.status === 201) {
+            toast.success("Review submitted successfully")
+          }
           console.log(res);
         })
         .catch(err => {
           console.log(err);
+          toast.error('review already submitted')
         })
         .finally(
           setRatingStore(prevState =>

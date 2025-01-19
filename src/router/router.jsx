@@ -8,12 +8,10 @@ import Blog from "../Pages/Blog/Blog";
 import Checkout from "@/Pages/Checkout/Checkout";
 import PubliceRouteProtector from "@/RouterProtector/PublicRouteProtector/PublicRouteProtector";
 import GlobalSearch from "@/Pages/GlobalSearch/GlobalSearch";
-
-
-
-
-
-
+import { SubmitEmail } from "@/Pages/SubmitEmail/SubmitEmail";
+import { VerfiyOtp } from "@/Pages/VerifyOtp/VerfiyOtp";
+import { ForgotPass } from "@/Pages/ForgotPass/ForgotPass";
+import ForgotPassProtector from "@/RouterProtector/ForgotPassProtector/ForgotPassProtector";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +36,31 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/submit-email",
+
+        element: (
+          <PubliceRouteProtector>
+            <SubmitEmail />
+          </PubliceRouteProtector>
+        ),
+      },
+      {
+        path: "/verify-otp",
+        element: (
+          <PubliceRouteProtector>
+            <VerfiyOtp />
+          </PubliceRouteProtector>
+        ),
+      },
+      {
+        path: "/reset-pass",
+        element: (
+          <PubliceRouteProtector>
+            <ForgotPass />
+          </PubliceRouteProtector>
+        ),
+      },
+      {
         path: "/",
         element: <Home />,
       },
@@ -55,8 +78,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/search",
-        element:<GlobalSearch/>
-      }
+        element: <GlobalSearch />,
+      },
     ],
   },
 ]);

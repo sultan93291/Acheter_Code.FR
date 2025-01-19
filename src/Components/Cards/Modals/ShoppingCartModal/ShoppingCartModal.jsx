@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { upcomingCardData } from "@/Components/DummyData/DummyData";
 
-
 const ShoppingCartModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const handleClose = () => {
@@ -76,7 +75,7 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
 
   return createPortal(
     <div
-      className={`fixed top-0 right-0 h-[100vh] w-auto flex items-start z-50 bg-black  ${
+      className={`fixed top-0 right-0 h-[100vh] w-auto flex items-start z-50   ${
         isOpen
           ? "bg-opacity-100 visible "
           : "opacity-0 invisible pointer-events-none"
@@ -107,25 +106,32 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
           </div>
         </div>
         <div className="flex flex-col gap-y-[170px]">
-          <div className="flex flex-col overflow-y-scroll h-[536px]  ">
-            {shoppingCartData?.map((item, index) => {
-              return (
-                <DeliveryCard
-                  key={index}
-                  heading={item?.heading}
-                  cartImg={item?.cartImg}
-                  quantity={item?.quantity}
-                  price={item?.price}
-                  id={item?.id}
-                  isShoppingCart={true}
-                  isHrLine={
-                    item?.id !==
-                    shoppingCartData[shoppingCartData.length - 1]?.id
-                  }
-                />
-              );
-            })}
-          </div>
+          {shoppingCartData.length ? (
+            <div className="flex flex-col overflow-y-scroll h-[536px]  ">
+              {shoppingCartData?.map((item, index) => {
+                return (
+                  <DeliveryCard
+                    key={index}
+                    heading={item?.heading}
+                    cartImg={item?.cartImg}
+                    quantity={item?.quantity}
+                    price={item?.price}
+                    id={item?.id}
+                    isShoppingCart={true}
+                    isHrLine={
+                      item?.id !==
+                      shoppingCartData[shoppingCartData.length - 1]?.id
+                    }
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <Paragraph
+              text={"Nothing to show in cart"}
+              className={"para_style leading-none  text-text_black"}
+            />
+          )}
           <div className="relative flex flex-col items-center gap-y-8  after:absolute after:w-full after:h-[1px] after:bg-text_gray after:top-0 after:left-0 after:mt-[-20px]">
             <div className="flex flex-row justify-between w-full">
               <Heading

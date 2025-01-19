@@ -7,7 +7,7 @@ import ShoppingCartModal from "../Modals/ShoppingCartModal/ShoppingCartModal";
 import { useNavigate } from "react-router-dom";
 import { setCardData } from "@/redux/features/CartSlice";
 import { useDispatch } from "react-redux";
-setCardData;
+import { toast } from "react-toastify";
 
 const CommonProductCard = ({
   cardName,
@@ -59,6 +59,7 @@ const CommonProductCard = ({
 
       cart.push(newProduct);
       console.log("Product added:", newProduct);
+      toast.success("Product added to cart!");
     } else {
       // If the item exists, update the quantity
       cart[existingProductIndex].quantity += quantity;

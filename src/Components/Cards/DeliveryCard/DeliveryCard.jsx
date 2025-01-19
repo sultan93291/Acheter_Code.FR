@@ -6,6 +6,7 @@ import {
   decreaseQuantity,
   increaseQuantity,
 } from "@/redux/features/CartSlice";
+import { toast } from "react-toastify";
 
 const DeliveryCard = ({
   heading,
@@ -38,6 +39,7 @@ const DeliveryCard = ({
 
     console.log(`Product with id ${id} has been deleted.`);
     console.log("Updated Cart:", updatedCart);
+    toast.info("Product  deleted successfully")
 
     // Dispatch the updated cart to Redux
     dispatch(setCardData({ Data: updatedCart }));

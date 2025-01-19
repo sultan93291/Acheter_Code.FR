@@ -10,6 +10,7 @@ import axios from "axios";
 import Navbar from "./../../Shared/Navbar";
 import { emptyCart } from "@/redux/features/CartSlice";
 import { setCheckout } from "@/redux/features/loggedInUserSlice";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ const Checkout = () => {
     console.log("Formatted total price:", formattedTotal);
 
     if (!order_cards.length || !formattedTotal) {
+      toast.error("Order card missing");
       console.error("Missing required fields: order_cards or total_price");
       return; // Stop if data is incomplete
     }
@@ -91,9 +93,17 @@ const Checkout = () => {
       })
         .then(res => {
           console.log(res);
+          if (res.status === 201) {
+            toast.success("Order created successfully");
+            setTimeout(() => {
+              dispatch(emptyCart());
+              navigate("/");
+            }, 2000);
+          }
         })
         .catch(err => {
           console.log(err);
+          toast.error("Failed to create order");
         })
         .finally(() => {
           setuserData({
@@ -102,7 +112,6 @@ const Checkout = () => {
             country: "",
             notes: "",
           });
-          dispatch(emptyCart());
         });
     } else {
       navigate("/login");
