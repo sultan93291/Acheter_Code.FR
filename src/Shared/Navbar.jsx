@@ -11,6 +11,7 @@ import PurchaseHistoryModal from "../Components/Cards/Modals/PurchaseHistoryModa
 import { useContext, useEffect, useState } from "react";
 import AddFundModal from "@/Components/Cards/Modals/AddFundModal/AddFundModal";
 import { AuthContext } from "@/Provider/AuthProvider/AuthProvider";
+import { FaUserPlus } from "react-icons/fa6";
 import {
   setFilterCardData,
   setActiveFilterCardName,
@@ -19,6 +20,11 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
 import { setUserBalences } from "@/redux/features/CartSlice";
+import { MdLogout } from "react-icons/md";
+import { setLoggedInUserData } from "@/redux/features/loggedInUserSlice";
+import { Image } from "@/Components/Tags/Image/Image";
+import { toast } from "react-toastify";
+
 
 const Navbar = () => {
   const [isopen, setisopen] = useState(false);
@@ -26,6 +32,13 @@ const Navbar = () => {
   const FilterCardnames = useSelector(
     state => state.filterCardDataSlice.activeFilterCardName
   );
+
+
+  const loggedInUserData = useSelector(
+    state => state.loggedInUserSlice.loggedInUserData
+  );
+
+  console.log(loggedInUserData);
 
   const SiteURl = import.meta.env.VITE_SITE_URL;
 
@@ -148,6 +161,51 @@ const Navbar = () => {
   const handleRootRedirect = () => {
     navigate("/");
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    toast.info("Sucessfully logged out")
+    setTimeout(() => {
+       navigate("/login");
+       window.location.reload();
+    }, 2000);
+   
+  };
+
+  const handleProfileUpload = event => {
+    const file = event.target.files[0]; // Get the selected file
+    console.log(file); // Logs the file object to verify the file is being picked up
+    const token = localStorage.getItem("token");
+
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append("avatar", file); // Add the file to FormData
+    console.log("full from data", formData);
+
+    axios({
+      method: "POST",
+      url: `${SiteURl}/api/users/update-avatar`,
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(res => {
+        console.log('updated data', res.data.data);
+        console.log(res.status , 'success status');
+        if (res.status === 200) {
+          toast.success("Successfully updated avatar")
+        }
+       dispatch(setLoggedInUserData(res?.data?.data));
+      })
+      .catch(err => {
+        console.log(err);
+        toast.error("Can't update updated avatar");
+      });
+  };
+
+  console.log("");
 
   return (
     <>
@@ -288,36 +346,82 @@ const Navbar = () => {
                   <ImCoinEuro className="w-5 h-5 text-white " />
                 </div>
               </div>
-              <div
-                className={` flex flex-row items-center ${
-                  isAuthenticated ? `justify-between` : " gap-x-4"
-                }`}
-              >
-                {!isAuthenticated && (
-                  <Link
-                    className={"text-white font-nunito text-lg "}
-                    to={"/login"}
+              {isAuthenticated ? (
+                <div className="h-[55px] w-[120px] bg-[#FFF6E6] shadow-custom_shadow   rounded-[16px] flex flex-row justify-between items-center px-4 ">
+                  <div
+                    aria-label="Profile upload"
+                    className=" cursor-pointer  relative  "
                   >
-                    Log In
-                  </Link>
-                )}
-                {!isAuthenticated && (
-                  <Button
+                    {loggedInUserData.avatar ? (
+                      <Image
+                        Src={`${SiteURl}/${loggedInUserData?.avatar}`}
+                        AltTxt={"not found"}
+                        className={"h-[35px] w-[35px] rounded-[35px] ring-1 shadow-custom_shadow object-cover "}
+                      />
+                    ) : (
+                      <FaUserPlus
+                        title="profile upload"
+                        className="h-[20px] w-[20px] text-gray-600 cursor-pointer "
+                      />
+                    )}
+                    <Input
+                      type={"file"}
+                      accept={"image/*"}
+                      className={
+                        "absolute top-0 left-0 h-[25px] w-[25px] opacity-0 cursor-pointer "
+                      }
+                      onChange={e => {
+                        handleProfileUpload(e);
+                      }}
+                    />
+                  </div>
+
+                  <div
+                    role="button"
+                    aria-label="Log out"
+                    className=" flex flex-row h-full pl-4 items-center border-l-[1px] border-solid border-orange  "
                     onClick={() => {
-                      handleRegister();
+                      handleLogout();
                     }}
-                    className={
-                      " p-4 border-[2px] border-solid border-white outline-none rounded-[16px] text-white font-nunito text-lg   "
-                    }
-                    text={
-                      <div className="flex flex-row items-center text-white gap-x-2">
-                        <FaRegUser className="w-5 h-5 text-lg font-bold text-white font-nunito " />{" "}
-                        Sign Up{" "}
-                      </div>
-                    }
-                  />
-                )}
-              </div>
+                  >
+                    <MdLogout
+                      title="log out"
+                      className="h-[20px] w-[20px] text-gray-600 cursor-pointer "
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className={` flex flex-row items-center ${
+                    isAuthenticated ? `justify-between` : " gap-x-4"
+                  }`}
+                >
+                  {!isAuthenticated && (
+                    <Link
+                      className={"text-white font-nunito text-lg "}
+                      to={"/login"}
+                    >
+                      Log In
+                    </Link>
+                  )}
+                  {!isAuthenticated && (
+                    <Button
+                      onClick={() => {
+                        handleRegister();
+                      }}
+                      className={
+                        " p-4 border-[2px] border-solid border-white outline-none rounded-[16px] text-white font-nunito text-lg   "
+                      }
+                      text={
+                        <div className="flex flex-row items-center text-white gap-x-2">
+                          <FaRegUser className="w-5 h-5 text-lg font-bold text-white font-nunito " />{" "}
+                          Sign Up{" "}
+                        </div>
+                      }
+                    />
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

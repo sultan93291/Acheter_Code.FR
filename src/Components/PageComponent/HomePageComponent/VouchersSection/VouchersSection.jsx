@@ -12,12 +12,7 @@ const VouchersSection = () => {
   const [bestSeliingDatas, setbestSeliingDatas] = useState();
   const [upComingDatas, setUpcomingDatas] = useState();
 
-    const SiteURl = import.meta.env.VITE_SITE_URL;
-
-  useEffect(() => {
-    bestSellingData();
-    upComingData();
-  });
+  const SiteURl = import.meta.env.VITE_SITE_URL;
 
   const bestSellingData = () => {
     axios({
@@ -35,7 +30,7 @@ const VouchersSection = () => {
   const upComingData = () => {
     axios({
       method: "get",
-      url: `${SiteURl}/api/upcoming-vouchers`,
+      url: `${SiteURl}/api/best-selling-vouchers`,
     })
       .then(res => {
         setUpcomingDatas(res?.data?.data);
@@ -44,6 +39,11 @@ const VouchersSection = () => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    bestSellingData();
+    upComingData();
+  }, []);
 
   return (
     <section className="flex flex-col w-full h-auto ">

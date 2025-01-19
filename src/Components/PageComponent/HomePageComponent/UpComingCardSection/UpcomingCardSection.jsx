@@ -1,3 +1,4 @@
+"use client";
 import Heading from "../../../Tags/Heading/Heading";
 import SwipperSlider from "../../../SwipperSlider/SwipperSlider";
 import { specailUpcomingCardData } from "../../../DummyData/DummyData";
@@ -12,10 +13,70 @@ import "swiper/css/navigation";
 import CommonProductCard from "../../../Cards/CommonProductCard/CommonProductCard";
 import Button from "../../../Tags/Button/Button";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 
 const UpcomingCardSection = () => {
-  let swiperInstance = null;
-  let swiperInstanceTwo = null;
+  const swiperInstance = useRef(null); // Use a ref to persist swiper instance
+  const [isSwiperInitialized, setIsSwiperInitialized] = useState(false);
+
+  const swiperInstanceTwo = useRef(null); // Use a ref to persist swiper instance
+  const [isSwiperTwoInitialized, setIsSwiperTwoInitialized] = useState(false);
+
+  const SiteURl = import.meta.env.VITE_SITE_URL;
+
+  useEffect(() => {
+    if (swiperInstance.current) {
+      setIsSwiperInitialized(true);
+    }
+  }, [swiperInstance.current]);
+
+  useEffect(() => {
+    if (swiperInstanceTwo.current) {
+      setIsSwiperTwoInitialized(true);
+    }
+  }, [swiperInstanceTwo.current]);
+
+  const [bestSeliingDatas, setbestSeliingDatas] = useState([]);
+  const [upComingDatas, setupComingDatas] = useState([]);
+
+  const fetchUpcomingCard = () => {
+    axios({
+      method: "get",
+      url: `${SiteURl}/api/upcoming-cards`,
+    })
+      .then(res => {
+        setupComingDatas(res?.data?.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const fetechBestSeliingCard = () => {
+    axios({
+      method: "get",
+      url: `${SiteURl}/api/best-selling-cards`,
+    })
+      .then(res => {
+        setbestSeliingDatas(res?.data?.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    fetchUpcomingCard();
+    fetechBestSeliingCard();
+  }, []);
+
+  console.log(
+    upComingDatas,
+    bestSeliingDatas,
+    "this data for upcoming and best selling section"
+  );
+
   return (
     <section className="flex flex-col w-full h-auto ">
       <div className="w-full px-[300px] h-auto py-10 bg-secondary_blue">
@@ -44,20 +105,24 @@ const UpcomingCardSection = () => {
             <div className="flex flex-row items-center gap-x-3">
               <Button
                 onClick={() => {
-                  if (swiperInstance) swiperInstance.slidePrev();
+                  if (swiperInstance.current) {
+                    swiperInstance.current.slidePrev();
+                  }
                 }}
-                disabled={swiperInstance?.isBeginning}
+                disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
                 text={<IoIosArrowRoundBack />}
                 className={
                   "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black"
                 }
               />
               <Button
-                onClick={() => {
-                  if (swiperInstance) swiperInstance.slideNext();
-                }}
-                disabled={swiperInstance?.isEnd}
                 text={<IoIosArrowRoundForward />}
+                onClick={() => {
+                  if (swiperInstance.current) {
+                    swiperInstance.current.slideNext();
+                  }
+                }}
+                disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
                 className={
                   "h-12 w-12 flex items-center justify-center text-black text-2xl border-[2px] border-solid border-black rounded-full"
                 }
@@ -67,25 +132,30 @@ const UpcomingCardSection = () => {
           <div className="flex   w-auto py-[18px] px-[16px] bg-off_blue rounded-[8px] ">
             <Swiper
               modules={[Navigation]}
-              onSwiper={swiper => (swiperInstance = swiper)} // Capture the Swiper instance
+              onSwiper={swiper => {
+                swiperInstance.current = swiper; // Set the swiper instance on initialization
+              }}
               slidesPerView={4} // Adjust the number of visible slides
               spaceBetween={20} // Custom gap between slides
               loop={true} // Enable looping if necessary
             >
               {/* Slides */}
-              {specailUpcomingCardData.map((item, index) => (
+              {upComingDatas.map((item, index) => (
                 <SwiperSlide key={index} className="h-auto ">
                   <CommonProductCard
-                    cardName={"upcoming cards"}
+                    id={item?.id}
+                    cardName={item?.card_name}
                     cardHeight={"532px"}
-                    bgImg={item?.bgImg}
-                    rating={item?.rating}
-                    discountpercentage={item?.discountpercentage}
-                    seller={item?.seller}
-                    heading={item?.heading}
+                    bgImg={`https://borisdessy.softvencefsd.xyz/${item?.image}`}
+                    rating={item?.reviews_avg_rating}
+                    discountpercentage={`${Math.floor(
+                      ((item?.price - item?.discount) / item?.price) * 100
+                    )}%`}
+                    seller={item?.seller_name}
+                    heading={item?.platform_name}
                     price={item?.price}
                     subHeading={item?.subHeading}
-                    discountPrice={item?.discountPrice}
+                    discountPrice={item?.discount}
                   />
                 </SwiperSlide>
               ))}
@@ -107,16 +177,18 @@ const UpcomingCardSection = () => {
             <Heading
               Variant={"h4"}
               text={"Best Selling Cards"}
-              className={
-                " font-nunito text-[32px] font-bold text-white "
-              }
+              className={" font-nunito text-[32px] font-bold text-white "}
             />
             <div className="flex flex-row items-center gap-x-3">
               <Button
                 onClick={() => {
-                  if (swiperInstanceTwo) swiperInstanceTwo.slidePrev();
+                  if (swiperInstanceTwo.current) {
+                    swiperInstanceTwo.current.slidePrev();
+                  }
                 }}
-                disabled={swiperInstanceTwo?.isBeginning}
+                disabled={
+                  !isSwiperTwoInitialized || swiperInstance.current?.isEnd
+                }
                 text={<IoIosArrowRoundBack />}
                 className={
                   "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-white rounded-full text-white"
@@ -124,9 +196,13 @@ const UpcomingCardSection = () => {
               />
               <Button
                 onClick={() => {
-                  if (swiperInstanceTwo) swiperInstanceTwo.slideNext();
+                  if (swiperInstanceTwo.current) {
+                    swiperInstanceTwo.current.slideNext();
+                  }
                 }}
-                disabled={swiperInstanceTwo?.isEnd}
+                disabled={
+                  !isSwiperTwoInitialized || swiperInstanceTwo.current?.isEnd
+                }
                 text={<IoIosArrowRoundForward />}
                 className={
                   "h-12 w-12 flex items-center justify-center text-white text-2xl border-[2px] border-solid border-white rounded-full"
@@ -137,25 +213,30 @@ const UpcomingCardSection = () => {
           <div className="flex  w-auto py-[18px] px-[16px]  bg-off_blue rounded-[8px] ">
             <Swiper
               modules={[Navigation]}
-              onSwiper={swiper => (swiperInstanceTwo = swiper)} // Capture the Swiper instance
+              onSwiper={swiper => {
+                swiperInstanceTwo.current = swiper; // Set the swiper instance on initialization
+              }}
               slidesPerView={4} // Adjust the number of visible slides
               spaceBetween={20} // Custom gap between slides
               loop={true} // Enable looping if necessary
             >
               {/* Slides */}
-              {specailUpcomingCardData.map((item, index) => (
+              {bestSeliingDatas.map((item, index) => (
                 <SwiperSlide key={index} className="h-auto ">
                   <CommonProductCard
-                    cardName={"upcoming cards"}
+                    id={item?.id}
+                    cardName={item?.card_name}
                     cardHeight={"532px"}
-                    bgImg={item?.bgImg}
-                    rating={item?.rating}
-                    discountpercentage={item?.discountpercentage}
-                    seller={item?.seller}
-                    heading={item?.heading}
+                    bgImg={`https://borisdessy.softvencefsd.xyz/${item?.image}`}
+                    rating={item?.reviews_avg_rating}
+                    discountpercentage={`${Math.floor(
+                      ((item?.price - item?.discount) / item?.price) * 100
+                    )}%`}
+                    seller={item?.seller_name}
+                    heading={item?.platform_name}
                     price={item?.price}
                     subHeading={item?.subHeading}
-                    discountPrice={item?.discountPrice}
+                    discountPrice={item?.discount}
                   />
                 </SwiperSlide>
               ))}

@@ -6,7 +6,8 @@ export const Input = ({
   value,
   name,
   defaultValue,
-  disabled
+  disabled,
+  accept,
 }) => {
   return (
     <input
@@ -18,6 +19,7 @@ export const Input = ({
       onChange={onChange}
       value={value}
       disabled={disabled}
+      accept={accept}
     />
   );
 };
