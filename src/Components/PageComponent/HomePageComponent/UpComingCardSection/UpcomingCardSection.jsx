@@ -81,6 +81,7 @@ const UpcomingCardSection = () => {
     <section className="flex flex-col w-full h-auto ">
       <div className="w-full px-[290px] h-auto py-10 bg-secondary_blue">
         <Heading
+          dataAos="fade-in"
           Variant={"h2"}
           text={"GIFT CARDS"}
           className={"text-white font-righteous text-[36px] font-normal"}
@@ -98,6 +99,7 @@ const UpcomingCardSection = () => {
         <div className="flex flex-col gap-y-8 ">
           <div className="flex flex-row justify-between">
             <Heading
+              dataAos="fade-in"
               Variant={"h4"}
               text={"Upcoming Cards"}
               className={"text-black font-nunito text-[32px] font-bold"}
@@ -175,6 +177,7 @@ const UpcomingCardSection = () => {
         <div className="flex flex-col gap-y-8">
           <div className="flex flex-row justify-between">
             <Heading
+              dataAos="fade-in"
               Variant={"h4"}
               text={"Best Selling Cards"}
               className={" font-nunito text-[32px] font-bold text-white "}
@@ -244,11 +247,13 @@ const UpcomingCardSection = () => {
           </div>
         </div>
         <Image
+          data-aos="zoom"
           Src={giftLeft}
           AltTxt={"not found"}
           className={" absolute top-0 left-0 mt-[188px] ml-[128.05px] "}
         />
         <Image
+          data-aos="zoom"
           Src={giftLeft}
           AltTxt={"not found"}
           className={" absolute top-0 right-0 mt-[188px] mr-[128.05px] "}

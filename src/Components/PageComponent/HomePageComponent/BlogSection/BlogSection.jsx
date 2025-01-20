@@ -26,12 +26,14 @@ const BlogSection = () => {
         <Heading
           Variant={"h4"}
           text={"READ OUR BLOGS"}
+          dataAos={'fade-in'}
           className={
             "font-righteous text-heading_black text-[36px] font-normal "
           }
         />
         <div className="flex flex-row items-center gap-x-3">
           <Button
+        
             onClick={() => {
               if (swiperInstance) swiperInstance.slidePrev();
             }}

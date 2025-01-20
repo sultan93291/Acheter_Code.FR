@@ -39,6 +39,7 @@ const OurProductSection = () => {
       }}
     >
       <Heading
+        dataAos="fade-in"
         Variant={"h4"}
         text={"WHY OUR PRODUCTS"}
         className={"font-righteous text-heading_black text-[36px] font-normal "}

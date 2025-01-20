@@ -92,7 +92,6 @@ const CommonProductCard = ({
         >
           <div
             data-aos="zoom-out"
-            data-aos-delay="-100px"
             style={{
               backgroundImage: `url(${bgImg})`,
               backgroundSize: "cover",
@@ -101,7 +100,10 @@ const CommonProductCard = ({
             }}
             className=" w-[279px] h-[302px] rounded-t-[12px] relative "
           >
-            <div className="absolute top-0 right-0 w-[68px] h-[30px] px-[10px] flex flex-row items-center bg-secondary_orange rounded-[12px] mt-2 mr-2 gap-x-1 ">
+            <div
+              data-aos="fade-in"
+              className="absolute top-0 right-0 w-[68px] h-[30px] px-[10px] flex flex-row items-center bg-secondary_orange rounded-[12px] mt-2 mr-2 gap-x-1 "
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -116,6 +118,7 @@ const CommonProductCard = ({
                 />
               </svg>
               <Heading
+                data-aos="fade-in"
                 text={rating}
                 Variant={"h6"}
                 className={" text-[16px] text-white font-bold font-nunito "}
@@ -123,6 +126,7 @@ const CommonProductCard = ({
             </div>
             <div className="py-[10px] px-4 absolute bottom-0 right-0 w-[91px] rounded-tl-[2px] rounded-tr-[14px] rounded-br-[14px] rounded-bl-[14px]  h-[42px] mb-2 mr-2 bg-red  ">
               <Heading
+                data-aos="fade-in"
                 Variant={"h4"}
                 text={`${discountpercentage} off`}
                 className={
@@ -135,6 +139,7 @@ const CommonProductCard = ({
         <div className="flex flex-col px-3 py-4 bg-white gap-y-6 rounded-b-[16px] ">
           <div>
             <Heading
+              data-aos="fade-in"
               onClick={() => {
                 handleDetailsRedirect();
               }}
@@ -156,7 +161,7 @@ const CommonProductCard = ({
           </div>
           <div className="flex flex-col gap-y-3 ">
             <div className="flex flex-col gap-y-1">
-              <div className="flex flex-row gap-x-[47px] ">
+              <div data-aos="fade-in" className="flex flex-row gap-x-[47px] ">
                 <Heading
                   Variant={"h4"}
                   text={"Seller"}
@@ -172,7 +177,10 @@ const CommonProductCard = ({
                   }
                 />
               </div>
-              <div className="flex flex-row gap-x-[57px] items-center ">
+              <div
+                data-aos="fade-in"
+                className="flex flex-row gap-x-[57px] items-center "
+              >
                 <Heading
                   Variant={"h4"}
                   text={"Each"}
@@ -180,7 +188,10 @@ const CommonProductCard = ({
                     "text-[18px] font-medium font-nunito text-text_black"
                   }
                 />
-                <div className="flex flex-row items-center gap-x-2 ">
+                <div
+                  data-aos="fade-in"
+                  className="flex flex-row items-center gap-x-2 "
+                >
                   <Heading
                     Variant={"h4"}
                     text={`${discountPrice}€`}
@@ -200,6 +211,7 @@ const CommonProductCard = ({
             </div>
           </div>
           <Button
+            data-aos="fade-in"
             onClick={() => {
               setisopen(true);
               handleCartDataArr(id, cardName, discountPrice, bgImg);

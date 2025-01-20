@@ -26,12 +26,14 @@ const ClientSection = () => {
     >
       <div className="flex justify-between flow-row">
         <Heading
+          dataAos={"fade-in"}
           Variant={"h4"}
           text={"WHAT OUR CLIENTS SAY"}
           className={"font-righteous  text-[36px] font-normal text-white"}
         />
         <div className="flex flex-row items-center gap-x-3">
           <Button
+            data-aos={"fade-in"}
             onClick={() => {
               if (swiperInstance) swiperInstance.slidePrev();
             }}
@@ -42,6 +44,7 @@ const ClientSection = () => {
             }
           />
           <Button
+            data-aos={"fade-in"}
             onClick={() => {
               if (swiperInstance) swiperInstance.slideNext();
             }}
