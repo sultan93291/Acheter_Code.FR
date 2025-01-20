@@ -25,14 +25,14 @@ import { setLoggedInUserData } from "@/redux/features/loggedInUserSlice";
 import { Image } from "@/Components/Tags/Image/Image";
 import { toast } from "react-toastify";
 
-
 const Navbar = () => {
   const [isopen, setisopen] = useState(false);
   const [isFundopen, setisFundopen] = useState(false);
+  const [isSideBar, setisSideBar] = useState(false);
+
   const FilterCardnames = useSelector(
     state => state.filterCardDataSlice.activeFilterCardName
   );
-
 
   const loggedInUserData = useSelector(
     state => state.loggedInUserSlice.loggedInUserData
@@ -164,12 +164,11 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    toast.info("Sucessfully logged out")
+    toast.info("Sucessfully logged out");
     setTimeout(() => {
-       navigate("/login");
-       window.location.reload();
+      navigate("/login");
+      window.location.reload();
     }, 2000);
-   
   };
 
   const handleProfileUpload = event => {
@@ -192,12 +191,12 @@ const Navbar = () => {
       },
     })
       .then(res => {
-        console.log('updated data', res.data.data);
-        console.log(res.status , 'success status');
+        console.log("updated data", res.data.data);
+        console.log(res.status, "success status");
         if (res.status === 200) {
-          toast.success("Successfully updated avatar")
+          toast.success("Successfully updated avatar");
         }
-       dispatch(setLoggedInUserData(res?.data?.data));
+        dispatch(setLoggedInUserData(res?.data?.data));
       })
       .catch(err => {
         console.log(err);
@@ -222,8 +221,9 @@ const Navbar = () => {
         isFundOpen={isFundopen}
       />
       <nav className="flex flex-col ">
+        {/* main navbar */}
         <div
-          className={`py-6 bg-orange justify-center relative   flex items-center ${
+          className={`py-6 bg-orange justify-center relative hidden   3xl:flex items-center ${
             isAuthenticated ? " justify-between px-[300px] " : "gap-x-[96px] "
           }  `}
         >
@@ -259,10 +259,10 @@ const Navbar = () => {
               {isSuggestion && (
                 <div
                   ref={suggestionRef}
-                  className="h-[101px] ease-in duration-150 w-[340px] top-0 left-0 mt-[70px] z-[99999] bg-[#FFF6E6] absolute shadow-custom_shadow   "
-                  data-aos="fade-in"
+                  className="h-[101px] ease-in duration-150 w-[340px] top-0 left-0 mt-[70px] z-[999999] bg-[#FFF6E6] absolute shadow-custom_shadow   "
                 >
                   <div
+                    data-aos="fade-in"
                     onClick={event => {
                       event.stopPropagation(); // Prevent propagation to the document listener
                       setsuggestion("Sale vouchers");
@@ -275,6 +275,7 @@ const Navbar = () => {
                   </div>
                   <hr className="bg-orange h-[1px] w-full border-none" />
                   <div
+                    data-aos="fade-in"
                     onClick={event => {
                       event.stopPropagation(); // Prevent propagation to the document listener
                       setsuggestion("Gift cards");
@@ -438,16 +439,277 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className=" bg-owl_black py-[26px] flex items-center justify-center  ">
-          <ul className="flex flex-row gap-x-[32px]">
+        {/* mobile navbar */}
+        <div
+          className={`py-4 bg-orange  relative   flex 3xl:hidden items-center ${
+            isAuthenticated ? "   " : " "
+          }  `}
+        >
+          <div className="flex flex-row px-2 justify-between w-full  items-center ">
+            <div
+              className="flex px-2 flex-row justify-between"
+              onClick={handleRootRedirect}
+            >
+              <Heading
+                Variant={"h4"}
+                text={"Acheter Code.FR"}
+                className={
+                  "text-white font-righteous text-[22px] 3xl:text-[28px] font-normal cursor-pointer"
+                }
+                dataAos="fade-in"
+              />
+            </div>
+            <div
+              onClick={() => {
+                setisSideBar(!isSideBar);
+              }}
+              className="h-[35px] relative w-[35px] border-[1px] border-solid border-white rounded-[8px] flex 2xl:hidden cursor-pointer flex-col gap-y-[6px] items-center justify-center z-[999] "
+            >
+              <span className=" h-[1px] w-[70%] bg-white "></span>
+              <span className=" h-[1px] w-[70%] bg-white "></span>
+              <span className=" h-[1px] w-[70%] bg-white "></span>
+            </div>
+          </div>
+          {isSideBar && (
+            <div className="flex bg-[rgba(0,0,0,0.8)] absolute top-0 left-0 h-[100vh] w-[100vw] overflow-y-hidden  2xl:hidden  flex-col items-center justify-center gap-[35px] z-50">
+              <div
+                onClick={() => {
+                  setisSuggestion(true);
+                }}
+                className="flex w-[220px]  justify-center  h-[47px] bg-white relative rounded-[16px] items-center "
+                data-aos="fade-in"
+              >
+                <Input
+                  type={"text"}
+                  className={
+                    "h-full w-[220px] rounded-[16px] px-5 outline-none font-nunito text-[12px] font-normal text-light_gray  "
+                  }
+                  placeholder={"Search what you need"}
+                  defaultValue={suggestion ? suggestion : ""}
+                />
+                <div className="w-[56px] h-full bg-light_orange border-l-[1px] border-solid border-orange rounded-r-[16px] cursor-pointer flex flex-row items-center justify-center group">
+                  <CiSearch className="w-[18px] h-[18px] text-orange font-bold ease-in-out duration-300 group-hover:rotate-[90deg] " />
+                </div>
+                {isSuggestion && (
+                  <div
+                    ref={suggestionRef}
+                    className="h-[79px] ease-in duration-150 w-[150px] top-0 left-0 mt-[70px] z-[999999] bg-[#FFF6E6] absolute shadow-custom_shadow   "
+                  >
+                    <div
+                      data-aos="fade-in"
+                      onClick={event => {
+                        setisSideBar(false);
+                        setisSuggestion(false);
+                        // event.stopPropagation(); // Prevent propagation to the document listener
+                        setsuggestion("Sale vouchers");
+                        handleSearchData("Sale vouchers");
+                      }}
+                      className="h-[39px] w-full px-6 py-3 text-[#5c5c5c] cursor-pointer text-[14px] font-normal font-nunito "
+                    >
+                      Sale vouchers
+                    </div>
+                    <hr className="bg-orange h-[1px] w-full border-none" />
+                    <div
+                      data-aos="fade-in"
+                      onClick={event => {
+                        setisSideBar(false);
+                        // Prevent propagation to the document listener
+                        // event.stopPropagation();
+                        setsuggestion("Gift cards");
+                        handleSearchData("Gift cards");
+                      }}
+                      className="h-[39px] w-full  px-6 py-3 text-[#5c5c5c] cursor-pointer text-[14px] font-normal font-nunito "
+                    >
+                      <span
+                        onClick={() => {
+                          setisSuggestion(false);
+                        }}
+                      >
+                        {" "}
+                        Gift cards
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-col gap-y-[20px] items-center ">
+                <ul className="flex flex-col gap-y-[20px] items-center ">
+                  <li data-aos="fade-in">
+                    <NavLink
+                      onClick={() => {
+                        setisSideBar(false);
+                      }}
+                      className={"text-white font-nunito text-[16px] "}
+                      to={"/"}
+                    >
+                      Home
+                    </NavLink>
+                  </li>
+                  <li>
+                    <div
+                      data-aos="fade-in"
+                      className={
+                        "text-white font-nunito text-[16px] cursor-pointer "
+                      }
+                      onClick={() => {
+                        setisopen(true);
+                        setisSideBar(false);
+                      }}
+                    >
+                      Purchase History
+                    </div>
+                  </li>
+                </ul>
+                <div className="flex flex-col items-center gap-y-5">
+                  <div className="flex flex-row gap-x-3">
+                    <div
+                      data-aos="fade-in"
+                      onClick={() => {
+                        navigate("/checkout");
+                        setisSideBar(false);
+                      }}
+                      className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer ease-in duration-200 bg-transparent_black hover:bg-[rgba(255,255,255,0.2)] hover:shadow-[0px_4px_10px_rgba(0,0,0,0.1)] "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="21"
+                        height="21"
+                        viewBox="0 0 21 21"
+                        fill="none"
+                      >
+                        <path
+                          d="M2.98512 14.6249C2.19067 11.4472 1.79345 9.85921 2.62771 8.79069C3.46197 7.72217 5.09993 7.72217 8.37493 7.72217H12.662C15.9379 7.72217 17.5749 7.72217 18.4092 8.79069C19.2435 9.85921 18.8462 11.4481 18.0518 14.6249C17.5462 16.6462 17.2944 17.6564 16.5407 18.2453C15.787 18.8333 14.7453 18.8333 12.662 18.8333H8.37493C6.2916 18.8333 5.24993 18.8333 4.49623 18.2453C3.74252 17.6564 3.48975 16.6462 2.98512 14.6249Z"
+                          stroke="white"
+                          strokeWidth="1.6"
+                        />
+                        <path
+                          d="M17.4592 8.18512L16.8018 5.77308C16.5481 4.84253 16.4212 4.37771 16.1611 4.02679C15.9016 3.67814 15.5493 3.40957 15.1444 3.25179C14.737 3.09253 14.2555 3.09253 13.2925 3.09253M3.57031 8.18512L4.22772 5.77308C4.48142 4.84253 4.60828 4.37771 4.86846 4.02679C5.12788 3.67814 5.48021 3.40957 5.88513 3.25179C6.29253 3.09253 6.77402 3.09253 7.73698 3.09253"
+                          stroke="white"
+                          strokeWidth="1.7"
+                        />
+                        <path
+                          d="M7.73438 3.09255C7.73438 2.84698 7.83193 2.61147 8.00557 2.43782C8.17922 2.26418 8.41473 2.16663 8.6603 2.16663H12.364C12.6096 2.16663 12.8451 2.26418 13.0187 2.43782C13.1924 2.61147 13.2899 2.84698 13.2899 3.09255C13.2899 3.33812 13.1924 3.57364 13.0187 3.74728C12.8451 3.92093 12.6096 4.01848 12.364 4.01848H8.6603C8.41473 4.01848 8.17922 3.92093 8.00557 3.74728C7.83193 3.57364 7.73438 3.33812 7.73438 3.09255Z"
+                          stroke="white"
+                          strokeWidth="1.3"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      data-aos="fade-in"
+                      onClick={() => {
+                        setisFundopen(true);
+                        setUserBalence();
+                        setisSideBar(false);
+                      }}
+                      className="flex flex-row items-center justify-center w-12 h-12 ease-in-out duration-200 rounded-full cursor-pointer bg-transparent_black hover:bg-[rgba(255,255,255,0.2)] hover:shadow-[0px_4px_10px_rgba(0,0,0,0.2)] "
+                    >
+                      <ImCoinEuro className="w-5 h-5 text-white " />
+                    </div>
+                  </div>
+                  {isAuthenticated ? (
+                    <div className="h-[55px] w-[120px] bg-[#FFF6E6] shadow-custom_shadow   rounded-[16px] flex flex-col gap-y-5 justify-between items-center px-4 ">
+                      <div
+                        data-aos="fade-in"
+                        aria-label="Profile upload"
+                        className=" cursor-pointer  relative  "
+                      >
+                        {loggedInUserData.avatar ? (
+                          <Image
+                            Src={`${SiteURl}/${loggedInUserData?.avatar}`}
+                            AltTxt={"not found"}
+                            className={
+                              "h-[35px] w-[35px] rounded-[35px] ring-1 shadow-custom_shadow object-cover "
+                            }
+                          />
+                        ) : (
+                          <FaUserPlus
+                            title="profile upload"
+                            className="h-[20px] w-[20px] text-gray-600 cursor-pointer "
+                          />
+                        )}
+                        <Input
+                          type={"file"}
+                          accept={"image/*"}
+                          className={
+                            "absolute top-0 left-0 h-[25px] w-[25px] opacity-0 cursor-pointer "
+                          }
+                          onChange={e => {
+                            handleProfileUpload(e);
+                            setisSideBar(false);
+                          }}
+                        />
+                      </div>
+
+                      <div
+                        data-aos="fade-in"
+                        role="button"
+                        aria-label="Log out"
+                        className=" flex flex-row h-full pl-4 items-center border-l-[1px] border-solid border-orange  "
+                        onClick={() => {
+                          handleLogout();
+                          setisSideBar(false);
+                        }}
+                      >
+                        <MdLogout
+                          title="log out"
+                          className="h-[20px] w-[20px] text-gray-600 cursor-pointer "
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      data-aos="fade-in"
+                      className={` flex flex-col gap-y-5 items-center ${
+                        isAuthenticated ? `justify-between` : " gap-x-4"
+                      }`}
+                    >
+                      {!isAuthenticated && (
+                        <Link
+                          data-aos="fade-in"
+                          className={"text-white font-nunito text-[16px]  "}
+                          to={"/login"}
+                          onClick={() => {
+                            setisSideBar(false);
+                          }}
+                        >
+                          Log In
+                        </Link>
+                      )}
+                      {!isAuthenticated && (
+                        <Button
+                          data-aos="fade-in"
+                          onClick={() => {
+                            handleRegister();
+                            setisSideBar(false);
+                          }}
+                          className={
+                            "p-4 border-[2px] border-solid border-white outline-none rounded-[16px] text-white font-nunito text-[14px] ease-in-out duration-200 bg-transparent hover:bg-orange hover:shadow-[0px_4px_10px_rgba(0,0,0,0.2)] hover:border-transparent transform hover:-translate-y-[1px]"
+                          }
+                          text={
+                            <div className="flex text-[14px] flex-row items-center text-white gap-x-2">
+                              <FaRegUser className="w-4 h-4 text-[14px] font-bold text-white font-nunito " />{" "}
+                              Sign Up{" "}
+                            </div>
+                          }
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className=" bg-owl_black py-[26px] flex w-full flex-wrap items-center justify-center  ">
+          <ul className="flex flex-row flex-wrap gap-[12px] lg:gap-x-[32px] px-2 lg:px-0 ">
             {socailLinks.map((item, index) => {
               return (
-                <li data-aos="fade-in" data-aos-delay="200" key={index}>
+                <li data-aos="fade-in" key={index}>
                   <div
                     onClick={() => {
                       handleFilterData(item.linkName);
                     }}
-                    className={`text-[18px] font-medium font-nunito ease-in-out duration-150 cursor-pointer ${
+                    className={`text-[12px] lg:text-lg font-medium font-nunito ease-in-out duration-150 cursor-pointer ${
                       item?.linkName === FilterCardnames
                         ? " text-white "
                         : "text-orange"

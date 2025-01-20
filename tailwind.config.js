@@ -84,6 +84,16 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      screens: {
+        xs: "360px",
+        sm: "480px", // Small mobile devices
+        md: "576px", // Tablets and small mobile screens
+        lg: "768px", // Medium tablets and large phones
+        xl: "992px", // Laptops or larger tablets
+        "2xl": "1200px", // Standard desktop screens
+        "3xl": "1500px", // Larger desktop displays
+        "4xl": "1920px", // High-resolution or ultra-wide displays
+      },
       keyframes: {
         "pulse-text": {
           "0%, 100%": { opacity: 1 },
