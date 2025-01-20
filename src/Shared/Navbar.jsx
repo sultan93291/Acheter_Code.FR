@@ -235,6 +235,7 @@ const Navbar = () => {
                 className={
                   "text-white font-righteous text-[28px] font-normal cursor-pointer"
                 }
+                dataAos="fade-in"
               />
             </div>
             <div
@@ -242,6 +243,7 @@ const Navbar = () => {
                 setisSuggestion(true);
               }}
               className="flex w-[395px]  h-[57px] bg-white relative rounded-[16px] items-center "
+              data-aos="fade-in"
             >
               <Input
                 type={"text"}
@@ -258,6 +260,7 @@ const Navbar = () => {
                 <div
                   ref={suggestionRef}
                   className="h-[101px] ease-in duration-150 w-[340px] top-0 left-0 mt-[70px] z-[99999] bg-[#FFF6E6] absolute shadow-custom_shadow   "
+                  data-aos="fade-in"
                 >
                   <div
                     onClick={event => {
@@ -288,13 +291,14 @@ const Navbar = () => {
           </div>
           <div className="flex flex-row gap-x-[50px] items-center ">
             <ul className="flex flex-row gap-x-[20px] ">
-              <li>
+              <li data-aos="fade-in">
                 <NavLink className={"text-white font-nunito text-lg "} to={"/"}>
                   Home
                 </NavLink>
               </li>
               <li>
                 <div
+                  data-aos="fade-in"
                   className={"text-white font-nunito text-lg cursor-pointer "}
                   onClick={() => {
                     setisopen(true);
@@ -307,6 +311,7 @@ const Navbar = () => {
             <div className="flex flex-row items-center gap-x-5">
               <div className="flex flex-row gap-x-3">
                 <div
+                  data-aos="fade-in"
                   onClick={() => {
                     navigate("/checkout");
                   }}
@@ -337,6 +342,7 @@ const Navbar = () => {
                   </svg>
                 </div>
                 <div
+                  data-aos="fade-in"
                   onClick={() => {
                     setisFundopen(true);
                     setUserBalence();
@@ -349,6 +355,7 @@ const Navbar = () => {
               {isAuthenticated ? (
                 <div className="h-[55px] w-[120px] bg-[#FFF6E6] shadow-custom_shadow   rounded-[16px] flex flex-row justify-between items-center px-4 ">
                   <div
+                    data-aos="fade-in"
                     aria-label="Profile upload"
                     className=" cursor-pointer  relative  "
                   >
@@ -379,6 +386,7 @@ const Navbar = () => {
                   </div>
 
                   <div
+                    data-aos="fade-in"
                     role="button"
                     aria-label="Log out"
                     className=" flex flex-row h-full pl-4 items-center border-l-[1px] border-solid border-orange  "
@@ -394,12 +402,14 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div
+                  data-aos="fade-in"
                   className={` flex flex-row items-center ${
                     isAuthenticated ? `justify-between` : " gap-x-4"
                   }`}
                 >
                   {!isAuthenticated && (
                     <Link
+                      data-aos="fade-in"
                       className={"text-white font-nunito text-lg  "}
                       to={"/login"}
                     >
@@ -408,6 +418,7 @@ const Navbar = () => {
                   )}
                   {!isAuthenticated && (
                     <Button
+                      data-aos="fade-in"
                       onClick={() => {
                         handleRegister();
                       }}
@@ -431,7 +442,7 @@ const Navbar = () => {
           <ul className="flex flex-row gap-x-[32px]">
             {socailLinks.map((item, index) => {
               return (
-                <li key={index}>
+                <li data-aos="fade-in" data-aos-delay="200" key={index}>
                   <div
                     onClick={() => {
                       handleFilterData(item.linkName);

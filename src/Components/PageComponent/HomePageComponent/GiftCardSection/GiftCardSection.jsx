@@ -27,7 +27,7 @@ const GiftCardSection = () => {
       className="w-full h-[760px] flex items-center justify-center relative"
     >
       <SwipperSlider
-        data={giftCardDataArray.length?giftCardDataArray : giftCardData}
+        data={giftCardDataArray.length ? giftCardDataArray : giftCardData}
         cardHeight={"532px"}
         cardName={"gift card"}
       />
