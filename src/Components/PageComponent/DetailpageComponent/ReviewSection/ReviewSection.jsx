@@ -28,6 +28,8 @@ const ReviewSection = ({ data }) => {
     state => state.loggedInUserSlice.loggedInUserData
   );
 
+    const SiteURl = import.meta.env.VITE_SITE_URL;
+
   const navigate = useNavigate();
 
   const [totalTrueRatings, setTotalTrueRatings] = useState(0);
@@ -117,7 +119,7 @@ const ReviewSection = ({ data }) => {
     } else {
       axios({
         method: "post",
-        url: "https://borisdessy.softvencefsd.xyz/api/review/store",
+        url: `${SiteURl}/api/review/store`,
         data: {
           user_id: loggedInuserData?.id,
           card_id: id,

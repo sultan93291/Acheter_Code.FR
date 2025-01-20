@@ -12,7 +12,7 @@ import {
 import { Calendar } from "@/Components/ui/calendar";
 
 // DatePicker Component
-export function DatePicker() {
+export function DatePicker({ onDateChange }) {
   const [date, setDate] = useState(null); // Store selected date, initially null
   const [isCalenderOPen, setisCalenderOpen] = useState(false); // Manage popover open/close state
 
@@ -20,6 +20,7 @@ export function DatePicker() {
   const handleSelect = selectedDate => {
     setDate(selectedDate); // Set selected date
     setisCalenderOpen(false); // Close popover after selection
+    onDateChange(selectedDate);
   };
 
   return (

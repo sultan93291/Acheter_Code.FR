@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Heading from "../../../Tags/Heading/Heading";
 import Button from "../../../Tags/Button/Button";
 import { IoIosArrowRoundBack } from "react-icons/io";
@@ -13,27 +13,48 @@ import blogGift from "../../../../assets/images/Home/blog_gift.png";
 import blogGiftRight from "../../../../assets/images/Home/blog_gift_right.png";
 import { Image } from "../../../Tags/Image/Image";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
 const BlogSection = () => {
   let swiperInstance = null; // Store the Swiper instance
+  const [BlogDataArr, setBlogDataArr] = useState([]);
+
+   const SiteURl = import.meta.env.VITE_SITE_URL;
+  
   const navigate = useNavigate();
+
   const handleBlogRedirect = id => {
     navigate(`blog/${id}`);
   };
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${SiteURl}/api/all/blogs`,
+    })
+      .then(res => {
+        console.log("this is all blog data", res.data.data);
+        setBlogDataArr(res.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <section className="w-full h-[531px] px-[290px] relative my-20 flex flex-col gap-y-10">
       <div className="flex justify-between flow-row">
         <Heading
           Variant={"h4"}
           text={"READ OUR BLOGS"}
-          dataAos={'fade-in'}
+          dataAos={"fade-in"}
           className={
             "font-righteous text-heading_black text-[36px] font-normal "
           }
         />
         <div className="flex flex-row items-center gap-x-3">
           <Button
-        
             onClick={() => {
               if (swiperInstance) swiperInstance.slidePrev();
             }}
@@ -63,14 +84,14 @@ const BlogSection = () => {
           spaceBetween={20} // Gap between slides
           loop={true} // Enable looping
         >
-          {BlogCardData.map((item, index) => (
+          {BlogDataArr.map((item, index) => (
             <SwiperSlide key={index} className="h-auto">
               <BlogCard
                 onClick={() => {
                   handleBlogRedirect(item?.id);
                 }}
-                blogTxt={item?.cardTxt}
-                bgImg={item?.BgImg}
+                blogTxt={item?.title}
+                bgImg={`${SiteURl}/${item.image}`}
               />
             </SwiperSlide>
           ))}

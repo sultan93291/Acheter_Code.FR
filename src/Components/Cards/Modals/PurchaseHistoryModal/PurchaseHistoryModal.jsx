@@ -10,6 +10,9 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import Button from "@/Components/Tags/Button/Button";
 import { FaEye } from "react-icons/fa";
 import { PaginationDemo } from "../../PaginationCard/PaginationCard";
+import axios from "axios";
+import { useState } from "react";
+import { format } from "date-fns";
 
 const PurchaseHistoryModal = ({ isOpen, onClose }) => {
   const handleClose = () => {
@@ -18,6 +21,9 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
     }
   };
 
+  const [SearchData, setSearchData] = useState();
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [purchaseProductDetails, setpurchaseProductDetails] = useState([]);
   const elementRef = useRef(null);
 
   useEffect(() => {
@@ -37,6 +43,8 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
     };
   }, []);
 
+  const SiteURl = import.meta.env.VITE_SITE_URL;
+
   const purchaseItemHeading = [
     "ID",
     "Product",
@@ -47,7 +55,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
     "Status",
   ];
 
-  const purchaseProductDetails = [
+  const psurchaseProductDetails = [
     {
       productId: "4202",
       productName: "Roblox",
@@ -98,6 +106,32 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
     };
   }, [isOpen]);
 
+  const handleDateChange = date => {
+    const formattedDate = format(date, "yyyy-MM-dd");
+    setSelectedDate(formattedDate); // Update the state in the parent
+  };
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${SiteURl}/api/users/order-history?product_name=${
+        SearchData ? SearchData : "AMAZON"
+      }&order_date=${selectedDate ? selectedDate : "2025-01-20"}`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then(res => {
+        console.log(res.data.data);
+        if (res.status === 200) {
+          setpurchaseProductDetails(res.data.data);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [setSearchData, selectedDate]);
+
   return (
     <div
       className={`fixed inset-0 h-auto  flex  items-start justify-end z-50 bg-black bg-opacity-50 ${
@@ -136,10 +170,13 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                   "w-[426px] rounded-[12px] py-[15.5px] pl-[16px] pr-[42px] outline-none border-[1px] border-solid border-text_gray para_style leading-none  text-text_black font-medium  "
                 }
                 placeholder={"Search products"}
+                onChange={e => {
+                  setSearchData(e.target.value);
+                }}
               />
               <FiSearch className="absolute right-0 mr-[16px] transform -translate-y-1/2 top-1/2 para_style leading-none  text-text_black font-medium cursor-pointer " />
             </div>
-            <DatePicker />
+            <DatePicker onDateChange={handleDateChange} />
           </div>
           <div className="flex flex-col gap-y-10 ">
             <div className="flex flex-col gap-y-8">
@@ -163,119 +200,63 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                   })}
                 </div>
 
-                {purchaseProductDetails.map((item, index) => {
-                  return (
-                    <div
-                      className={`flex flex-row relative  justify-between  h-auto  after:absolute  items-center after:w-full after:h-[1px] after:border-b-2 after:border-dotted after:border-text_gray after:bottom-0 after:left-0  after:opacity-50 ${
-                        index === 0 ? "pt-[30px] pb-[20px]" : "py-5"
-                      } `}
-                      key={index}
-                    >
-                      <Paragraph
-                        text={item?.productId}
-                        className={"purchase_product_detils w-[21px]  "}
-                      />
-                      <Paragraph
-                        text={item?.productName}
-                        className={"purchase_product_detils w-[52px]  "}
-                      />
-                      <Paragraph
-                        text={item?.orderDate}
-                        className={"purchase_product_detils w-[92px]  "}
-                      />
-                      <Paragraph
-                        text={item?.deliveryData}
-                        className={"purchase_product_detils w-[120px]"}
-                      />
-                      <Paragraph
-                        text={item?.quantity}
-                        className={"purchase_product_detils w-[30px]  "}
-                      />
-                      <Paragraph
-                        text={item?.price}
-                        className={"purchase_product_detils w-[15px] "}
-                      />
-                      <Button
-                        text={item?.btnTxt}
-                        className={`h-auto rounded-[4px] py-1 w-[76px] text-[12px] font-medium text-primary_gray ${
-                          item?.btnTxt === "Pending"
-                            ? "bg-[#FFDDB7]"
-                            : item.btnTxt === "Cancelled"
-                            ? "bg-[#FFAFAF]"
-                            : "bg-[#ACFDCE]"
-                        } `}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="flex flex-col gap-y-8">
-              <Heading
-                Variant={"h4"}
-                text={"December, 2024"}
-                className={"text-lg font-semibold font-nunito text-[#091E42] "}
-              />
-              <div className="flex flex-col ">
-                <div className="relative flex flex-row justify-between h-auto py-5 after:absolute after:w-full after:h-[1px] after:bg-light_gray after:bottom-0 after:left-0 after:mb-[-10px] items-center">
-                  {purchaseItemHeading.map((item, index) => {
-                    return (
-                      <Paragraph
-                        key={index}
-                        text={item}
-                        className={
-                          "text-lg font-semibold font-nunito text-text_black"
-                        }
-                      />
-                    );
-                  })}
-                </div>
-
-                {purchaseProductDetails.map((item, index) => {
-                  return (
-                    <div
-                      className={`flex flex-row relative  justify-between  h-auto  after:absolute  items-center after:w-full after:h-[1px] after:border-b-2 after:border-dotted after:border-text_gray after:bottom-0 after:left-0  after:opacity-50 ${
-                        index === 0 ? "pt-[30px] pb-[20px]" : "py-5"
-                      } `}
-                      key={index}
-                    >
-                      <Paragraph
-                        text={item?.productId}
-                        className={"purchase_product_detils w-[21px]  "}
-                      />
-                      <Paragraph
-                        text={item?.productName}
-                        className={"purchase_product_detils w-[52px]  "}
-                      />
-                      <Paragraph
-                        text={item?.orderDate}
-                        className={"purchase_product_detils w-[92px]  "}
-                      />
-                      <Paragraph
-                        text={item?.deliveryData}
-                        className={"purchase_product_detils w-[120px]"}
-                      />
-                      <Paragraph
-                        text={item?.quantity}
-                        className={"purchase_product_detils w-[30px]  "}
-                      />
-                      <Paragraph
-                        text={item?.price}
-                        className={"purchase_product_detils w-[15px] "}
-                      />
-                      <Button
-                        text={item?.btnTxt}
-                        className={`h-auto rounded-[4px] py-1 w-[76px] text-[12px] font-medium text-primary_gray ${
-                          item?.btnTxt === "Pending"
-                            ? "bg-[#FFDDB7]"
-                            : item.btnTxt === "Cancelled"
-                            ? "bg-[#FFAFAF]"
-                            : "bg-[#ACFDCE]"
-                        } `}
-                      />
-                    </div>
-                  );
-                })}
+                {purchaseProductDetails.length ? (
+                  <>
+                    {purchaseProductDetails.map((item, index) => {
+                      return (
+                        <div
+                          className={`flex flex-row relative justify-between h-auto after:absolute items-center after:w-full after:h-[1px] after:border-b-2 after:border-dotted after:border-text_gray after:bottom-0 after:left-0 after:opacity-50 ${
+                            index === 0 ? "pt-[30px] pb-[20px]" : "py-5"
+                          } `}
+                          key={index}
+                        >
+                          <Paragraph
+                            text={item?.productId}
+                            className={"purchase_product_detils w-[21px]"}
+                          />
+                          <Paragraph
+                            text={item?.productName}
+                            className={"purchase_product_detils w-[52px]"}
+                          />
+                          <Paragraph
+                            text={item?.orderDate}
+                            className={"purchase_product_detils w-[92px]"}
+                          />
+                          <Paragraph
+                            text={item?.deliveryData}
+                            className={"purchase_product_detils w-[120px]"}
+                          />
+                          <Paragraph
+                            text={item?.quantity}
+                            className={"purchase_product_detils w-[30px]"}
+                          />
+                          <Paragraph
+                            text={item?.price}
+                            className={"purchase_product_detils w-[15px]"}
+                          />
+                          <Button
+                            text={item?.btnTxt}
+                            className={`h-auto rounded-[4px] py-1 w-[76px] text-[12px] font-medium text-primary_gray ${
+                              item?.btnTxt === "Pending"
+                                ? "bg-[#FFDDB7]"
+                                : item.btnTxt === "Cancelled"
+                                ? "bg-[#FFAFAF]"
+                                : "bg-[#ACFDCE]"
+                            } `}
+                          />
+                        </div>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <Heading
+                    Variant={"h4"}
+                    text={"No order history"}
+                    className={
+                      "text-lg font-semibold font-nunito text-[#091E42] mt-6 "
+                    }
+                  />
+                )}
               </div>
             </div>
           </div>

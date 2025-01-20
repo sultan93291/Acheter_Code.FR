@@ -9,7 +9,10 @@ import { useState } from "react";
 import { Input } from "../../Components/Tags/Input/Input";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setCheckout, setLoggedInUserData } from "@/redux/features/loggedInUserSlice";
+import {
+  setCheckout,
+  setLoggedInUserData,
+} from "@/redux/features/loggedInUserSlice";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -64,7 +67,6 @@ const Login = () => {
               navigate("/");
               window.location.reload();
             }
-            
           }, 3000);
         }
       })
@@ -156,11 +158,11 @@ const Login = () => {
               </Link>
             </div>
             <Button
-              onClick={e => {R
+              onClick={e => {
                 handleLogin(e);
               }}
               className={
-                "w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto  text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white ease-in-out duration-300 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange  "
+                "w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto  text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white ease-in-out duration-300 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange group  "
               }
               text={
                 <>

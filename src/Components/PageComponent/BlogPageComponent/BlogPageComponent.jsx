@@ -6,9 +6,50 @@ import Heading from "../../Tags/Heading/Heading";
 import Paragraph from "../../Tags/Paragraph/Paragraph";
 import cod from "../../../assets/images/Details/cod.jpeg";
 import vr from "../../../assets/images/Details/vr.png";
+import axios from "axios";
+import ReactHtmlParser from "html-react-parser";
+import { useNavigate } from "react-router-dom";
 
 const BlogPageComponent = ({ id }) => {
-  const [BlogData, setBlogData] = useState();
+  const [BlogData, setBlogData] = useState([]);
+  const SiteURl = import.meta.env.VITE_SITE_URL;
+  const [BlogDataArr, setBlogDataArr] = useState([]);
+  const [singleBlogData, setsingleBlogData] = useState();
+
+  console.log(singleBlogData);
+
+  const desCreptionData =
+    typeof singleBlogData?.content === "string"
+      ? singleBlogData?.content
+      : String(singleBlogData?.content);
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${SiteURl}/api/all/blogs`,
+    })
+      .then(res => {
+        console.log("this is all blog data", res.data.data);
+        setBlogDataArr(res.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${SiteURl}/api/blog-details?id=${id}`,
+    })
+      .then(res => {
+        console.log("this is all blog data", res.data.data);
+        setsingleBlogData(res.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [id]);
 
   useEffect(() => {
     if (id == 1) {
@@ -23,118 +64,71 @@ const BlogPageComponent = ({ id }) => {
   }, [id]);
   console.log(BlogData);
 
-  const giftCardBenefits = [
-    {
-      id: 1,
-      heading: "Universal Appeal",
-      content:
-        "Gaming is one of the most popular forms of entertainment worldwide, with options ranging from casual mobile games to immersive PC and console experiences. Game gift cards cater to players of all levels, making them a versatile gift.",
-    },
-    {
-      id: 2,
-      heading: "Flexibility for the Recipient",
-      content:
-        "Game gift cards provide the freedom to choose. Whether it’s purchasing new games, in-game items, downloadable content (DLCs), or even subscriptions like Xbox Game Pass or PlayStation Plus, recipients can tailor the gift to their own preferences.",
-    },
-    {
-      id: 3,
-      heading: "No Guesswork Involved",
-      content:
-        "Selecting the perfect game can be daunting, especially if you’re not familiar with the recipient’s gaming interests. Game gift cards eliminate this guesswork, ensuring the gift is appreciated and used.",
-    },
-    {
-      id: 4,
-      heading: "Instant Gratification",
-      content:
-        "Digital game gift cards can be delivered instantly via email or text, making them a lifesaver for last-minute gifting. Even physical cards are easy to find at most retail stores.",
-    },
-    {
-      id: 5,
-      heading: "Budget-Friendly Options",
-      content:
-        "Game gift cards come in various denominations, making them accessible for any budget. This flexibility allows you to spend as much or as little as you want while still giving a thoughtful gift.",
-    },
-    {
-      id: 6,
-      heading: "Great for Any Occasion",
-      content:
-        "Whether it’s for birthdays, holidays, graduations, or just because, game gift cards suit any occasion. Their universality means you’ll never need to stress about the appropriateness of the gift.",
-    },
-    {
-      id: 7,
-      heading: "Supports Diverse Platforms",
-      content:
-        "Game gift cards are available for all major gaming platforms, including Steam, PlayStation, Xbox, Nintendo, and mobile app stores. This ensures compatibility with the recipient’s gaming setup.",
-    },
-  ];
+  const navigate = useNavigate();
 
-  const moreBlogData = [
-    {
-      bgImg: vr,
-      heading: "17/12/2024   |   Jim Mehmood",
-      subHeading:
-        "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
-    },
-    {
-      bgImg: cod,
-      heading: "17/12/2024   |   Jim Mehmood",
-      subHeading:
-        "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
-    },
-    {
-      bgImg: vr,
-      heading: "17/12/2024   |   Jim Mehmood",
-      subHeading:
-        "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
-    },
-    {
-      bgImg: cod,
-      heading: "17/12/2024   |   Jim Mehmood",
-      subHeading:
-        "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
-    },
-    {
-      bgImg: vr,
-      heading: "17/12/2024   |   Jim Mehmood",
-      subHeading:
-        "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
-    },
-    {
-      bgImg: cod,
-      heading: "17/12/2024   |   Jim Mehmood",
-      subHeading:
-        "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
-    },
-    {
-      bgImg: vr,
-      heading: "17/12/2024   |   Jim Mehmood",
-      subHeading:
-        "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
-    },
-    {
-      bgImg: cod,
-      heading: "17/12/2024   |   Jim Mehmood",
-      subHeading:
-        "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
-    },
-    {
-      bgImg: vr,
-      heading: "17/12/2024   |   Jim Mehmood",
-      subHeading:
-        "Boost Your Gaming Experience with Sale Vouchers and Gift Cards",
-    },
-    {
-      bgImg: cod,
-      heading: "17/12/2024   |   Jim Mehmood",
-      subHeading:
-        "How to Maximize Your Fun with Game Vouchers & Sale Gift Cards",
-    },
-  ];
+  const handleRedirecet = id => {
+    navigate(`/blog/${id}`);
+  };
+
+  // const giftCardBenefits = [
+  //   {
+  //     id: 1,
+  //     heading: "Universal Appeal",
+  //     content:
+  //       "Gaming is one of the most popular forms of entertainment worldwide, with options ranging from casual mobile games to immersive PC and console experiences. Game gift cards cater to players of all levels, making them a versatile gift.",
+  //   },
+  //   {
+  //     id: 2,
+  //     heading: "Flexibility for the Recipient",
+  //     content:
+  //       "Game gift cards provide the freedom to choose. Whether it’s purchasing new games, in-game items, downloadable content (DLCs), or even subscriptions like Xbox Game Pass or PlayStation Plus, recipients can tailor the gift to their own preferences.",
+  //   },
+  //   {
+  //     id: 3,
+  //     heading: "No Guesswork Involved",
+  //     content:
+  //       "Selecting the perfect game can be daunting, especially if you’re not familiar with the recipient’s gaming interests. Game gift cards eliminate this guesswork, ensuring the gift is appreciated and used.",
+  //   },
+  //   {
+  //     id: 4,
+  //     heading: "Instant Gratification",
+  //     content:
+  //       "Digital game gift cards can be delivered instantly via email or text, making them a lifesaver for last-minute gifting. Even physical cards are easy to find at most retail stores.",
+  //   },
+  //   {
+  //     id: 5,
+  //     heading: "Budget-Friendly Options",
+  //     content:
+  //       "Game gift cards come in various denominations, making them accessible for any budget. This flexibility allows you to spend as much or as little as you want while still giving a thoughtful gift.",
+  //   },
+  //   {
+  //     id: 6,
+  //     heading: "Great for Any Occasion",
+  //     content:
+  //       "Whether it’s for birthdays, holidays, graduations, or just because, game gift cards suit any occasion. Their universality means you’ll never need to stress about the appropriateness of the gift.",
+  //   },
+  //   {
+  //     id: 7,
+  //     heading: "Supports Diverse Platforms",
+  //     content:
+  //       "Game gift cards are available for all major gaming platforms, including Steam, PlayStation, Xbox, Nintendo, and mobile app stores. This ensures compatibility with the recipient’s gaming setup.",
+  //   },
+  // ];
+
+  const date = new Date(singleBlogData?.created_at);
+  const formattedDate = date.toISOString().split("T")[0];
+  console.log(formattedDate); // Output: 2025-01-16
+
+  // Alternatively, for custom formats (e.g., DD-MM-YYYY)
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-based
+  const year = date.getFullYear();
+  const customFormattedDate = `${day}-${month}-${year}`;
 
   return (
     <section className="flex flex-col gap-y-[72px] px-[300px] pb-[160px] ">
       <Image
-        Src={BlogData?.BgImg}
+        Src={`${SiteURl}/${singleBlogData?.image}`}
         className={"w-[1320px] h-[560px] object-cover  "}
         AltTxt={"blog background"}
       />
@@ -149,13 +143,13 @@ const BlogPageComponent = ({ id }) => {
             <div className="flex flex-col gap-y-2">
               <Heading
                 Variant={"h3"}
-                text={BlogData?.cardTxt}
+                text={singleBlogData.title}
                 className={
                   "text-[32px]  font-bold leading-[150%] w-[558px] text-[#B57500]  "
                 }
               />
               <Paragraph
-                text={"21/12/2024  |  Simin Aney  |  2 min."}
+                text={customFormattedDate}
                 className={
                   "text-[20px] font-bold leading-[150%] text-secondary_gray "
                 }
@@ -170,20 +164,9 @@ const BlogPageComponent = ({ id }) => {
               className={"para_style"}
             />
             <div className="flex flex-col gap-y-10 ">
-              {giftCardBenefits.map((item, index) => {
-                return (
-                  <div className="flex flex-col gap-y-2 " key={item?.id}>
-                    <Paragraph
-                      className={"para_style"}
-                      text={`${item?.id}. ${item?.heading} `}
-                    />
-                    <Paragraph
-                      className={"para_style"}
-                      text={`${item?.content}  `}
-                    />
-                  </div>
-                );
-              })}
+              <div className="descretption_wrapper  ">
+                {ReactHtmlParser(desCreptionData)}
+              </div>
             </div>
           </div>
         </div>
@@ -197,14 +180,27 @@ const BlogPageComponent = ({ id }) => {
             className={" text-2xl text-text_black font-bold leading-[150%] "}
           />
           <div className="flex flex-col gap-y-5 ">
-            {moreBlogData.map((item, index) => {
+            {BlogDataArr.map((item, index) => {
+              const date = new Date(item?.created_at);
+              const formattedDate = date.toISOString().split("T")[0];
+              console.log(formattedDate); // Output: 2025-01-16
+
+              // Alternatively, for custom formats (e.g., DD-MM-YYYY)
+              const day = date.getDate().toString().padStart(2, "0");
+              const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-based
+              const year = date.getFullYear();
+              const customFormattedDate = `${day}-${month}-${year}`;
+
               return (
                 <div
+                  onClick={() => {
+                    handleRedirecet(item.id);
+                  }}
                   key={index}
-                  className={`flex flex-row gap-x-6 p-[10px] rounded-[8px] ease-in duration-150 hover:bg-[#FFFBF4] shadow-custom_shadow group `}
+                  className={`flex flex-row gap-x-6 p-[10px] cursor-pointer rounded-[8px] ease-in duration-150 hover:bg-[#FFFBF4] shadow-custom_shadow group `}
                 >
                   <Image
-                    Src={item.bgImg}
+                    Src={`${SiteURl}/${item.image}`}
                     AltTxt={"not found"}
                     className={
                       " w-[88px] h-[88px] rounded-[6px] object-cover  "
@@ -213,16 +209,14 @@ const BlogPageComponent = ({ id }) => {
                   <div className="flex flex-col gap-y-2">
                     <Heading
                       Variant={"h4"}
-                      text={item?.heading}
+                      text={customFormattedDate}
                       className={
                         "text-[14px] font-bold font-nunito leading-[150%] text-secondary_gray group-hover:text-text_black"
                       }
                     />
                     <Heading
                       Variant={"h2"}
-                      text={
-                        "Boost Your Gaming Experience with Sale Vouchers and Gift Cards"
-                      }
+                      text={item?.title}
                       className={
                         " text-[20px] text-text_black font-bold font-nunito "
                       }
