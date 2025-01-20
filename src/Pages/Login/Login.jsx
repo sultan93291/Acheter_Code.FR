@@ -156,11 +156,11 @@ const Login = () => {
               </Link>
             </div>
             <Button
-              onClick={e => {
+              onClick={e => {R
                 handleLogin(e);
               }}
               className={
-                "w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto  text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white "
+                "w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto  text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white ease-in-out duration-300 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange  "
               }
               text={
                 <>

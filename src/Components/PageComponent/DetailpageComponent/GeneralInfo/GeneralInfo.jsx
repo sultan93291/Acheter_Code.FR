@@ -198,7 +198,7 @@ const GeneralInfo = ({ data }) => {
                 }}
                 text={"BUY NOW"}
                 className={
-                  "text-lg rounded-[16px] shadow-btn_shadow bg-orange leading-[164%] font-nunito font-medium text-white py-[10px] px-5 "
+                  "text-lg rounded-[16px] shadow-btn_shadow bg-orange leading-[164%] font-nunito font-medium text-white py-[10px] px-5 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange ease-in duration-300  "
                 }
               />
               <Button
@@ -207,7 +207,7 @@ const GeneralInfo = ({ data }) => {
                 }}
                 text={"ADD TO CART"}
                 className={
-                  "text-lg rounded-[16px] shadow-btn_shadow bg-transparent border-[1px] border-solid border-orange leading-[164%] font-nunito font-medium text-orange py-[10px] px-5 "
+                  "text-lg rounded-[16px] shadow-btn_shadow bg-transparent border-[2px] border-solid border-orange leading-[164%] font-nunito font-medium text-orange py-[10px] px-5 hover:bg-orange hover:text-white hover:border-transparent "
                 }
               />
             </div>

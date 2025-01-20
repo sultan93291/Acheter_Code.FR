@@ -45,8 +45,6 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
     "Quantity",
     "Total",
     "Status",
-    "View",
-    "Action",
   ];
 
   const purchaseProductDetails = [
@@ -109,7 +107,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
       } transition-opacity duration-300 ease-out`}
       style={{ display: isOpen ? "flex" : "none" }}
     >
-      <div className=" px-5 py-10 bg-white border-[1px] border-solid border-light_gray flex flex-col gap-y-10  ">
+      <div className=" px-5 w-[975px] py-10 bg-white border-[1px] border-solid border-light_gray flex flex-col gap-y-10  ">
         <div className="flex flex-row items-center justify-between ">
           <Heading
             Variant={"h4"}
@@ -168,7 +166,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                 {purchaseProductDetails.map((item, index) => {
                   return (
                     <div
-                      className={`flex flex-row relative  gap-x-[47.5px] h-auto  after:absolute  items-center after:w-full after:h-[1px] after:border-b-2 after:border-dotted after:border-text_gray after:bottom-0 after:left-0  after:opacity-50 ${
+                      className={`flex flex-row relative  justify-between  h-auto  after:absolute  items-center after:w-full after:h-[1px] after:border-b-2 after:border-dotted after:border-text_gray after:bottom-0 after:left-0  after:opacity-50 ${
                         index === 0 ? "pt-[30px] pb-[20px]" : "py-5"
                       } `}
                       key={index}
@@ -179,7 +177,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                       />
                       <Paragraph
                         text={item?.productName}
-                        className={"purchase_product_detils w-[62px]  "}
+                        className={"purchase_product_detils w-[52px]  "}
                       />
                       <Paragraph
                         text={item?.orderDate}
@@ -187,19 +185,19 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                       />
                       <Paragraph
                         text={item?.deliveryData}
-                        className={"purchase_product_detils w-[110px]"}
+                        className={"purchase_product_detils w-[120px]"}
                       />
                       <Paragraph
                         text={item?.quantity}
-                        className={"purchase_product_detils w-[70px] "}
+                        className={"purchase_product_detils w-[30px]  "}
                       />
                       <Paragraph
                         text={item?.price}
-                        className={"purchase_product_detils"}
+                        className={"purchase_product_detils w-[15px] "}
                       />
                       <Button
                         text={item?.btnTxt}
-                        className={`h-auto rounded-[4px] py-1 w-[96px] text-[16px] font-medium text-primary_gray ${
+                        className={`h-auto rounded-[4px] py-1 w-[76px] text-[12px] font-medium text-primary_gray ${
                           item?.btnTxt === "Pending"
                             ? "bg-[#FFDDB7]"
                             : item.btnTxt === "Cancelled"
@@ -207,8 +205,6 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                             : "bg-[#ACFDCE]"
                         } `}
                       />
-                      <item.view className="cursor-pointer purchase_product_detils w-[20px] " />
-                      <item.action className="cursor-pointer purchase_product_detils text-[#FF5630] " />
                     </div>
                   );
                 })}
@@ -238,11 +234,9 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                 {purchaseProductDetails.map((item, index) => {
                   return (
                     <div
-                      className={`flex flex-row relative  gap-x-[47.5px] h-auto  after:absolute  items-center after:w-full after:h-[1px] after:border-b-2 after:border-dotted  after:bottom-0 after:left-0  after:opacity-50  ${
-                        index === 2
-                          ? "after:border-transparent"
-                          : "after:border-text_gray"
-                      }  ${index === 0 ? "pt-[30px] pb-[20px]" : "py-5"} `}
+                      className={`flex flex-row relative  justify-between  h-auto  after:absolute  items-center after:w-full after:h-[1px] after:border-b-2 after:border-dotted after:border-text_gray after:bottom-0 after:left-0  after:opacity-50 ${
+                        index === 0 ? "pt-[30px] pb-[20px]" : "py-5"
+                      } `}
                       key={index}
                     >
                       <Paragraph
@@ -251,7 +245,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                       />
                       <Paragraph
                         text={item?.productName}
-                        className={"purchase_product_detils w-[62px]  "}
+                        className={"purchase_product_detils w-[52px]  "}
                       />
                       <Paragraph
                         text={item?.orderDate}
@@ -259,19 +253,19 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                       />
                       <Paragraph
                         text={item?.deliveryData}
-                        className={"purchase_product_detils w-[110px]"}
+                        className={"purchase_product_detils w-[120px]"}
                       />
                       <Paragraph
                         text={item?.quantity}
-                        className={"purchase_product_detils w-[70px] "}
+                        className={"purchase_product_detils w-[30px]  "}
                       />
                       <Paragraph
                         text={item?.price}
-                        className={"purchase_product_detils"}
+                        className={"purchase_product_detils w-[15px] "}
                       />
                       <Button
                         text={item?.btnTxt}
-                        className={`h-auto rounded-[4px] py-1 w-[96px] text-[16px] font-medium text-primary_gray ${
+                        className={`h-auto rounded-[4px] py-1 w-[76px] text-[12px] font-medium text-primary_gray ${
                           item?.btnTxt === "Pending"
                             ? "bg-[#FFDDB7]"
                             : item.btnTxt === "Cancelled"
@@ -279,8 +273,6 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                             : "bg-[#ACFDCE]"
                         } `}
                       />
-                      <item.view className="cursor-pointer purchase_product_detils w-[20px] " />
-                      <item.action className="cursor-pointer purchase_product_detils text-[#FF5630] " />
                     </div>
                   );
                 })}

@@ -38,7 +38,7 @@ const BlogSection = () => {
             disabled={swiperInstance?.isBeginning}
             text={<IoIosArrowRoundBack />}
             className={
-              "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black"
+              "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "
             }
           />
           <Button
@@ -48,7 +48,7 @@ const BlogSection = () => {
             disabled={swiperInstance?.isEnd}
             text={<IoIosArrowRoundForward />}
             className={
-              "h-12 w-12 flex items-center justify-center text-black text-2xl border-[2px] border-solid border-black rounded-full"
+              "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "
             }
           />
         </div>

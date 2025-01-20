@@ -47,16 +47,20 @@ const DetailsSection = Data => {
             <Button
               onClick={() => swiperInstance.current?.slidePrev()}
               text={<IoIosArrowRoundBack className="w-8 h-8" />}
-              className="h-12 w-12 flex items-center justify-center border-[1px] text-2xl border-solid border-black rounded-full text-black"
+              className={
+                "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "
+              }
             />
             <Button
               onClick={() => swiperInstance.current?.slideNext()}
               text={<IoIosArrowRoundForward />}
-              className="h-12 w-12 flex items-center justify-center text-black text-2xl border-[1px] border-solid border-black rounded-full"
+              className={
+                "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "
+              }
             />
           </div>
         </div>
-        <div className="h-auto w-[1320px] bg-deep_ocean p-6 rounded-[16px] ">
+        <div className="h-auto w-[1330px] bg-deep_ocean p-[14px] rounded-[16px] ">
           <Swiper
             modules={[Navigation]}
             onSwiper={swiper => {

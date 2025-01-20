@@ -128,13 +128,13 @@ const ReviewSection = ({ data }) => {
       })
         .then(res => {
           if (res.status === 201) {
-            toast.success("Review submitted successfully")
+            toast.success("Review submitted successfully");
           }
           console.log(res);
         })
         .catch(err => {
           console.log(err);
-          toast.error('review already submitted')
+          toast.error("review already submitted");
         })
         .finally(
           setRatingStore(prevState =>
@@ -312,7 +312,7 @@ const ReviewSection = ({ data }) => {
                 }
                 text={"SUBMIT REVIEWS"}
                 className={
-                  "text-lg rounded-[16px] shadow-btn_shadow bg-orange leading-[164%] font-nunito font-medium text-white py-[10px] px-5 w-[194px]"
+                  "text-lg rounded-[16px] shadow-btn_shadow bg-orange leading-[164%] font-nunito font-medium text-white py-[10px]  px-5 w-[206px] ease-in-out duration-300 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange   "
                 }
               />
             </form>
@@ -335,14 +335,17 @@ const ReviewSection = ({ data }) => {
             >
               {data.card.reviews.map((review, index) => {
                 const reviewStars = generateStars(review.rating);
-                
 
                 return (
                   <SwiperSlide key={index}>
                     <div className=" w-[762px] h-auto py-6 pl-[68px] pr-[96px] bg-white  shadow-custom_shadow rounded-[16px] flex flex-col gap-y-4 ">
                       <div className="flex flex-row items-center gap-x-4    ">
                         <Image
-                          Src={ review?.user?.avatar ? review?.user?.avatar: glassMan}
+                          Src={
+                            review?.user?.avatar
+                              ? review?.user?.avatar
+                              : glassMan
+                          }
                           AltTxt={"not found"}
                           className={
                             " w-[72px] h-[72px] rounded-full object-cover  "
@@ -379,13 +382,17 @@ const ReviewSection = ({ data }) => {
                 text={
                   <IoIosArrowRoundBack className="rotate-[90deg] text-2xl " />
                 }
-                className="h-12 w-12 flex items-center nav-prev cursor-pointer justify-center text-black border-[1px] border-solid border-black rounded-full"
+                className={
+                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "
+                }
               />
               <Button
                 text={
                   <IoIosArrowRoundForward className="rotate-[90deg] text-2xl " />
                 }
-                className="h-12 w-12 flex items-center nav-next justify-center cursor-pointer text-black border-[1px] border-solid border-black rounded-full"
+                className={
+                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "
+                }
               />
             </div>
           </div>

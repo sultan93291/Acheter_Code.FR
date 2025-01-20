@@ -22,15 +22,13 @@ const ClientSection = () => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
-      className="w-full h-[531px] px-[300px] py-20 flex flex-col gap-y-10"
+      className="w-full h-[531px] px-[290px] py-20 flex flex-col gap-y-10"
     >
       <div className="flex justify-between flow-row">
         <Heading
           Variant={"h4"}
           text={"WHAT OUR CLIENTS SAY"}
-          className={
-            "font-righteous  text-[36px] font-normal text-white"
-          }
+          className={"font-righteous  text-[36px] font-normal text-white"}
         />
         <div className="flex flex-row items-center gap-x-3">
           <Button
@@ -40,7 +38,7 @@ const ClientSection = () => {
             disabled={swiperInstance?.isBeginning}
             text={<IoIosArrowRoundBack />}
             className={
-              "h-12 w-12 flex items-center justify-center border-[1px] text-2xl border-solid border-white rounded-full text-white"
+              "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-white rounded-full text-white hover:border-transparent hover:bg-white hover:shadow-custom_shadow hover:text-black ease-in-out duration-200  "
             }
           />
           <Button
@@ -50,7 +48,7 @@ const ClientSection = () => {
             disabled={swiperInstance?.isEnd}
             text={<IoIosArrowRoundForward />}
             className={
-              "h-12 w-12 flex items-center justify-center text-white text-2xl border-[1px] border-solid border-white rounded-full"
+              "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-white rounded-full text-white hover:border-transparent hover:bg-white hover:shadow-custom_shadow hover:text-black ease-in-out duration-200  "
             }
           />
         </div>

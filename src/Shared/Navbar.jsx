@@ -251,8 +251,8 @@ const Navbar = () => {
                 placeholder={"Search what you need"}
                 defaultValue={suggestion ? suggestion : ""}
               />
-              <div className="w-[56px] h-full bg-light_orange  border-l-[1px] border-solid border-orange rounded-r-[16px] cursor-pointer flex flex-row items-center justify-center ">
-                <CiSearch className="w-[28px] h-[28px] text-orange font-bold " />
+              <div className="w-[56px] h-full bg-light_orange border-l-[1px] border-solid border-orange rounded-r-[16px] cursor-pointer flex flex-row items-center justify-center group">
+                <CiSearch className="w-[28px] h-[28px] text-orange font-bold ease-in-out duration-300 group-hover:rotate-[90deg] " />
               </div>
               {isSuggestion && (
                 <div
@@ -294,14 +294,14 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  className={"text-white font-nunito text-lg "}
+                <div
+                  className={"text-white font-nunito text-lg cursor-pointer "}
                   onClick={() => {
                     setisopen(true);
                   }}
                 >
                   Purchase History
-                </NavLink>
+                </div>
               </li>
             </ul>
             <div className="flex flex-row items-center gap-x-5">
@@ -310,7 +310,7 @@ const Navbar = () => {
                   onClick={() => {
                     navigate("/checkout");
                   }}
-                  className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer bg-transparent_black"
+                  className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer ease-in duration-200 bg-transparent_black hover:bg-[rgba(255,255,255,0.2)] hover:shadow-[0px_4px_10px_rgba(0,0,0,0.1)] "
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -341,7 +341,7 @@ const Navbar = () => {
                     setisFundopen(true);
                     setUserBalence();
                   }}
-                  className="flex flex-row items-center justify-center w-12 h-12 rounded-full cursor-pointer bg-transparent_black"
+                  className="flex flex-row items-center justify-center w-12 h-12 ease-in-out duration-200 rounded-full cursor-pointer bg-transparent_black hover:bg-[rgba(255,255,255,0.2)] hover:shadow-[0px_4px_10px_rgba(0,0,0,0.2)] "
                 >
                   <ImCoinEuro className="w-5 h-5 text-white " />
                 </div>
@@ -356,7 +356,9 @@ const Navbar = () => {
                       <Image
                         Src={`${SiteURl}/${loggedInUserData?.avatar}`}
                         AltTxt={"not found"}
-                        className={"h-[35px] w-[35px] rounded-[35px] ring-1 shadow-custom_shadow object-cover "}
+                        className={
+                          "h-[35px] w-[35px] rounded-[35px] ring-1 shadow-custom_shadow object-cover "
+                        }
                       />
                     ) : (
                       <FaUserPlus
@@ -398,7 +400,7 @@ const Navbar = () => {
                 >
                   {!isAuthenticated && (
                     <Link
-                      className={"text-white font-nunito text-lg "}
+                      className={"text-white font-nunito text-lg  "}
                       to={"/login"}
                     >
                       Log In
@@ -410,7 +412,7 @@ const Navbar = () => {
                         handleRegister();
                       }}
                       className={
-                        " p-4 border-[2px] border-solid border-white outline-none rounded-[16px] text-white font-nunito text-lg   "
+                        "p-4 border-[2px] border-solid border-white outline-none rounded-[16px] text-white font-nunito text-lg ease-in-out duration-200 bg-transparent hover:bg-orange hover:shadow-[0px_4px_10px_rgba(0,0,0,0.2)] hover:border-transparent transform hover:-translate-y-[1px]"
                       }
                       text={
                         <div className="flex flex-row items-center text-white gap-x-2">

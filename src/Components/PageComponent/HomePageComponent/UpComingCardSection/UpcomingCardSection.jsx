@@ -79,7 +79,7 @@ const UpcomingCardSection = () => {
 
   return (
     <section className="flex flex-col w-full h-auto ">
-      <div className="w-full px-[300px] h-auto py-10 bg-secondary_blue">
+      <div className="w-full px-[290px] h-auto py-10 bg-secondary_blue">
         <Heading
           Variant={"h2"}
           text={"GIFT CARDS"}
@@ -93,7 +93,7 @@ const UpcomingCardSection = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
-        className="flex flex-col  px-[300px]  h-auto pt-8 pb-[38.5px]  gap-y-[64px]"
+        className="flex flex-col  px-[290px]  h-auto pt-8 pb-[38.5px]  gap-y-[64px]"
       >
         <div className="flex flex-col gap-y-8 ">
           <div className="flex flex-row justify-between">
@@ -112,7 +112,7 @@ const UpcomingCardSection = () => {
                 disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
                 text={<IoIosArrowRoundBack />}
                 className={
-                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black"
+                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-white hover:shadow-custom_shadow ease-in-out duration-200 "
                 }
               />
               <Button
@@ -124,7 +124,7 @@ const UpcomingCardSection = () => {
                 }}
                 disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
                 className={
-                  "h-12 w-12 flex items-center justify-center text-black text-2xl border-[2px] border-solid border-black rounded-full"
+                  "h-12 w-12 flex items-center justify-center text-black  text-2xl border-[2px] border-solid border-black rounded-full hover:border-transparent hover:bg-white hover:shadow-custom_shadow ease-in-out duration-200 "
                 }
               />
             </div>
@@ -170,7 +170,7 @@ const UpcomingCardSection = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
-        className="flex flex-col px-[300px]    relative  h-auto pt-8 pb-[38.5px]  gap-y-[64px]"
+        className="flex flex-col px-[290px]    relative  h-auto pt-8 pb-[38.5px]  gap-y-[64px]"
       >
         <div className="flex flex-col gap-y-8">
           <div className="flex flex-row justify-between">
@@ -191,7 +191,7 @@ const UpcomingCardSection = () => {
                 }
                 text={<IoIosArrowRoundBack />}
                 className={
-                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-white rounded-full text-white"
+                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-white rounded-full text-white hover:border-transparent hover:bg-white hover:shadow-custom_shadow hover:text-black ease-in-out duration-200  "
                 }
               />
               <Button
@@ -205,7 +205,7 @@ const UpcomingCardSection = () => {
                 }
                 text={<IoIosArrowRoundForward />}
                 className={
-                  "h-12 w-12 flex items-center justify-center text-white text-2xl border-[2px] border-solid border-white rounded-full"
+                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-white rounded-full text-white hover:border-transparent hover:bg-white hover:shadow-custom_shadow hover:text-black ease-in-out duration-200  "
                 }
               />
             </div>

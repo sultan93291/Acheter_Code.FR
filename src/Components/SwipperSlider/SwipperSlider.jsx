@@ -25,18 +25,18 @@ const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
   };
 
   return (
-    <div className="relative w-[1285px] h-auto">
+    <div className="relative w-[1295px] h-auto">
       {/* Left Navigation Button */}
 
       <Button
-        className={`absolute left-0 z-20 w-12 h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center ml-[-52px]  `}
+        className={`absolute left-0 z-20 w-12 h-12 transform -translate-y-1/2 border-[2px] border-solid border-transparent bg-white rounded-full top-[50%] flex items-center justify-center ml-[-52px] ease-in-out duration-200 hover:bg-transparent hover:border-white group  `}
         onClick={() => {
           if (swiperInstance.current) {
             swiperInstance.current.slidePrev();
           }
         }}
         disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
-        text={<IoIosArrowRoundBack className="w-8 h-8" />}
+        text={<IoIosArrowRoundBack className="w-8 h-8 group-hover:text-white " />}
       />
 
       {/* Swiper */}
@@ -73,14 +73,16 @@ const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
 
       {/* Right Navigation Button */}
       <Button
-        className={`absolute text-[26px] right-0 z-20 w-12 h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] flex items-center justify-center mr-[-50px]`}
+        className={`absolute text-[26px] right-0 z-20 w-12 h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] border-[2px] border-solid border-transparent flex items-center justify-center mr-[-50px] ease-in-out duration-200 hover:bg-transparent hover:border-white group   `}
         onClick={() => {
           if (swiperInstance.current) {
             swiperInstance.current.slideNext();
           }
         }}
         disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
-        text={<IoIosArrowRoundForward className="w-8 h-8" />}
+        text={
+          <IoIosArrowRoundForward className="w-8 h-8 group-hover:text-white " />
+        }
       />
     </div>
   );

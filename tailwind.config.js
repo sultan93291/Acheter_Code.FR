@@ -73,7 +73,7 @@ export default {
       },
       fontFamily: {
         righteous: 'Righteous", serif',
-        nunito: 'Nunito Sans, serif',
+        nunito: "Nunito Sans, serif",
       },
       boxShadow: {
         custom_shadow: "0px 0px 4px 0px rgba(0, 9, 54, 0.06)",
@@ -83,6 +83,20 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "pulse-text": {
+          "0%, 100%": { opacity: 1 },
+          "50%": { opacity: 0.5 },
+        },
+        "zoom-in": {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(1.02)" },
+        },
+      },
+      animation: {
+        "pulse-text": "pulse-text 1.5s ease-in-out infinite",
+        "zoom-in": "zoom-in 5s ease-in-out infinite",
       },
     },
   },
