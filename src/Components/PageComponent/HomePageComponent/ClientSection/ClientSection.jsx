@@ -33,7 +33,7 @@ const ClientSection = () => {
         />
         <div className="flex flex-row items-center gap-x-3">
           <Button
-            data-aos={"fade-in"}
+            dataAos={"fade-in"}
             onClick={() => {
               if (swiperInstance) swiperInstance.slidePrev();
             }}
@@ -44,7 +44,7 @@ const ClientSection = () => {
             }
           />
           <Button
-            data-aos={"fade-in"}
+            dataAos={"fade-in"}
             onClick={() => {
               if (swiperInstance) swiperInstance.slideNext();
             }}

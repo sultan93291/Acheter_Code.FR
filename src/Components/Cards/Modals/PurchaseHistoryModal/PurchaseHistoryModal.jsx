@@ -144,6 +144,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
       <div className=" px-5 w-[975px] py-10 bg-white border-[1px] border-solid border-light_gray flex flex-col gap-y-10  ">
         <div className="flex flex-row items-center justify-between ">
           <Heading
+            dataAos={"fade-in"}
             Variant={"h4"}
             text={"PURCHASE HISTORY"}
             className={"para_style leading-[164%] text-text_black "}
@@ -154,8 +155,12 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
             }}
             className="flex flex-row items-center cursor-pointer gap-x-1 "
           >
-            <RxCross2 className={"para_style leading-none  text-text_black"} />
+            <RxCross2
+              data-aos="fade-in"
+              className={"para_style leading-none  text-text_black"}
+            />
             <Paragraph
+              dataAos={"fade-in"}
               text={"CLOSE"}
               className={"para_style leading-none  text-text_black"}
             />
@@ -165,6 +170,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
           <div className="flex flex-row justify-between ">
             <div className="relative">
               <Input
+                data-aos="fade-in"
                 type={"text"}
                 className={
                   "w-[426px] rounded-[12px] py-[15.5px] pl-[16px] pr-[42px] outline-none border-[1px] border-solid border-text_gray para_style leading-none  text-text_black font-medium  "
@@ -174,13 +180,17 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                   setSearchData(e.target.value);
                 }}
               />
-              <FiSearch className="absolute right-0 mr-[16px] transform -translate-y-1/2 top-1/2 para_style leading-none  text-text_black font-medium cursor-pointer " />
+              <FiSearch
+                data-aos="fade-in"
+                className="absolute right-0 mr-[16px] transform -translate-y-1/2 top-1/2 para_style leading-none  text-text_black font-medium cursor-pointer "
+              />
             </div>
-            <DatePicker onDateChange={handleDateChange} />
+            <DatePicker data-aos="fade-in" onDateChange={handleDateChange} />
           </div>
           <div className="flex flex-col gap-y-10 ">
             <div className="flex flex-col gap-y-8">
               <Heading
+                dataAos="fade-in"
                 Variant={"h4"}
                 text={"December, 2024"}
                 className={"text-lg font-semibold font-nunito text-[#091E42] "}
@@ -190,6 +200,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                   {purchaseItemHeading.map((item, index) => {
                     return (
                       <Paragraph
+                        dataAos="fade-in"
                         key={index}
                         text={item}
                         className={
@@ -211,30 +222,37 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                           key={index}
                         >
                           <Paragraph
+                            dataAos="fade-in"
                             text={item?.productId}
                             className={"purchase_product_detils w-[21px]"}
                           />
                           <Paragraph
+                            dataAos="fade-in"
                             text={item?.productName}
                             className={"purchase_product_detils w-[52px]"}
                           />
                           <Paragraph
+                            dataAos="fade-in"
                             text={item?.orderDate}
                             className={"purchase_product_detils w-[92px]"}
                           />
                           <Paragraph
+                            dataAos="fade-in"
                             text={item?.deliveryData}
                             className={"purchase_product_detils w-[120px]"}
                           />
                           <Paragraph
+                            dataAos="fade-in"
                             text={item?.quantity}
                             className={"purchase_product_detils w-[30px]"}
                           />
                           <Paragraph
+                            dataAos="fade-in"
                             text={item?.price}
                             className={"purchase_product_detils w-[15px]"}
                           />
                           <Button
+                            data-aos="fade-in"
                             text={item?.btnTxt}
                             className={`h-auto rounded-[4px] py-1 w-[76px] text-[12px] font-medium text-primary_gray ${
                               item?.btnTxt === "Pending"
@@ -250,6 +268,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
                   </>
                 ) : (
                   <Heading
+                    dataAos="fade-in"
                     Variant={"h4"}
                     text={"No order history"}
                     className={
@@ -261,7 +280,7 @@ const PurchaseHistoryModal = ({ isOpen, onClose }) => {
             </div>
           </div>
           <div>
-            <PaginationDemo />
+            <PaginationDemo data-aos="fade-in" />
           </div>
         </div>
       </div>

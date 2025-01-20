@@ -71,6 +71,7 @@ const Register = () => {
       <form className="flex flex-col items-center gap-y-12 " action="">
         <div className="flex flex-col gap-y-[32px] items-center">
           <Heading
+            dataAos={"fade-in"}
             Variant={"h1"}
             text={"Create Your Account"}
             className={
@@ -82,6 +83,7 @@ const Register = () => {
               <div className="flex flex-col gap-y-[28px] ">
                 <div className="flex flex-col gap-y-2 ">
                   <Heading
+                    dataAos={"fade-in"}
                     Variant={"h5"}
                     text={"Nickname"}
                     className={
@@ -89,6 +91,7 @@ const Register = () => {
                     }
                   />
                   <Input
+                    dataAos={"fade-in"}
                     onChange={e => {
                       handleFormData(e);
                     }}
@@ -100,6 +103,7 @@ const Register = () => {
                 </div>
                 <div className="flex flex-col gap-y-2 ">
                   <Heading
+                    dataAos={"fade-in"}
                     Variant={"h5"}
                     text={"Email"}
                     className={
@@ -107,6 +111,7 @@ const Register = () => {
                     }
                   />
                   <Input
+                    dataAos={"fade-in"}
                     name={"email"}
                     onChange={e => {
                       handleFormData(e);
@@ -118,6 +123,7 @@ const Register = () => {
                 </div>
                 <div className="flex flex-col gap-y-2 ">
                   <Heading
+                    dataAos={"fade-in"}
                     onChange={e => {
                       handleFormData(e);
                     }}
@@ -129,6 +135,7 @@ const Register = () => {
                   />
                   <div className="relative flex flex-row">
                     <Input
+                      dataAos={"fade-in"}
                       name={"password"}
                       onChange={e => {
                         handleFormData(e);
@@ -139,6 +146,7 @@ const Register = () => {
                     />
                     {isShowPass ? (
                       <HiOutlineEyeSlash
+                        data-aos={"fade-in"}
                         onClick={() => {
                           setisShowPass(!isShowPass);
                         }}
@@ -146,6 +154,7 @@ const Register = () => {
                       />
                     ) : (
                       <CgEye
+                        data-aos={"fade-in"}
                         onClick={() => {
                           setisShowPass(!isShowPass);
                         }}
@@ -156,6 +165,7 @@ const Register = () => {
                 </div>
                 <div className="flex flex-col gap-y-2 ">
                   <Heading
+                    dataAos={"fade-in"}
                     onChange={e => {
                       handleFormData(e);
                     }}
@@ -167,6 +177,7 @@ const Register = () => {
                   />
                   <div className="relative flex flex-row">
                     <Input
+                      dataAos={"fade-in"}
                       name={"confirm_password"}
                       onChange={e => {
                         handleFormData(e);
@@ -177,6 +188,7 @@ const Register = () => {
                     />
                     {isconfirmPass ? (
                       <HiOutlineEyeSlash
+                        data-aos={"fade-in"}
                         onClick={() => {
                           setisConfirmPass(!isconfirmPass);
                         }}
@@ -184,6 +196,7 @@ const Register = () => {
                       />
                     ) : (
                       <CgEye
+                        data-aos={"fade-in"}
                         onClick={() => {
                           setisConfirmPass(!isconfirmPass);
                         }}
@@ -195,6 +208,7 @@ const Register = () => {
               </div>
             </div>
             <Button
+              dataAos={"fade-in"}
               onClick={e => {
                 handleRegister(e);
               }}
@@ -204,7 +218,12 @@ const Register = () => {
               text={
                 <>
                   {loading ? (
-                    <ClipLoader color="#fff" loading={loading} size={25} />
+                    <ClipLoader
+                      data-aos={"fade-in"}
+                      color="#fff"
+                      loading={loading}
+                      size={25}
+                    />
                   ) : (
                     "Register"
                   )}
@@ -214,13 +233,18 @@ const Register = () => {
           </div>
         </div>
         <Paragraph
+          dataAos={"fade-in"}
           className={
             "flex flex-row gap-x-2 text-xl font-normal text-text_black leading-[38.375px] tracking-[-0.08px] "
           }
           text={
             <>
               Already have an account?
-              <Link className="font-medium underline " to={"/login"}>
+              <Link
+                data-aos={"fade-in"}
+                className="font-medium underline "
+                to={"/login"}
+              >
                 Login
               </Link>
             </>

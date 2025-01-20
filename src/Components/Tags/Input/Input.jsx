@@ -8,6 +8,7 @@ export const Input = ({
   defaultValue,
   disabled,
   accept,
+  dataAos
 }) => {
   return (
     <input
@@ -20,6 +21,7 @@ export const Input = ({
       value={value}
       disabled={disabled}
       accept={accept}
+      data-aos={dataAos}
     />
   );
 };

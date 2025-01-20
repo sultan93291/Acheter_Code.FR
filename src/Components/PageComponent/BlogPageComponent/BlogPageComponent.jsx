@@ -141,6 +141,7 @@ const BlogPageComponent = ({ id }) => {
   return (
     <section className="flex flex-col gap-y-[72px] px-[300px] pb-[160px] ">
       <Image
+        dataAos={"zoom-in"}
         Src={`${SiteURl}/${singleBlogData?.image}`}
         className={"w-[1320px] h-[560px] object-cover  "}
         AltTxt={"blog background"}
@@ -149,12 +150,14 @@ const BlogPageComponent = ({ id }) => {
         <div className="flex flex-col gap-y-6 ">
           <div className="flex flex-col gap-y-8 ">
             <Heading
+              dataAos={"fade-in"}
               Variant={"h5"}
               text={"BLOGS"}
               className={" text-2xl text-text_black font-bold leading-[150%] "}
             />
             <div className="flex flex-col gap-y-2">
               <Heading
+                dataAos={"fade-in"}
                 Variant={"h3"}
                 text={singleBlogData?.title}
                 className={
@@ -162,6 +165,7 @@ const BlogPageComponent = ({ id }) => {
                 }
               />
               <Paragraph
+                dataAos={"fade-in"}
                 text={customFormattedDate}
                 className={
                   "text-[20px] font-bold leading-[150%] text-secondary_gray "
@@ -171,13 +175,14 @@ const BlogPageComponent = ({ id }) => {
           </div>
           <div className="flex flex-col gap-y-10 w-[762px]  ">
             <Paragraph
+              dataAos={"fade-in"}
               text={
                 "Game gift cards have become a go-to option for stress-free gifting, and for good reason. Here’s why they’re such a powerful tool for simplifying the gift-giving process:"
               }
               className={"para_style"}
             />
             <div className="flex flex-col gap-y-10 ">
-              <div className="descretption_wrapper  ">
+              <div data-aos={"fade-in"} className="descretption_wrapper  ">
                 {ReactHtmlParser(desCreptionData)}
               </div>
             </div>
@@ -188,6 +193,7 @@ const BlogPageComponent = ({ id }) => {
         </div>
         <div className="flex flex-col gap-y-8 ">
           <Heading
+            dataAos={"fade-in"}
             Variant={"h5"}
             text={"MORE BLOGS FROM US"}
             className={" text-2xl text-text_black font-bold leading-[150%] "}
@@ -232,6 +238,7 @@ const BlogPageComponent = ({ id }) => {
                   className={`flex flex-row gap-x-6 p-[10px] cursor-pointer rounded-[8px] ease-in duration-150 hover:bg-[#FFFBF4] shadow-custom_shadow group `}
                 >
                   <Image
+                    data-aos={"fade-in"}
                     Src={`${SiteURl}/${item.image}`}
                     AltTxt={"not found"}
                     className={
@@ -240,6 +247,7 @@ const BlogPageComponent = ({ id }) => {
                   />
                   <div className="flex flex-col gap-y-2">
                     <Heading
+                      dataAos={"fade-in"}
                       Variant={"h4"}
                       text={customFormattedDate}
                       className={
@@ -247,6 +255,7 @@ const BlogPageComponent = ({ id }) => {
                       }
                     />
                     <Heading
+                      dataAos={"fade-in"}
                       Variant={"h2"}
                       text={item?.title}
                       className={

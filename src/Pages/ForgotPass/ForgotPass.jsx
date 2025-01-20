@@ -81,6 +81,7 @@ export const ForgotPass = () => {
       <form className="flex flex-col items-center gap-y-12 " action="">
         <div className="flex flex-col gap-y-[32px] items-center">
           <Heading
+            dataAos={"fade-in"}
             Variant={"h1"}
             text={"Update password"}
             className={
@@ -93,6 +94,7 @@ export const ForgotPass = () => {
                 <div className="flex flex-col gap-y-[28px] ">
                   <div className="flex flex-col gap-y-2 ">
                     <Heading
+                      dataAos={"fade-in"}
                       Variant={"h5"}
                       text={"Password"}
                       className={
@@ -101,6 +103,7 @@ export const ForgotPass = () => {
                     />
                     <div className="relative flex flex-row">
                       <Input
+                        dataAos={"fade-in"}
                         type={isShowPass ? "text" : "password"}
                         className={"form_input pr-[80px] "}
                         placeholder={" Enter password"}
@@ -129,6 +132,7 @@ export const ForgotPass = () => {
                   </div>
                   <div className="flex flex-col gap-y-2 ">
                     <Heading
+                      dataAos={"fade-in"}
                       Variant={"h5"}
                       text={"Confirm password"}
                       className={
@@ -137,6 +141,7 @@ export const ForgotPass = () => {
                     />
                     <div className="relative flex flex-row">
                       <Input
+                        dataAos={"fade-in"}
                         type={isConfirmShowPass ? "text" : "password"}
                         className={"form_input pr-[80px] "}
                         placeholder={" Confirm password"}
@@ -148,6 +153,7 @@ export const ForgotPass = () => {
                       />
                       {isConfirmShowPass ? (
                         <HiOutlineEyeSlash
+                          data-aos={"fade-in"}
                           onClick={() => {
                             setisConfirmShowPass(!isConfirmShowPass);
                           }}
@@ -155,6 +161,7 @@ export const ForgotPass = () => {
                         />
                       ) : (
                         <CgEye
+                          data-aos={"fade-in"}
                           onClick={() => {
                             setisConfirmShowPass(!isConfirmShowPass);
                           }}
@@ -167,6 +174,7 @@ export const ForgotPass = () => {
               </div>
             </div>
             <Button
+              dataAos={"fade-in"}
               onClick={e => {
                 handlePassReset(e);
               }}
@@ -176,7 +184,12 @@ export const ForgotPass = () => {
               text={
                 <>
                   {loading ? (
-                    <ClipLoader color="#fff" loading={loading} size={25} />
+                    <ClipLoader
+                      data-aos={"fade-in"}
+                      color="#fff"
+                      loading={loading}
+                      size={25}
+                    />
                   ) : (
                     "Update password"
                   )}

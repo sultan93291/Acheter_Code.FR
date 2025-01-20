@@ -91,7 +91,6 @@ const CommonProductCard = ({
           className="w-full group-hover:p-[15px]  transition-all duration-500 group-hover:bg-[length:110%] group-hover:animate-zoom-in  h-[327px]  bg-ocean_blue rounded-t-[16px] p-[12px] cursor-pointer "
         >
           <div
-            data-aos="zoom-out"
             style={{
               backgroundImage: `url(${bgImg})`,
               backgroundSize: "cover",

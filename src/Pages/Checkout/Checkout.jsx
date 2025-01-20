@@ -128,6 +128,7 @@ const Checkout = () => {
     <section className="w-full h-auto overflow-hidden pt-20 pb-[194px] flex bg-[#F8F8F8] flex-row gap-x-12 px-[300px] ">
       <div className="flex flex-col  gap-y-8 w-[538px] ">
         <Heading
+          dataAos={"fade-in"}
           Variant={"h4"}
           text={"Shopping Details"}
           className={" text-2xl font-bold text-black font-nunito"}
@@ -151,6 +152,7 @@ const Checkout = () => {
             </div>
           ) : (
             <Heading
+              dataAos={"fade-in"}
               text={"Nothing to show in cart"}
               className={"text-lg font-bold text-card_gray font-nunito"}
               Variant="h4"
@@ -160,17 +162,20 @@ const Checkout = () => {
         <div className="relative flex flex-col items-center gap-y-12 ">
           <div className="flex flex-row justify-between w-full">
             <Heading
+              dataAos={"fade-in"}
               text={"Total"}
               Variant={"h5"}
               className={"text-lg font-nunito font-semibold  text-text_black"}
             />
             <Heading
+              dataAos={"fade-in"}
               text={`${formattedTotal}€`}
               Variant={"h5"}
               className={"text-lg font-nunito font-semibold  text-text_black"}
             />
           </div>
           <Button
+            dataAos={"fade-in"}
             onClick={() => {
               handleCheckOutDataSubmit();
             }}
@@ -183,6 +188,7 @@ const Checkout = () => {
       </div>
       <div className="flex flex-col gap-y-8 ">
         <Heading
+          dataAos={"fade-in"}
           Variant={"h4"}
           text={"User Details"}
           className={" text-2xl font-bold text-[#1D1F1E] font-nunito"}
@@ -190,11 +196,13 @@ const Checkout = () => {
         <form className="flex flex-col gap-y-8" action="">
           <div className="flex flex-col gap-y-2 ">
             <Heading
+              dataAos={"fade-in"}
               Variant={"h5"}
               text={"Name"}
               className={" text-black text-lg font-medium font-nunito "}
             />
             <Input
+              dataAos={"fade-in"}
               type={"text"}
               placeholder={"Your full name"}
               className={
@@ -209,11 +217,13 @@ const Checkout = () => {
           </div>
           <div className="flex flex-col gap-y-2 ">
             <Heading
+              dataAos={"fade-in"}
               Variant={"h5"}
               text={"Country"}
               className={" text-black text-lg font-medium font-nunito "}
             />
             <Input
+              dataAos={"fade-in"}
               type={"text"}
               placeholder={"Your Country"}
               className={
@@ -228,11 +238,13 @@ const Checkout = () => {
           </div>
           <div className="flex flex-col gap-y-2 ">
             <Heading
+              data-aos={"fade-in"}
               Variant={"h5"}
               text={"Email Address"}
               className={" text-black text-lg font-medium font-nunito "}
             />
             <Input
+              dataAos={"fade-in"}
               type={"email"}
               placeholder={"Write your email"}
               className={
@@ -247,11 +259,13 @@ const Checkout = () => {
           </div>
           <div className="flex flex-col gap-y-2 ">
             <Heading
+              dataAos={"fade-in"}
               Variant={"h5"}
               text={"Order Notes"}
               className={" text-black text-lg font-medium font-nunito "}
             />
             <textarea
+              data-aos={"fade-in"}
               className={
                 "w-[734px] rounded-[12px] h-[160px] py-4 px-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
               }

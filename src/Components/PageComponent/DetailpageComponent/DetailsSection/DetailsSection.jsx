@@ -33,18 +33,20 @@ const DetailsSection = Data => {
 
   return (
     <section className="flex flex-col gap-y-6">
-      <div className="descretption_wrapper  ">
+      <div data-aos='fade-in' className="descretption_wrapper  ">
         {ReactHtmlParser(desCreptionData)}
       </div>
       <div className="relative flex flex-col gap-y-8 after:absolute after:w-full after:h-[1px] after:bg-[#B3BAC5] after:top-0 after:left-0 py-10   ">
         <div className="flex flex-row items-center justify-between">
           <Heading
+            dataAos={"fade-in"}
             Variant={"h4"}
             text={"Other Products You May Like"}
             className={" text-2xl text-text_black font-nunito font-semibold "}
           />
           <div className="flex flex-row items-center gap-x-3">
             <Button
+              data-aos={"fade-in"}
               onClick={() => swiperInstance.current?.slidePrev()}
               text={<IoIosArrowRoundBack className="w-8 h-8" />}
               className={
@@ -52,6 +54,7 @@ const DetailsSection = Data => {
               }
             />
             <Button
+              data-aos={"fade-in"}
               onClick={() => swiperInstance.current?.slideNext()}
               text={<IoIosArrowRoundForward />}
               className={

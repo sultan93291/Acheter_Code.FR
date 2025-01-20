@@ -110,6 +110,7 @@ export const VerfiyOtp = () => {
       <form className="flex flex-col items-center gap-y-12 " action="">
         <div className="flex flex-col gap-y-[32px] items-center">
           <Heading
+            dataAos={"fade-in"}
             Variant={"h1"}
             text={"Verify Otp"}
             className={
@@ -123,6 +124,7 @@ export const VerfiyOtp = () => {
                   <div className="flex flex-col gap-y-2 ">
                     <div className="flex flex-row gap-x-6 items-center justify-center ">
                       <Input
+                        dataAos={"fade-in"}
                         type={"text"}
                         name={"otpOne"}
                         className={"form_input   w-[80px]"}
@@ -132,6 +134,7 @@ export const VerfiyOtp = () => {
                         }}
                       />
                       <Input
+                        dataAos={"fade-in"}
                         type={"text"}
                         name={"otpTwo"}
                         className={"form_input  w-[80px] "}
@@ -141,6 +144,7 @@ export const VerfiyOtp = () => {
                         }}
                       />
                       <Input
+                        dataAos={"fade-in"}
                         type={"text"}
                         name={"otpThree"}
                         className={"form_input    w-[80px] "}
@@ -150,6 +154,7 @@ export const VerfiyOtp = () => {
                         }}
                       />
                       <Input
+                        dataAos={"fade-in"}
                         type={"text"}
                         name={"otpFour"}
                         className={"form_input    w-[80px] "}
@@ -162,6 +167,7 @@ export const VerfiyOtp = () => {
                   </div>
                 </div>
                 <Link
+                  data-aos={"fade-in"}
                   className="text-xl leading-[31.979px] tracking-[-0.08px] font-semibold text-right underline text-secondary_gray "
                   to={"/submit-email"}
                 >
@@ -171,6 +177,7 @@ export const VerfiyOtp = () => {
               </div>
             </div>
             <Button
+              dataAos={"fade-in"}
               onClick={e => {
                 handleEmailSubmit(e);
               }}

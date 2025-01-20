@@ -20,6 +20,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { comment } from "postcss";
 import { toast } from "react-toastify";
+import { IoIosArrowRoundDown } from "react-icons/io";
 
 const ReviewSection = ({ data }) => {
   const swiperRef = useRef(null); // Ref to the Swiper instance
@@ -155,6 +156,7 @@ const ReviewSection = ({ data }) => {
     <section className="flex flex-col gap-y-[36px]">
       {/* Section Title */}
       <Heading
+        dataAos={"fade-in"}
         Variant={"h3"}
         text={"Customers Reviews"}
         className={" font-nunito text-[32px] font-bold text-shade_black "}
@@ -168,17 +170,22 @@ const ReviewSection = ({ data }) => {
           <div className="w-[538px] py-[60px] flex flex-col items-center gap-y-5 bg-white shadow-custom_shadow rounded-[16px]">
             <div className="flex flex-row gap-x-[44px] items-center">
               <Heading
+                dataAos={"fade-in"}
                 Variant={"h2"}
                 text={parseFloat(data?.card?.reviews_avg_rating).toFixed(1)}
                 className={"text-[40px] font-nunito text-black font-semibold"}
               />
               <div className="flex flex-col gap-y-[4px]">
                 <Heading
+                  dataAos={"fade-in"}
                   Variant={"h5"}
                   text={` ${data?.card?.reviews_count} Reviews `}
                   className={"text-lg text-black font-nunito font-semibold"}
                 />
-                <div className="flex flex-row items-center gap-x-2">
+                <div
+                  data-aos={"fade-in"}
+                  className="flex flex-row items-center gap-x-2"
+                >
                   {/* {review stars} */}
                   {reviewStars}
                 </div>
@@ -186,7 +193,10 @@ const ReviewSection = ({ data }) => {
             </div>
 
             {/* Star Ratings Breakdown */}
-            <div className="flex flex-col items-center gap-y-4">
+            <div
+              data-aos={"fade-in"}
+              className="flex flex-col items-center gap-y-4"
+            >
               {data?.reviews
                 .slice()
                 .reverse()
@@ -197,22 +207,25 @@ const ReviewSection = ({ data }) => {
 
                   return (
                     <div
+                      data-aos={"fade-in"}
                       key={index}
                       className="flex flex-row items-center gap-x-2"
                     >
                       {/* Star Heading */}
                       <div className="flex flex-row items-center justify-center gap-x-2">
                         <Heading
+                          dataAos={"fade-in"}
                           Variant={"h6"}
                           text={star?.value}
                           className={"text-lg font-semibold font-nunito"}
                         />
-                        <FullStarIcon />
+                        <FullStarIcon data-aos={"fade-in"} />
                       </div>
 
                       {/* Progress Bar */}
                       <div className="w-[305px] h-[9px] rounded-[16px] bg-light_gray relative">
                         <div
+                          data-aos={"fade-in"}
                           className="absolute bg-orange top-0 left-0 h-full rounded-[16px]"
                           style={{
                             width: `${reviewPercent}%`, // Dynamically set the width of the progress bar
@@ -222,6 +235,7 @@ const ReviewSection = ({ data }) => {
 
                       {/* Percentage Heading */}
                       <Heading
+                        dataAos={"fade-in"}
                         Variant={"h6"}
                         text={` ${reviewPercent} %`}
                         className={`text-lg  font-semibold font-nunito w-[45px] `}
@@ -236,6 +250,7 @@ const ReviewSection = ({ data }) => {
           <div className="w-[538px] py-[60px] px-[55px] bg-white shadow-custom_shadow rounded-[16px] flex flex-col gap-y-8">
             <div className="flex flex-col gap-y-3">
               <Heading
+                dataAos={"fade-in"}
                 Variant={"h4"}
                 className={"lg_tittle capitalize"}
                 text={"Add Your Rating"}
@@ -249,6 +264,7 @@ const ReviewSection = ({ data }) => {
                       }}
                     >
                       <Image
+                        dataAos={"zoom-in"}
                         key={index}
                         Src={item.isRating ? full_star : empty_star}
                         AltTxt={"not found"}
@@ -268,11 +284,13 @@ const ReviewSection = ({ data }) => {
               <div className="flex flex-col gap-y-8">
                 <div className="flex flex-col gap-y-2">
                   <Heading
+                    dataAos={"fade-in"}
                     Variant={"h4"}
                     className={"lg_tittle capitalize"}
                     text={"Your Name"}
                   />
                   <Input
+                    dataAos={"fade-in"}
                     type={"text"}
                     className={
                       "outline-none py-[15px] px-4 rounded-[16px] border-[1px] border-solid border-light_gray text-[16px] font-nunito font-medium text-text_gray"
@@ -292,11 +310,13 @@ const ReviewSection = ({ data }) => {
                 </div>
                 <div className="flex flex-col gap-y-2">
                   <Heading
+                    dataAos={"fade-in"}
                     Variant={"h4"}
                     className={"lg_tittle capitalize"}
                     text={"Write Your Review"}
                   />
                   <textarea
+                    data-aos={"fade-in"}
                     onChange={e => {
                       setreviewData(e.target.value);
                     }}
@@ -309,6 +329,7 @@ const ReviewSection = ({ data }) => {
                 </div>
               </div>
               <Button
+                dataAos={"fade-in"}
                 disabled={
                   !id || !totalTrueRatings || !reviewData ? true : false
                 }
@@ -343,6 +364,7 @@ const ReviewSection = ({ data }) => {
                     <div className=" w-[762px] h-auto py-6 pl-[68px] pr-[96px] bg-white  shadow-custom_shadow rounded-[16px] flex flex-col gap-y-4 ">
                       <div className="flex flex-row items-center gap-x-4    ">
                         <Image
+                          dataAos={"fade-in"}
                           Src={
                             review?.user?.avatar
                               ? review?.user?.avatar
@@ -355,18 +377,23 @@ const ReviewSection = ({ data }) => {
                         />
                         <div className="flex flex-col gap-y-[4px]  ">
                           <Heading
+                            dataAos={"fade-in"}
                             Variant={"h5"}
                             text={review?.user?.name}
                             className={
                               "text-lg text-black font-nunito font-semibold"
                             }
                           />
-                          <div className="flex flex-row items-center gap-x-2">
+                          <div
+                            data-aos={"fade-in"}
+                            className="flex flex-row items-center gap-x-2"
+                          >
                             {reviewStars}
                           </div>
                         </div>
                       </div>
                       <Paragraph
+                        dataAos={"fade-in"}
                         className={
                           "text-lg font-nunito font-normal leading-[180%] text-[#253858] h-[96px] ellipsis overflow-y-hidden   "
                         }
@@ -381,6 +408,7 @@ const ReviewSection = ({ data }) => {
             {/* Navigation Buttons */}
             <div className="flex flex-col justify-end gap-y-3 ">
               <Button
+                dataAos={"fade-in"}
                 text={
                   <IoIosArrowRoundBack className="rotate-[90deg] text-2xl " />
                 }
@@ -389,8 +417,12 @@ const ReviewSection = ({ data }) => {
                 }
               />
               <Button
+                dataAos={"fade-in"}
                 text={
-                  <IoIosArrowRoundForward className="rotate-[90deg] text-2xl " />
+                  <IoIosArrowRoundDown
+                    data-aos={"fade-in"}
+                    className=" text-2xl  "
+                  />
                 }
                 className={
                   "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "

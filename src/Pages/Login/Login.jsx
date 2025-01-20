@@ -82,6 +82,7 @@ const Login = () => {
       <form className="flex flex-col items-center gap-y-12 " action="">
         <div className="flex flex-col gap-y-[32px] items-center">
           <Heading
+            dataAos={"fade-in"}
             Variant={"h1"}
             text={"Login"}
             className={
@@ -94,6 +95,7 @@ const Login = () => {
                 <div className="flex flex-col gap-y-[28px] ">
                   <div className="flex flex-col gap-y-2 ">
                     <Heading
+                      dataAos={"fade-in"}
                       Variant={"h5"}
                       text={"Email"}
                       className={
@@ -101,6 +103,7 @@ const Login = () => {
                       }
                     />
                     <Input
+                      dataAos={"fade-in"}
                       type={"email"}
                       name={"email"}
                       className={"form_input"}
@@ -113,6 +116,7 @@ const Login = () => {
                   </div>
                   <div className="flex flex-col gap-y-2 ">
                     <Heading
+                      dataAos={"fade-in"}
                       Variant={"h5"}
                       text={"Password"}
                       className={
@@ -121,6 +125,7 @@ const Login = () => {
                     />
                     <div className="relative flex flex-row">
                       <Input
+                        dataAos={"fade-in"}
                         type={isShowPass ? "text" : "password"}
                         className={"form_input pr-[80px] "}
                         placeholder={" Enter password"}
@@ -132,6 +137,7 @@ const Login = () => {
                       />
                       {isShowPass ? (
                         <HiOutlineEyeSlash
+                          data-aos={"fade-in"}
                           onClick={() => {
                             setisShowPass(!isShowPass);
                           }}
@@ -139,6 +145,7 @@ const Login = () => {
                         />
                       ) : (
                         <CgEye
+                          data-aos={"fade-in"}
                           onClick={() => {
                             setisShowPass(!isShowPass);
                           }}
@@ -150,6 +157,7 @@ const Login = () => {
                 </div>
               </div>
               <Link
+                data-aos={"fade-in"}
                 className="text-xl leading-[31.979px] tracking-[-0.08px] font-semibold text-right underline text-secondary_gray "
                 to={"/submit-email"}
               >
@@ -158,6 +166,7 @@ const Login = () => {
               </Link>
             </div>
             <Button
+              dataAos={"fade-in"}
               onClick={e => {
                 handleLogin(e);
               }}
@@ -167,7 +176,12 @@ const Login = () => {
               text={
                 <>
                   {loading ? (
-                    <ClipLoader color="#fff" loading={loading} size={25} />
+                    <ClipLoader
+                      data-aos={"fade-in"}
+                      color="#fff"
+                      loading={loading}
+                      size={25}
+                    />
                   ) : (
                     "Login"
                   )}
@@ -177,13 +191,18 @@ const Login = () => {
           </div>
         </div>
         <Paragraph
+          dataAos={"fade-in"}
           className={
             "flex flex-row gap-x-2 text-xl font-normal text-text_black leading-[38.375px] tracking-[-0.08px] "
           }
           text={
             <>
               Don’t have an account?
-              <Link className="font-medium underline " to={"/register"}>
+              <Link
+                data-aos={"fade-in"}
+                className="font-medium underline "
+                to={"/register"}
+              >
                 Create an account
               </Link>
             </>

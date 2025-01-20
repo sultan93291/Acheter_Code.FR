@@ -35,6 +35,7 @@ const GeneralInfo = ({ data }) => {
       />
       <section className="h-auto   px-[290px]  py-[60px] flex flex-row gap-x-[115.5px] ">
         <Image
+          dataAos={"zoom-in"}
           Src={`https://borisdessy.softvencefsd.xyz/${data?.image}`}
           AltTxt={"not found"}
           className={" w-[558px] h-[627px] object-cover rounded-[16px] "}
@@ -44,28 +45,33 @@ const GeneralInfo = ({ data }) => {
             <div className="flex flex-col gap-y-6">
               <div className="flex flex-row gap-x-[105px] items-center ">
                 <Heading
+                  dataAos={"fade-in"}
                   className={"details_headings"}
                   Variant={"h6"}
                   text={"Platform:"}
                 />
                 <Paragraph
+                  dataAos={"fade-in"}
                   text={data?.platform_name}
                   className={"details_sub_headings"}
                 />
               </div>
               <div className="flex flex-row gap-x-[120px] items-center ">
                 <Heading
+                  dataAos={"fade-in"}
                   className={"details_headings"}
                   Variant={"h6"}
                   text={"Usage:"}
                 />
                 <Paragraph
+                  dataAos={"fade-in"}
                   text={data?.usage}
                   className={"details_sub_headings"}
                 />
               </div>
               <div className="flex flex-row gap-x-[105px] items-center  ">
                 <Heading
+                  dataAos={"fade-in"}
                   className={"details_headings"}
                   Variant={"h6"}
                   text={"Version:"}
@@ -77,7 +83,7 @@ const GeneralInfo = ({ data }) => {
                 >
                   {data?.card_countries.map((item, index) => {
                     return (
-                      <option key={index} value={item.name}>
+                      <option dataAos={"fade-in"} key={index} value={item.name}>
                         {" "}
                         {item.name}{" "}
                       </option>
@@ -89,17 +95,20 @@ const GeneralInfo = ({ data }) => {
             <div className="flex flex-col gap-y-6">
               <div className="flex flex-row gap-x-[57px] items-center ">
                 <Heading
+                  dataAos={"fade-in"}
                   className={"details_headings"}
                   Variant={"h6"}
                   text={"Delivery Time:"}
                 />
                 <Paragraph
+                  dataAos={"fade-in"}
                   text={"Instant Deliverable"}
                   className={"details_sub_headings"}
                 />
               </div>
               <div className="flex flex-col gap-y-4 ">
                 <Heading
+                  dataAos={"fade-in"}
                   className={"details_headings"}
                   Variant={"h6"}
                   text={"Available Amount"}
@@ -108,6 +117,7 @@ const GeneralInfo = ({ data }) => {
                   {data?.card_avaiale_amounts?.map((item, index) => {
                     return (
                       <div
+                        data-aos={"fade-in"}
                         onClick={() => {
                           setcurrentIndex(index);
                         }}
@@ -133,6 +143,7 @@ const GeneralInfo = ({ data }) => {
           <div className="w-[551px] flex flex-col gap-y-5 rounded-[16px] bg-white shadow-custom_shadow h-auto py-8 pl-[46px] pr-[23px]">
             <div className="flex flex-row items-center ">
               <svg
+                data-aos={"fade-in"}
                 className="pt-2"
                 xmlns="http://www.w3.org/2000/svg"
                 width="33"
@@ -146,6 +157,7 @@ const GeneralInfo = ({ data }) => {
                 />
               </svg>
               <Heading
+                dataAos={"fade-in"}
                 Variant={"h3"}
                 text={`${data?.stock} in stock `}
                 className={"text-2xl text-text_black font-semibold "}
@@ -160,6 +172,7 @@ const GeneralInfo = ({ data }) => {
                   className="w-[43px] px-4 relative flex items-center text-lg font-bold font-nunito text-secondary_gray  cursor-pointer"
                 >
                   <svg
+                    data-aos={"fade-in"}
                     xmlns="http://www.w3.org/2000/svg"
                     width="12"
                     height="11"
@@ -172,7 +185,10 @@ const GeneralInfo = ({ data }) => {
                     />
                   </svg>
                 </div>
-                <div className="w-[59px] border-l-[1px]  border-r-[1px] border-solid border-ocean_blue px-6 flex items-center text-lg font-bold font-nunito text-secondary_gray  ">
+                <div
+                  data-aos={"fade-in"}
+                  className="w-[59px] border-l-[1px]  border-r-[1px] border-solid border-ocean_blue px-6 flex items-center text-lg font-bold font-nunito text-secondary_gray  "
+                >
                   {counterValue}
                 </div>
                 <div
@@ -182,6 +198,7 @@ const GeneralInfo = ({ data }) => {
                   className="w-[43px] px-4 relative flex items-center text-lg font-bold font-nunito text-secondary_gray cursor-pointer  "
                 >
                   <svg
+                    data-aos={"fade-in"}
                     xmlns="http://www.w3.org/2000/svg"
                     width="11"
                     height="2"
@@ -193,6 +210,7 @@ const GeneralInfo = ({ data }) => {
                 </div>
               </div>
               <Button
+                data-aos={"fade-in"}
                 onClick={() => {
                   navigate("/checkout");
                 }}
@@ -202,6 +220,7 @@ const GeneralInfo = ({ data }) => {
                 }
               />
               <Button
+                data-aos={"fade-in"}
                 onClick={() => {
                   setisopen(true);
                 }}

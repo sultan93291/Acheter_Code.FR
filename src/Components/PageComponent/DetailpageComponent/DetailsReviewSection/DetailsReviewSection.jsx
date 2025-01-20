@@ -19,6 +19,7 @@ console.log('details review section' , data);
     >
       <div className=" flex flex-row gap-x-[80px] relative after:absolute after:w-full after:h-[1px] after:bg-[#B3BAC5] after:bottom-0 after:left-0 after:mb-[-16px] ">
         <Heading
+          dataAos={"fade-in"}
           onClick={() => {
             setisDescreption(true);
           }}
@@ -29,6 +30,7 @@ console.log('details review section' , data);
           } `}
         />
         <Heading
+          dataAos={"fade-in"}
           onClick={() => {
             setisDescreption(false);
           }}
@@ -40,7 +42,11 @@ console.log('details review section' , data);
         />
       </div>
       <div className={` ${isDescreption ? "pt-[42px]" : "pt-[34px]"} `}>
-        {isDescreption ? <DetailsSection Data={data} /> : <ReviewSection data={data} />}
+        {isDescreption ? (
+          <DetailsSection Data={data} />
+        ) : (
+          <ReviewSection data={data} />
+        )}
       </div>
     </section>
   );

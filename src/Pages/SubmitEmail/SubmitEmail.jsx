@@ -61,6 +61,7 @@ export const SubmitEmail = () => {
       <form className="flex flex-col items-center gap-y-12 " action="">
         <div className="flex flex-col gap-y-[32px] items-center">
           <Heading
+            dataAos={"fade-in"}
             Variant={"h1"}
             text={"Forgot Password"}
             className={
@@ -73,6 +74,7 @@ export const SubmitEmail = () => {
                 <div className="flex flex-col gap-y-[28px] ">
                   <div className="flex flex-col gap-y-2 ">
                     <Heading
+                      dataAos={"fade-in"}
                       Variant={"h5"}
                       text={"Email"}
                       className={
@@ -80,6 +82,7 @@ export const SubmitEmail = () => {
                       }
                     />
                     <Input
+                      dataAos={"fade-in"}
                       type={"email"}
                       name={"email"}
                       className={"form_input"}
@@ -94,6 +97,7 @@ export const SubmitEmail = () => {
               </div>
             </div>
             <Button
+              dataAos={"fade-in"}
               onClick={e => {
                 handleEmailSubmit(e);
               }}
@@ -103,7 +107,12 @@ export const SubmitEmail = () => {
               text={
                 <>
                   {loading ? (
-                    <ClipLoader color="#fff" loading={loading} size={25} />
+                    <ClipLoader
+                      data-aos={"fade-in"}
+                      color="#fff"
+                      loading={loading}
+                      size={25}
+                    />
                   ) : (
                     "Submit"
                   )}
