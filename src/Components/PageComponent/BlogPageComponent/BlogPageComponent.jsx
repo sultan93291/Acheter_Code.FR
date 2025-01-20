@@ -115,16 +115,29 @@ const BlogPageComponent = ({ id }) => {
   //   },
   // ];
 
-  const date = new Date(singleBlogData?.created_at);
-  const formattedDate = date.toISOString().split("T")[0];
-  console.log(formattedDate); // Output: 2025-01-16
+  const createdAt = singleBlogData?.created_at;
+  let customFormattedDate;
 
-  // Alternatively, for custom formats (e.g., DD-MM-YYYY)
-  const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-based
-  const year = date.getFullYear();
-  const customFormattedDate = `${day}-${month}-${year}`;
+  if (createdAt) {
+    const date = new Date(createdAt);
 
+    if (!isNaN(date)) {
+      // ISO Format: YYYY-MM-DD
+      const formattedDate = date.toISOString().split("T")[0];
+      console.log(formattedDate); // Example: 2025-01-16
+
+      // Custom Format: DD-MM-YYYY
+      const day = date.getDate().toString().padStart(2, "0");
+      const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-based
+      const year = date.getFullYear();
+      customFormattedDate = `${day}-${month}-${year}`;
+      console.log(customFormattedDate); // Example: 16-01-2025
+    } else {
+      console.error("Invalid date format:", createdAt);
+    }
+  } else {
+    console.warn("created_at is missing or invalid for this item:");
+  }
   return (
     <section className="flex flex-col gap-y-[72px] px-[300px] pb-[160px] ">
       <Image
@@ -143,7 +156,7 @@ const BlogPageComponent = ({ id }) => {
             <div className="flex flex-col gap-y-2">
               <Heading
                 Variant={"h3"}
-                text={singleBlogData.title}
+                text={singleBlogData?.title}
                 className={
                   "text-[32px]  font-bold leading-[150%] w-[558px] text-[#B57500]  "
                 }
@@ -181,15 +194,34 @@ const BlogPageComponent = ({ id }) => {
           />
           <div className="flex flex-col gap-y-5 ">
             {BlogDataArr.map((item, index) => {
-              const date = new Date(item?.created_at);
-              const formattedDate = date.toISOString().split("T")[0];
-              console.log(formattedDate); // Output: 2025-01-16
+              const createdAt = item?.created_at;
+              let customFormattedDate;
 
-              // Alternatively, for custom formats (e.g., DD-MM-YYYY)
-              const day = date.getDate().toString().padStart(2, "0");
-              const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-based
-              const year = date.getFullYear();
-              const customFormattedDate = `${day}-${month}-${year}`;
+              if (createdAt) {
+                const date = new Date(createdAt);
+
+                if (!isNaN(date)) {
+                  // ISO Format: YYYY-MM-DD
+                  const formattedDate = date.toISOString().split("T")[0];
+                  console.log(formattedDate); // Example: 2025-01-16
+
+                  // Custom Format: DD-MM-YYYY
+                  const day = date.getDate().toString().padStart(2, "0");
+                  const month = (date.getMonth() + 1)
+                    .toString()
+                    .padStart(2, "0"); // Months are 0-based
+                  const year = date.getFullYear();
+                  customFormattedDate = `${day}-${month}-${year}`;
+                  console.log(customFormattedDate); // Example: 16-01-2025
+                } else {
+                  console.error("Invalid date format:", createdAt);
+                }
+              } else {
+                console.warn(
+                  "created_at is missing or invalid for this item:",
+                  item
+                );
+              }
 
               return (
                 <div
