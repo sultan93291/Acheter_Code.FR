@@ -22,6 +22,8 @@ const UpcomingCardSection = () => {
 
   const swiperInstanceTwo = useRef(null); // Use a ref to persist swiper instance
   const [isSwiperTwoInitialized, setIsSwiperTwoInitialized] = useState(false);
+  const [slidePreview, setSlidePreview] = useState(1);
+   const [sliderWidth, setSliderWidth] = useState(250);
 
   const SiteURl = import.meta.env.VITE_SITE_URL;
 
@@ -77,15 +79,64 @@ const UpcomingCardSection = () => {
     "this data for upcoming and best selling section"
   );
 
+    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setInnerWidth(window.innerWidth); // Update the state with the current width
+      };
+
+      // Add event listener for resize
+      window.addEventListener("resize", handleResize);
+
+      // Cleanup event listener on unmount
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+
+    useEffect(() => {
+      if (innerWidth <= 320 && innerWidth >= 321 && innerWidth <= 575) {
+        // This block will handle widths from 320px to 575px
+        setSlidePreview(1);
+        setSliderWidth(300);
+      } else if (innerWidth >= 576 && innerWidth <= 1199) {
+        // This block will handle widths 576px and above
+        setSlidePreview(2);
+        setSliderWidth(550);
+        console.log("width is 525 ", innerWidth);
+      } else if (innerWidth >= 1200 && innerWidth <= 1424) {
+        // This block will handle widths below 320px
+        setSlidePreview(3);
+      } else if (innerWidth >= 1425 && innerWidth < 1500) {
+        // This block will handle widths below 320px
+        setSlidePreview(3);
+
+        console.log("width is 400 ", innerWidth);
+      } else if (innerWidth >= 1500) {
+        // This block will handle widths below 320px
+        setSlidePreview(4);
+        setSliderWidth(1295);
+        console.log("width is 400 ", innerWidth);
+      }
+    }, [innerWidth, slidePreview, sliderWidth]);
+
+
+
+
   return (
     <section className="flex flex-col w-full h-auto ">
-      <div className="w-full px-[290px] h-auto py-10 bg-secondary_blue">
-        <Heading
-          dataAos="fade-in"
-          Variant={"h2"}
-          text={"GIFT CARDS"}
-          className={"text-white font-righteous text-[36px] font-normal"}
-        />
+      <div className="  h-auto py-5 2xl:py-10 bg-secondary_blue">
+        <div className="w-[250px] lg:w-[560px]  2xl:w-[970px] 3xl:w-[1295px] px-5 lg-px-0 lg:mx-auto flex flex-col ">
+          <Heading
+            dataAos="fade-in"
+            Variant={"h2"}
+            text={"GIFT CARDS"}
+            className={
+              "text-white font-righteous text-[24px] lg:text-[26px] 3xl:text-[36px] font-normal"
+            }
+          />
+        </div>
       </div>
       <div
         style={{
@@ -94,15 +145,17 @@ const UpcomingCardSection = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
-        className="flex flex-col  px-[290px]  h-auto pt-8 pb-[38.5px]  gap-y-[64px]"
+        className="flex flex-col  px-[20px] 4xl:px-[290px]  h-auto pt-8 pb-[38.5px]  gap-y-[64px]"
       >
         <div className="flex flex-col gap-y-8 ">
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-col w-[285px] mx-auto  md:w-[560px]  2xl:w-[970px] 3xl:w-[1295px]  gap-y-2 items-start lg:flex-row justify-between">
             <Heading
               dataAos="fade-in"
               Variant={"h4"}
               text={"Upcoming Cards"}
-              className={"text-black font-nunito text-[32px] font-bold"}
+              className={
+                "text-black font-nunito text-[22px] lg:text-[26px] 3xl:text-[32px]  font-bold"
+              }
             />
             <div className="flex flex-row items-center gap-x-3">
               <Button
@@ -114,7 +167,7 @@ const UpcomingCardSection = () => {
                 disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
                 text={<IoIosArrowRoundBack />}
                 className={
-                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-white hover:shadow-custom_shadow ease-in-out duration-200 "
+                  "lg:h-12 h-8 w-8 lg:w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-white hover:shadow-custom_shadow ease-in-out duration-200 "
                 }
               />
               <Button
@@ -126,18 +179,18 @@ const UpcomingCardSection = () => {
                 }}
                 disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
                 className={
-                  "h-12 w-12 flex items-center justify-center text-black  text-2xl border-[2px] border-solid border-black rounded-full hover:border-transparent hover:bg-white hover:shadow-custom_shadow ease-in-out duration-200 "
+                  "lg:h-12 h-8 w-8 lg:w-12 flex items-center justify-center text-black  text-2xl border-[2px] border-solid border-black rounded-full hover:border-transparent hover:bg-white hover:shadow-custom_shadow ease-in-out duration-200 "
                 }
               />
             </div>
           </div>
-          <div className="flex   w-auto py-[18px] px-[16px] bg-off_blue rounded-[8px] ">
+          <div className=" flex w-[285px]  mx-auto  md:w-[560px]  2xl:w-[970px] 3xl:w-[1295px] items-center   py-[18px] px-[16px]  bg-off_blue rounded-[8px] ">
             <Swiper
               modules={[Navigation]}
               onSwiper={swiper => {
                 swiperInstance.current = swiper; // Set the swiper instance on initialization
               }}
-              slidesPerView={4} // Adjust the number of visible slides
+              slidesPerView={slidePreview} // Adjust the number of visible slides
               spaceBetween={20} // Custom gap between slides
               loop={true} // Enable looping if necessary
             >
@@ -165,6 +218,7 @@ const UpcomingCardSection = () => {
           </div>
         </div>
       </div>
+
       <div
         style={{
           backgroundImage: `url(${yellowLight})`,
@@ -172,15 +226,17 @@ const UpcomingCardSection = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
-        className="flex flex-col px-[290px]    relative  h-auto pt-8 pb-[38.5px]  gap-y-[64px]"
+        className="flex flex-col px-[20px] 4xl:px-[290px] relative  h-auto pt-8 pb-[38.5px]  gap-y-[64px]"
       >
         <div className="flex flex-col gap-y-8">
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-col w-[285px] mx-auto  md:w-[560px]  2xl:w-[970px] 3xl:w-[1295px]  gap-y-2 items-start lg:flex-row justify-between">
             <Heading
               dataAos="fade-in"
               Variant={"h4"}
               text={"Best Selling Cards"}
-              className={" font-nunito text-[32px] font-bold text-white "}
+              className={
+                " font-nunito text-[22px] lg:text-[26px] 3xl:text-[32px] font-bold text-white "
+              }
             />
             <div className="flex flex-row items-center gap-x-3">
               <Button
@@ -194,7 +250,7 @@ const UpcomingCardSection = () => {
                 }
                 text={<IoIosArrowRoundBack />}
                 className={
-                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-white rounded-full text-white hover:border-transparent hover:bg-white hover:shadow-custom_shadow hover:text-black ease-in-out duration-200  "
+                  "lg:h-12 h-8 w-8 lg:w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-white rounded-full text-white hover:border-transparent hover:bg-white hover:shadow-custom_shadow hover:text-black ease-in-out duration-200  "
                 }
               />
               <Button
@@ -208,18 +264,18 @@ const UpcomingCardSection = () => {
                 }
                 text={<IoIosArrowRoundForward />}
                 className={
-                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-white rounded-full text-white hover:border-transparent hover:bg-white hover:shadow-custom_shadow hover:text-black ease-in-out duration-200  "
+                  " lg:h-12 h-8 w-8 lg:w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-white rounded-full text-white hover:border-transparent hover:bg-white hover:shadow-custom_shadow hover:text-black ease-in-out duration-200  "
                 }
               />
             </div>
           </div>
-          <div className="flex  w-auto py-[18px] px-[16px]  bg-off_blue rounded-[8px] ">
+          <div className="flex w-[285px] mx-auto  md:w-[560px]  2xl:w-[970px] 3xl:w-[1295px] items-center   py-[18px] px-[16px]  bg-off_blue rounded-[8px] ">
             <Swiper
               modules={[Navigation]}
               onSwiper={swiper => {
                 swiperInstanceTwo.current = swiper; // Set the swiper instance on initialization
               }}
-              slidesPerView={4} // Adjust the number of visible slides
+              slidesPerView={slidePreview} // Adjust the number of visible slides
               spaceBetween={20} // Custom gap between slides
               loop={true} // Enable looping if necessary
             >
@@ -250,13 +306,17 @@ const UpcomingCardSection = () => {
           data-aos="zoom"
           Src={giftLeft}
           AltTxt={"not found"}
-          className={" absolute top-0 left-0 mt-[188px] ml-[128.05px] "}
+          className={
+            " hidden 3xl:flex absolute top-0 left-0 mt-[188px] ml-[128.05px] "
+          }
         />
         <Image
           data-aos="zoom"
           Src={giftLeft}
           AltTxt={"not found"}
-          className={" absolute top-0 right-0 mt-[188px] mr-[128.05px] "}
+          className={
+            " hidden 3xl:flex  absolute top-0 right-0 mt-[188px] mr-[128.05px] "
+          }
         />
       </div>
     </section>

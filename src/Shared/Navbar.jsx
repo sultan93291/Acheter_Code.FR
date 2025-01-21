@@ -224,7 +224,7 @@ const Navbar = () => {
         {/* main navbar */}
         <div
           className={`py-6 bg-orange justify-center relative hidden   3xl:flex items-center ${
-            isAuthenticated ? " justify-between px-[300px] " : "gap-x-[96px] "
+            isAuthenticated ? " justify-between px-[300px] " : " gap-x-[96px] "
           }  `}
         >
           <div className="flex flex-row gap-x-[48px] items-center ">
@@ -463,7 +463,7 @@ const Navbar = () => {
               onClick={() => {
                 setisSideBar(!isSideBar);
               }}
-              className="h-[35px] relative w-[35px] border-[1px] border-solid border-white rounded-[8px] flex 2xl:hidden cursor-pointer flex-col gap-y-[6px] items-center justify-center z-[999] "
+              className="h-[35px] relative w-[35px] border-[1px] border-solid border-white rounded-[8px] flex 3xl:hidden cursor-pointer flex-col gap-y-[6px] items-center justify-center z-[999] "
             >
               <span className=" h-[1px] w-[70%] bg-white "></span>
               <span className=" h-[1px] w-[70%] bg-white "></span>
@@ -471,7 +471,7 @@ const Navbar = () => {
             </div>
           </div>
           {isSideBar && (
-            <div className="flex bg-[rgba(0,0,0,0.8)] absolute top-0 left-0 h-[100vh] w-[100vw] overflow-y-hidden  2xl:hidden  flex-col items-center justify-center gap-[35px] z-50">
+            <div className="flex bg-[rgba(0,0,0,0.8)] absolute top-0 left-0 h-[100vh] w-[100vw] overflow-y-hidden  3xl:hidden  flex-col items-center justify-center gap-[35px] z-50 ease-in-out duration-200 ">
               <div
                 onClick={() => {
                   setisSuggestion(true);
@@ -701,7 +701,7 @@ const Navbar = () => {
           )}
         </div>
         <div className=" bg-owl_black py-[26px] flex w-full flex-wrap items-center justify-center  ">
-          <ul className="flex flex-row flex-wrap gap-[12px] lg:gap-x-[32px] px-2 lg:px-0 ">
+          <ul className="flex flex-row flex-wrap gap-[12px] lg:gap-x-[32px] px-2 2xl:px-0 ">
             {socailLinks.map((item, index) => {
               return (
                 <li data-aos="fade-in" key={index}>
@@ -709,7 +709,7 @@ const Navbar = () => {
                     onClick={() => {
                       handleFilterData(item.linkName);
                     }}
-                    className={`text-[12px] lg:text-lg font-medium font-nunito ease-in-out duration-150 cursor-pointer ${
+                    className={`text-[12px] md:text-[14px] 2xl:text-[16px] 3xl:text-lg font-medium font-nunito ease-in-out duration-150 cursor-pointer ${
                       item?.linkName === FilterCardnames
                         ? " text-white "
                         : "text-orange"

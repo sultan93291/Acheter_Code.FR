@@ -5,7 +5,6 @@ import OurProductSection from "../../Components/PageComponent/HomePageComponent/
 import UpcomingCardSection from "../../Components/PageComponent/HomePageComponent/UpComingCardSection/UpcomingCardSection";
 import VouchersSection from "../../Components/PageComponent/HomePageComponent/VouchersSection/VouchersSection";
 
-
 const Home = () => {
   return (
     <>
@@ -14,7 +13,11 @@ const Home = () => {
       <UpcomingCardSection />
       <OurProductSection />
       <ClientSection />
-      <BlogSection />
+      {/* 
+      
+      
+      
+      <BlogSection /> */}
     </>
   );
 };

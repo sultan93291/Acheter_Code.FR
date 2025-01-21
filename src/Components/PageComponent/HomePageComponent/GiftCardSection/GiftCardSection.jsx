@@ -24,7 +24,7 @@ const GiftCardSection = () => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
-      className="w-full h-[760px] flex items-center justify-center relative"
+      className="w-full h-[575px] 2xl:h-[760px] flex items-center justify-center relative"
     >
       <SwipperSlider
         data={giftCardDataArray.length ? giftCardDataArray : giftCardData}

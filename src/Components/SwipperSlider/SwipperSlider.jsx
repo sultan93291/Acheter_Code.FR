@@ -5,13 +5,13 @@ import "swiper/css/navigation";
 import CommonProductCard from "../Cards/CommonProductCard/CommonProductCard";
 import Button from "../Tags/Button/Button";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { IoIosArrowRoundForward } from "react-icons/io";
 import { useState, useRef, useEffect } from "react";
-
 
 const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
   const swiperInstance = useRef(null); // Use a ref to persist swiper instance
   const [isSwiperInitialized, setIsSwiperInitialized] = useState(false);
+  const [slidePreview, setSlidePreview] = useState(1);
+  const [sliderWidth, setSliderWidth] = useState(250);
 
   // Handle initialization and set state when swiper is ready
   useEffect(() => {
@@ -24,13 +24,58 @@ const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
     console.log("Navigation button clicked");
   };
 
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setInnerWidth(window.innerWidth); // Update the state with the current width
+    };
+
+    // Add event listener for resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (innerWidth <= 320 && innerWidth >=321  && innerWidth <= 575) {
+      // This block will handle widths from 320px to 575px
+      setSlidePreview(1);
+      setSliderWidth(300);
+    } else if (innerWidth >= 675 && innerWidth <= 1199) {
+      // This block will handle widths 576px and above
+      setSlidePreview(2);
+      setSliderWidth(550);
+      console.log("width is 525 ", innerWidth);
+    }
+     else if (innerWidth >= 1200 && innerWidth <= 1424) {
+      // This block will handle widths below 320px
+      setSlidePreview(3);
+    } else if (innerWidth >= 1425 && innerWidth <1500) {
+      // This block will handle widths below 320px
+      setSlidePreview(3);
+
+      console.log("width is 400 ", innerWidth);
+    }
+    else if (innerWidth >= 1500) {
+      // This block will handle widths below 320px
+      setSlidePreview(4);
+      setSliderWidth(1295);
+      console.log("width is 400 ", innerWidth);
+    }
+  }, [innerWidth, slidePreview, sliderWidth]);
+
+
   return (
-    <div className="relative w-[1295px] h-auto">
+    <div className={`relative w-[250px] md:w-[520px] lg:w-[560px]  2xl:w-[970px] 3xl:w-[1295px]   h-auto`}>
       {/* Left Navigation Button */}
 
       <Button
         data-aos="fade-in"
-        className={`absolute left-0 z-20 w-12 h-12 transform -translate-y-1/2 border-[2px] border-solid border-transparent bg-white rounded-full top-[50%] flex items-center justify-center ml-[-52px] ease-in-out duration-200 hover:bg-transparent hover:border-white group  `}
+        className={`  absolute left-0 z-20 w-[30px] xs:w-10 xs:h-10 2xl:w-12 h-[30px] 2xl:h-12 transform -translate-y-1/2 border-[2px] border-solid border-transparent bg-white rounded-full top-[50%] flex items-center justify-center ml-[-34px] xs:ml-[-52px] ease-in-out duration-200 hover:bg-transparent hover:border-white group  `}
         onClick={() => {
           if (swiperInstance.current) {
             swiperInstance.current.slidePrev();
@@ -38,7 +83,7 @@ const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
         }}
         disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
         text={
-          <IoIosArrowRoundBack className="w-8 h-8 group-hover:text-white " />
+          <IoIosArrowRoundBack className="w-7 h-7 group-hover:text-white " />
         }
       />
 
@@ -48,7 +93,7 @@ const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
         onSwiper={swiper => {
           swiperInstance.current = swiper; // Set the swiper instance on initialization
         }}
-        slidesPerView={4}
+        slidesPerView={slidePreview}
         spaceBetween={20}
         loop={true}
       >
@@ -75,9 +120,11 @@ const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
       </Swiper>
 
       {/* Right Navigation Button */}
+
       <Button
         data-aos="fade-in"
-        className={`absolute text-[26px] right-0 z-20 w-12 h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] border-[2px] border-solid border-transparent flex items-center justify-center mr-[-50px] ease-in-out duration-200 hover:bg-transparent hover:border-white group   `}
+        className={`absolute  text-[26px] right-0 z-20 
+          2xl:w-12 w-[30px] h-[30px] xs:h-10 xs:w-10 2xl:h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] border-[2px] border-solid border-transparent flex items-center justify-center mr-[-32px]  xs:mr-[-50px] ease-in-out duration-200 hover:bg-transparent hover:border-white group   `}
         onClick={() => {
           if (swiperInstance.current) {
             swiperInstance.current.slideNext();
@@ -85,7 +132,7 @@ const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
         }}
         disabled={!isSwiperInitialized || swiperInstance.current?.isEnd}
         text={
-          <IoIosArrowRoundForward className="w-8 h-8 group-hover:text-white " />
+          <IoIosArrowRoundBack className="w-7 h-7 group-hover:text-white rotate-[180deg] " />
         }
       />
     </div>

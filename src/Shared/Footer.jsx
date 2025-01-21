@@ -77,17 +77,17 @@ const Footer = () => {
   };
 
   return (
-    <footer className="flex relative flex-col bg-owl_black items-center pt-[40px] gap-y-[34px] after:absolute after:content-[''] after:w-full  after:bottom-0 after:left-0 after:h-[1px] after:mb-[68px] after:bg-[#D9EDF4] ">
+    <footer className="flex relative flex-col px-2 md:px-0 bg-owl_black md:items-center pt-[40px] gap-y-[34px] after:absolute after:content-[''] after:w-full  after:bottom-0 after:left-0 after:h-[1px] after:mb-[68px] after:bg-[#D9EDF4] ">
       <div onClick={handleRootRedirect}>
         <Heading
           Variant={"h4"}
           text={"Acheter Code.FR"}
           className={
-            " font-righteous text-[28px] font-normal text-orange cursor-pointer "
+            " font-righteous text-[20px] md:text-[28px] font-normal text-orange cursor-pointer "
           }
         />
       </div>
-      <ul className="flex flex-row gap-x-[32px] relative  ">
+      <ul className="flex flex-row flex-wrap gap-[12px] lg:gap-x-[32px] md:px-2 2xl:px-0  ">
         {socailLinks.map((item, index) => {
           return (
             <li key={index}>
@@ -95,7 +95,7 @@ const Footer = () => {
                 onClick={() => {
                   handleFilterData(item.linkName);
                 }}
-                className={`text-[18px] font-medium font-nunito ease-in-out duration-150 cursor-pointer ${
+                className={` text-[12px] md:text-[14px] 2xl:text-[16px] 3xl:text-lg  font-medium font-nunito ease-in-out duration-150 cursor-pointer ${
                   item?.linkName === FilterCardnames
                     ? " text-orange "
                     : "text-white"
@@ -110,7 +110,7 @@ const Footer = () => {
       </ul>
       <div className="py-6 ">
         <Paragraph
-          className={"text-[16px] text-white font-nunito"}
+          className={" text-[14px] md:text-[16px] text-white font-nunito"}
           text={"  © 2024 Logoipsum Systems. All rights reserved"}
         />
       </div>

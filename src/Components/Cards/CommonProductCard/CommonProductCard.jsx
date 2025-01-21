@@ -82,13 +82,13 @@ const CommonProductCard = ({
         isOpen={isopen}
       />
       <div
-        className={`w-[303px] hover:w-[310px] overflow-x-hidden group duration-300 ease-in-out  relative h-${cardHeight} rounded-[16px] bg-white shadow-custom_shadow flex flex-col`}
+        className={` w-[250px] hover:w-[257px] 2xl:w-[303px] 2xl:hover:w-[310px] overflow-x-hidden group duration-300 ease-in-out  relative h-${cardHeight} rounded-[12px] 2xl:rounded-[16px] bg-white shadow-custom_shadow flex flex-col`}
       >
         <div
           onClick={() => {
             handleDetailsRedirect();
           }}
-          className="w-full group-hover:p-[15px]  transition-all duration-500 group-hover:bg-[length:110%] group-hover:animate-zoom-in  h-[327px]  bg-ocean_blue rounded-t-[16px] p-[12px] cursor-pointer "
+          className="w-full group-hover:p-[15px]  transition-all duration-500 group-hover:bg-[length:110%] group-hover:animate-zoom-in h-[275px] 2xl:h-[327px]  bg-ocean_blue rounded-t-[12px] 2xl:rounded-t-[16px] p-[12px] cursor-pointer "
         >
           <div
             style={{
@@ -97,11 +97,11 @@ const CommonProductCard = ({
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
             }}
-            className=" w-[279px] h-[302px] rounded-t-[12px] relative "
+            className=" w-[225px]  2xl:w-[279px] h-[250px] 2xl:h-[302px] rounded-t-[10px] 2xl:rounded-t-[12px] relative "
           >
             <div
               data-aos="fade-in"
-              className="absolute top-0 right-0 w-[68px] h-[30px] px-[10px] flex flex-row items-center bg-secondary_orange rounded-[12px] mt-2 mr-2 gap-x-1 "
+              className="absolute top-0 right-0  2xl:w-[68px] w-[58px] h-[30px] px-[10px] flex flex-row items-center bg-secondary_orange rounded-[12px] mt-2 mr-2 gap-x-1 "
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -120,16 +120,16 @@ const CommonProductCard = ({
                 data-aos="fade-in"
                 text={rating}
                 Variant={"h6"}
-                className={" text-[16px] text-white font-bold font-nunito "}
+                className={" text-[14px] 2xl:text-[16px] text-white font-bold font-nunito "}
               />
             </div>
-            <div className="py-[10px] px-4 absolute bottom-0 right-0 w-[91px] rounded-tl-[2px] rounded-tr-[14px] rounded-br-[14px] rounded-bl-[14px]  h-[42px] mb-2 mr-2 bg-red  ">
+            <div className="py-[10px] px-4 absolute bottom-0 right-0 w-[85px] 2xl:w-[91px] rounded-tl-[2px] rounded-tr-[14px] rounded-br-[14px] rounded-bl-[14px]  h-[32px] 2xl:h-[42px] mb-2 mr-2 bg-red  ">
               <Heading
                 data-aos="fade-in"
                 Variant={"h4"}
                 text={`${discountpercentage} off`}
                 className={
-                  "text-[16px] font-nunito text-white font-semibold group-hover:animate-pulse-text "
+                  " text-[14px] 2xl:text-[16px] font-nunito text-white font-semibold group-hover:animate-pulse-text "
                 }
               />
             </div>
@@ -145,7 +145,7 @@ const CommonProductCard = ({
               Variant={"h3"}
               text={heading}
               className={
-                " text-text_black text-[18px] font-nunito font-semibold cursor-pointer "
+                " text-text_black text-[14px] 2xl:text-[18px] font-nunito font-semibold cursor-pointer "
               }
             />
             {subHeading && (
@@ -153,56 +153,56 @@ const CommonProductCard = ({
                 Variant={"h3"}
                 text={subHeading}
                 className={
-                  " text-text_black text-[18px] font-nunito font-semibold "
+                  " text-text_black text-[14px] 2xl:text-[18px] font-nunito font-semibold "
                 }
               />
             )}
           </div>
           <div className="flex flex-col gap-y-3 ">
             <div className="flex flex-col gap-y-1">
-              <div data-aos="fade-in" className="flex flex-row gap-x-[47px] ">
+              <div data-aos="fade-in" className="flex flex-row gap-x-[32px] 2xl:gap-x-[47px] ">
                 <Heading
                   Variant={"h4"}
                   text={"Seller"}
                   className={
-                    "text-[18px] font-medium font-nunito text-text_black"
+                    " text-[16px] 2xl:text-[18px] font-medium font-nunito text-text_black"
                   }
                 />
                 <Heading
                   Variant={"h4"}
                   text={seller}
                   className={
-                    "text-[18px] font-medium font-nunito text-text_black truncate "
+                    " text-[14px] 2xl:text-[18px] font-medium font-nunito text-text_black truncate "
                   }
                 />
               </div>
               <div
                 data-aos="fade-in"
-                className="flex flex-row gap-x-[57px] items-center "
+                className="flex flex-row gap-x-[42px] 2xl:gap-x-[57px] items-center "
               >
                 <Heading
                   Variant={"h4"}
                   text={"Each"}
                   className={
-                    "text-[18px] font-medium font-nunito text-text_black"
+                    " text-[16px] 2xl:text-[18px] font-medium font-nunito text-text_black"
                   }
                 />
                 <div
                   data-aos="fade-in"
-                  className="flex flex-row items-center gap-x-2 "
+                  className="flex flex-row items-center gap-x-1 2xl:gap-x-2 "
                 >
                   <Heading
                     Variant={"h4"}
                     text={`${discountPrice}€`}
                     className={
-                      "text-[24px] font-semibold font-nunito text-text_black"
+                      " text-[17px] 2xl:text-[24px] font-semibold font-nunito text-text_black"
                     }
                   />
                   <Heading
                     Variant={"h6"}
                     text={<del> {`${price}€`} </del>}
                     className={
-                      "text-[16px] font-semibold font-nunito text-light_gray"
+                      " text-[14px] 2xl:text-[16px] font-semibold font-nunito text-light_gray"
                     }
                   />
                 </div>
@@ -216,7 +216,7 @@ const CommonProductCard = ({
               handleCartDataArr(id, cardName, discountPrice, bgImg);
             }}
             className={
-              "w-[194px] rounded-[12px] leading-[164%] font-nunito font-medium text-[18px] border-[2px] border-solid border-transparent  bg-orange h-auto py-[10px] flex items-center flex-row gap-x-2 uppercase  justify-center text-white group-hover:bg-transparent ease-in-out duration-200 group-hover:border-orange  group-hover:text-orange     "
+              " w-[140px] 2xl:w-[194px] rounded-[12px] leading-[164%] font-nunito font-medium text-[14px] 2xl:text-[18px] border-[2px] border-solid border-transparent  bg-orange h-auto py-[10px] flex items-center flex-row gap-x-1 2xl:gap-x-2 uppercase  justify-center text-white group-hover:bg-transparent ease-in-out duration-200 group-hover:border-orange  group-hover:text-orange     "
             }
             text={
               <>
