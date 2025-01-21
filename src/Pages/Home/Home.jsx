@@ -13,11 +13,12 @@ const Home = () => {
       <UpcomingCardSection />
       <OurProductSection />
       <ClientSection />
+      <BlogSection />
       {/* 
       
       
       
-      <BlogSection /> */}
+       */}
     </>
   );
 };
