@@ -127,7 +127,7 @@ const UpcomingCardSection = () => {
   return (
     <section className="flex flex-col w-full h-auto ">
       <div className="  h-auto py-5 2xl:py-10 bg-secondary_blue">
-        <div className="w-[250px] lg:w-[560px]  2xl:w-[970px] 3xl:w-[1295px] px-5 lg-px-0 lg:mx-auto flex flex-col ">
+        <div className="w-[250px] md:w-[520px] lg:w-[560px]  2xl:w-[970px] 3xl:w-[1295px] mx-auto flex flex-col ">
           <Heading
             dataAos="fade-in"
             Variant={"h2"}

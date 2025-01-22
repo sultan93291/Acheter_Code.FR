@@ -61,7 +61,7 @@ const VouchersSection = () => {
       </div>
       <div className="flex  flex-col  h-auto py-4 2xl:py-8 bg-primary_blue  ">
         <div className="flex flex-col mx-auto py-4 lg:py-8 gap-y-[32px] 2xl:gap-y-[64px]  ">
-          <div className="flex flex-col w-[285px] mx-auto  md:w-[560px]  2xl:w-[970px] 3xl:w-[1295px]  gap-y-4 2xl:gap-y-8 items-start lg:items-start  ">
+          <div className="flex flex-col w-[285px] mx-auto  md:w-[560px]  2xl:w-[970px] 3xl:w-[1295px]  gap-y-4 2xl:gap-y-8 items-center lg:items-start  ">
             <Heading
               Variant={"h4"}
               dataAos="fade-in"
@@ -76,7 +76,7 @@ const VouchersSection = () => {
               cardName={"Bestselling Vouchers"}
             />
           </div>
-          <div className="flex  flex-col items-start gap-y-4 2xl:gap-y-8   ">
+          <div className="flex  flex-col items-center lg:items-start gap-y-4 2xl:gap-y-8   ">
             <Heading
               dataAos="fade-in"
               Variant={"h4"}

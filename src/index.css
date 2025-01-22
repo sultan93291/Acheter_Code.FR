@@ -92,7 +92,7 @@
   /* headings design ended here */
   /* input design started here  */
   .form_input {
-    @apply w-[614px] rounded-[16px] py-[19.19px] px-[25.58px] bg-white shadow-custom_shadow text-[20px] font-nunito font-normal leading-[38.375px] tracking-[-0.08px] outline-none text-text_gray;
+    @apply w-[280px] md:w-[480px]  xl:w-[614px] rounded-[16px] py-[10px] lg:py-[19.19px] px-[25.58px] bg-white shadow-custom_shadow text-[16px] lg:text-[20px] font-nunito font-normal leading-[38.375px] tracking-[-0.08px] outline-none text-text_gray;
   }
   /* input design ended here */
   /* button design started here */

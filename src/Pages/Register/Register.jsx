@@ -67,20 +67,23 @@ const Register = () => {
   console.log(userData);
 
   return (
-    <section className="mx-auto bg-[#F8F8F8] flex items-center justify-center h-auto w-full  pt-[64px] pb-[84.29px]">
-      <form className="flex flex-col items-center gap-y-12 " action="">
-        <div className="flex flex-col gap-y-[32px] items-center">
+    <section className="mx-auto bg-[#F8F8F8] flex items-center justify-center h-auto w-full pt-[20px] pb-[40.29px]  3xl:pt-[64px] 3xl:pb-[80.29px]">
+      <form
+        className=" flex flex-col items-center gap-y-[15px] lg:gap-y-6 3xl:gap-y-12  "
+        action=""
+      >
+        <div className="flex flex-col gap-y-[16px] lg:gap-y-[32px] items-center">
           <Heading
             dataAos={"fade-in"}
             Variant={"h1"}
             text={"Create Your Account"}
             className={
-              "text-[64px] font-nunito text-text_black font-medium leading-[83.146px] tracking-[-0.64px]"
+              " text-[32px] md:text-[42px] 3xl:text-[64px] font-nunito text-text_black font-medium leading-[83.146px] tracking-[-0.64px] "
             }
           />
-          <div className="flex flex-col gap-y-[44.79px] ">
+          <div className=" flex flex-col   gap-y-[20px] lg:gap-y-[44.79px] ">
             <div className="flex flex-row gap-y-8">
-              <div className="flex flex-col gap-y-[28px] ">
+              <div className="flex flex-col gap-y-[18px] lg:gap-y-[28px] ">
                 <div className="flex flex-col gap-y-2 ">
                   <Heading
                     dataAos={"fade-in"}
@@ -188,7 +191,6 @@ const Register = () => {
                     />
                     {isconfirmPass ? (
                       <HiOutlineEyeSlash
-                        data-aos={"fade-in"}
                         onClick={() => {
                           setisConfirmPass(!isconfirmPass);
                         }}
@@ -213,7 +215,7 @@ const Register = () => {
                 handleRegister(e);
               }}
               className={
-                "w-[614px] bg-orange py-[19.19px] px-[31.98px] rounded-[16px] h-auto text-2xl font-nunito leading-[38.375px] tracking-[-0.096px] text-white ease-in-out duration-300 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange  "
+                "w-auto xl:w-[614px] bg-orange py-[5px] md:py-[10px] lg:py-[19.19px]  px-[31.98px] rounded-[18px] h-auto text-[20px]  lg:text-2xl font-nunito lg:leading-[38.375px] tracking-[-0.096px] text-white ease-in-out duration-300 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange group "
               }
               text={
                 <>
@@ -235,7 +237,7 @@ const Register = () => {
         <Paragraph
           dataAos={"fade-in"}
           className={
-            "flex flex-row gap-x-2 text-xl font-normal text-text_black leading-[38.375px] tracking-[-0.08px] "
+            " flex flex-row gap-x-2 text-[16px] lg:text-xl font-normal text-text_black leading-[38.375px] tracking-[-0.08px] "
           }
           text={
             <>

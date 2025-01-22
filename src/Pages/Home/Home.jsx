@@ -14,11 +14,6 @@ const Home = () => {
       <OurProductSection />
       <ClientSection />
       <BlogSection />
-      {/* 
-      
-      
-      
-       */}
     </>
   );
 };
