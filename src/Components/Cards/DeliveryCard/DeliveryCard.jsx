@@ -47,7 +47,7 @@ const DeliveryCard = ({
 
   return (
     <div
-      className={`flex flex-col gap-y-5 sm:flex-row items-start xl:items-center justify-between w-[280px] sm:w-[380px]   3xl:w-auto ${
+      className={`flex flex-col gap-y-5 sm:flex-row items-start xl:items-center justify-between w-[280px] sm:w-[380px] xl:w-auto   3xl:w-auto ${
         isShoppingCart
           ? ` h-auto p-4 ${
               isHrLine &&
@@ -61,8 +61,8 @@ const DeliveryCard = ({
         AltTxt={"not found"}
         className={"w-[64px] h-[64px] rounded-[8px] "}
       />
-      <div className="flex flex-col items-center gap-y-5 ">
-        <div className="flex flex-row gap-x-10  xl:justify-between  ">
+      <div className="flex flex-col items-center xl:items-start gap-y-5 ">
+        <div className="flex flex-row gap-x-10 xl:gap-x-0 xl:w-full  xl:justify-between  ">
           <Heading
             Variant={"h4"}
             text={heading}

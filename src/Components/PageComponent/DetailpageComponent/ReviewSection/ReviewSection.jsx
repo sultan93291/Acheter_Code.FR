@@ -152,7 +152,7 @@ const ReviewSection = ({ data }) => {
   };
 
   return (
-    <section className="flex flex-col  px-5 xl:px-10 2xl:px-16 4xl:px-0 gap-y-[25px] xl:gap-y-[36px]">
+    <section className="flex flex-col  px-5 xl:px-8 2xl:px-16 4xl:px-0 gap-y-[25px] xl:gap-y-[36px]">
       {/* Section Title */}
       <Heading
         dataAos={"fade-in"}
