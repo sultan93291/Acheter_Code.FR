@@ -149,7 +149,6 @@ const Register = () => {
                     />
                     {isShowPass ? (
                       <HiOutlineEyeSlash
-                        data-aos={"fade-in"}
                         onClick={() => {
                           setisShowPass(!isShowPass);
                         }}
@@ -210,7 +209,7 @@ const Register = () => {
               </div>
             </div>
             <Button
-              dataAos={"fade-in"}
+              
               onClick={e => {
                 handleRegister(e);
               }}
@@ -221,7 +220,7 @@ const Register = () => {
                 <>
                   {loading ? (
                     <ClipLoader
-                      data-aos={"fade-in"}
+               
                       color="#fff"
                       loading={loading}
                       size={25}

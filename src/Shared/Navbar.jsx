@@ -224,7 +224,7 @@ const Navbar = () => {
         {/* main navbar */}
         <div
           className={`py-6 bg-orange justify-center relative hidden   3xl:flex items-center ${
-            isAuthenticated ? " justify-between px-[300px] " : " gap-x-[96px] "
+            isAuthenticated ? " justify-between 3xl:px-[150px] 4xl:px-[300px] " : " gap-x-[96px] "
           }  `}
         >
           <div className="flex flex-row gap-x-[48px] items-center ">
@@ -243,7 +243,7 @@ const Navbar = () => {
                 setisSuggestion(true);
               }}
               className="flex w-[395px]  h-[57px] bg-white relative rounded-[16px] items-center "
-              data-aos="fade-in"
+            
             >
               <Input
                 type={"text"}
@@ -262,7 +262,7 @@ const Navbar = () => {
                   className="h-[101px] ease-in duration-150 w-[340px] top-0 left-0 mt-[70px] z-[999999] bg-[#FFF6E6] absolute shadow-custom_shadow   "
                 >
                   <div
-                    data-aos="fade-in"
+                  
                     onClick={event => {
                       event.stopPropagation(); // Prevent propagation to the document listener
                       setsuggestion("Sale vouchers");
@@ -275,7 +275,7 @@ const Navbar = () => {
                   </div>
                   <hr className="bg-orange h-[1px] w-full border-none" />
                   <div
-                    data-aos="fade-in"
+                    
                     onClick={event => {
                       event.stopPropagation(); // Prevent propagation to the document listener
                       setsuggestion("Gift cards");
@@ -477,7 +477,7 @@ const Navbar = () => {
                   setisSuggestion(true);
                 }}
                 className="flex w-[220px]  justify-center  h-[47px] bg-white relative rounded-[16px] items-center "
-                data-aos="fade-in"
+               
               >
                 <Input
                   type={"text"}
@@ -496,7 +496,7 @@ const Navbar = () => {
                     className="h-[79px] ease-in duration-150 w-[150px] top-0 left-0 mt-[70px] z-[999999] bg-[#FFF6E6] absolute shadow-custom_shadow   "
                   >
                     <div
-                      data-aos="fade-in"
+                    
                       onClick={event => {
                         setisSideBar(false);
                         setisSuggestion(false);
@@ -510,7 +510,7 @@ const Navbar = () => {
                     </div>
                     <hr className="bg-orange h-[1px] w-full border-none" />
                     <div
-                      data-aos="fade-in"
+                    
                       onClick={event => {
                         setisSideBar(false);
                         // Prevent propagation to the document listener
@@ -607,7 +607,7 @@ const Navbar = () => {
                     </div>
                   </div>
                   {isAuthenticated ? (
-                    <div className="h-[55px] w-[120px] bg-[#FFF6E6] shadow-custom_shadow   rounded-[16px] flex flex-col gap-y-5 justify-between items-center px-4 ">
+                    <div className="h-[55px] w-[120px] bg-[#FFF6E6] shadow-custom_shadow   rounded-[16px] flex flex-row gap-y-5 justify-between items-center px-4 ">
                       <div
                         data-aos="fade-in"
                         aria-label="Profile upload"

@@ -175,7 +175,6 @@ export const ForgotPass = () => {
               </div>
             </div>
             <Button
-              dataAos={"fade-in"}
               onClick={e => {
                 handlePassReset(e);
               }}

@@ -172,7 +172,7 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
     >
       <div
         ref={elementRef}
-        className="  pt-[44px] pb-5 px-5 w-[838px] bg-white border-[1px] border-solid border-light_gray flex flex-col gap-y-10  "
+        className="  pt-[44px] overflow-hidden  pb-5 px-5 w-screen 2xl:w-[838px] bg-white border-[1px] border-solid border-light_gray flex flex-col gap-y-10  "
       >
         <div className="flex flex-row items-center justify-between ">
           <Heading
@@ -207,7 +207,7 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
                 text={`${Balence ? Balence : "0"}€`}
                 Variant={"h2"}
                 className={
-                  " text-[56px]  text-[#04212A] font-nunito font-semibold "
+                  " text-[32px] xl:text-[56px]  text-[#04212A] font-nunito font-semibold "
                 }
               />
             </div>
@@ -216,7 +216,7 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
                 handleCheckOutRedirect();
               }}
               className={
-                "w-[760px] bg-orange py-[16px] px-5 rounded-[16px] h-[57px] text-lg font-nunito text-white "
+                "w-[250px] md:w-auto  xl:w-[760px] bg-orange py-2 2xl:py-[16px] px-2 2xl:px-5 rounded-[16px] h-[57px] text-[16px] lg:text-lg font-nunito text-white "
               }
               text={"ADD FUNDS (€) "}
             />
@@ -230,73 +230,75 @@ const AddFundModal = ({ isFundOpen, onFundClose }) => {
               }
             />
             {TransictionHistory.length ? (
-              <div className="w-[790px] h-auto px-5 rounded-[16px] py-3 bg-white shadow-custom_shadow  ">
-                <div className="flex flex-row justify-between relative after:absolute after:h-[1px] after:w-full after:bg-[#253858] after:bottom-0 after:left-0 after:mb-[-18px] ">
-                  {transictionHistoryHedings.map((item, index) => {
-                    return (
+              <div className="w-full max-w-[790px] h-auto px-4 sm:px-5 rounded-[16px] py-3 bg-white shadow-custom_shadow">
+                {/* Scrollable Wrapper for Header and Content */}
+                <div className="overflow-x-auto">
+                  {/* Header Section */}
+                  <div className="flex flex-row justify-between min-w-[700px] relative after:absolute after:h-[1px] after:w-full after:bg-[#253858] after:bottom-0 after:left-0 after:mb-[-18px]">
+                    {transictionHistoryHedings.map((item, index) => (
                       <Heading
                         key={index}
                         text={item}
-                        Variant={"h3"}
-                        className={
-                          "  text-[18px] leading-[180%] text-text_black font-nunito font-semibold  "
-                        }
+                        Variant="h3"
+                        className="text-[16px] sm:text-[18px] leading-[180%] text-text_black font-nunito font-semibold"
                       />
-                    );
-                  })}
-                </div>
-                <div className="mt-[18px] h-[360px] pb-[20px] overflow-y-scroll ">
-                  {TransictionHistory.map((item, index) => {
-                    const dateString = "2025-01-16T03:53:10.000000Z";
-                    const date = new Date(dateString);
+                    ))}
+                  </div>
 
-                    // Format the date as MM/DD/YYYY
-                    const formattedDate = date.toLocaleDateString("en-US");
+                  {/* Scrollable Content Section */}
+                  <div className="mt-[18px] h-[360px] pb-[20px] overflow-y-auto">
+                    {TransictionHistory.map((item, index) => {
+                      const dateString =
+                        item.date || "2025-01-16T03:53:10.000000Z";
+                      const date = new Date(dateString);
+                      const formattedDate = date.toLocaleDateString("en-US");
 
-                    return (
-                      <div
-                        key={item.id}
-                        className="flex flex-row py-6 gap-x-[85px] relative after:absolute items-center "
-                      >
-                        <Heading
-                          text={formattedDate}
-                          Variant="h3"
-                          className={`text-[18px] leading-[180%] text-text_black font-nunito font-semibold  after:absolute  items-center after:w-full after:h-[1px] after:border-b-2 after:border-dotted  after:bottom-0 after:left-0  after:border-text_gray ${
-                            index === TransictionHistory.length - length - 1
-                              ? "after:opacity-0"
-                              : "after:opacity-50"
-                          }`}
-                        />
-                        <Heading
-                          text={item.transection_number}
-                          Variant="h3"
-                          className="text-[18px] leading-[180%] text-text_black font-nunito font-semibold"
-                        />
-                        <Heading
-                          text={item.transaction_type}
-                          Variant="h3"
-                          className="text-[14px] w-[165px]   overflow-x-hidden   leading-[180%] text-text_black font-nunito font-semibold"
-                        />
-                        <div className=" h-[40px] flex items-center justify-center border-[2px] border-solid border-text_black  text-[9px] w-[150px] rounded-[8px] leading-[180%] text-text_black font-nunito font-bold  ">
-                          <Paragraph text={item.card_type} />
-                        </div>
-                        <div className="flex flex-row items-start w-[80px] ">
+                      return (
+                        <div
+                          key={item.id}
+                          className="flex max-w-[700px] flex-row justify-between 4xl:justify-normal sm:gap-x-[85px] gap-x-4 py-6 relative items-center min-w-[700px] after:absolute after:w-full after:h-[1px] after:border-b-2 after:border-dotted after:bottom-0 after:left-0 after:border-text_gray"
+                        >
+                          {/* Date */}
                           <Heading
-                            text={`${item.amount}€`}
+                            text={formattedDate}
                             Variant="h3"
-                            className="text-[18px] flex items-start justify-start    leading-[180%] text-text_black font-nunito font-semibold"
+                            className={`text-[14px] sm:text-[16px] leading-[180%] text-text_black font-nunito font-semibold`}
                           />
+                          {/* Transaction Number */}
+                          <Heading
+                            text={item.transection_number}
+                            Variant="h3"
+                            className="text-[14px] sm:text-[16px] leading-[180%] text-text_black font-nunito font-semibold "
+                          />
+                          {/* Transaction Type */}
+                          <Heading
+                            text={item.transaction_type}
+                            Variant="h3"
+                            className="text-[12px] sm:text-[14px] w-[120px] sm:w-[165px] overflow-hidden text-ellipsis leading-[180%] text-text_black font-nunito font-semibold"
+                          />
+                          {/* Card Type */}
+                          <div className="h-[40px] flex items-center justify-center border-[2px] border-solid border-text_black text-[9px] sm:text-[10px] w-[100px] sm:w-[150px] rounded-[8px] leading-[180%] text-text_black font-nunito font-bold">
+                            <Paragraph text={item.card_type} />
+                          </div>
+                          {/* Amount */}
+                          <div className="flex flex-row items-start w-[60px] sm:w-[80px]">
+                            <Heading
+                              text={`${item.amount}€`}
+                              Variant="h3"
+                              className="text-[14px] sm:text-[16px] leading-[180%] text-text_black font-nunito font-semibold"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             ) : (
               <Heading
                 text={`No transaction history`}
                 Variant="h3"
-                className="text-[18px] pl-2 flex items-start justify-start    leading-[180%] text-text_black font-nunito font-semibold"
+                className="text-[16px] sm:text-[18px] pl-2 flex items-start justify-start leading-[180%] text-text_black font-nunito font-semibold"
               />
             )}
           </div>

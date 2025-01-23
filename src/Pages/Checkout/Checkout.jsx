@@ -125,7 +125,7 @@ const Checkout = () => {
   console.log(userData, "user data");
 
   return (
-    <section className="w-full h-auto overflow-hidden pt-10 2xl:pt-20 pb-10 2xl:pb-[194px] flex bg-[#F8F8F8] flex-col-reverse gap-y-10 2xl:flex-row justify-between 4xl:gap-x-12 4xl:justify-normal items-center 2xl:items-start px-5 xl:px-8 2xl:px-16   3xl:px-[150px] 4xl:px-[300px] ">
+    <section className="w-full h-auto overflow-hidden pt-10 pb-10 2xl:pt-20  2xl:pb-[194px] flex bg-[#F8F8F8] flex-col-reverse gap-y-10 2xl:flex-row justify-between 4xl:gap-x-12 4xl:justify-normal items-center 2xl:items-start px-5 xl:px-8 2xl:px-16   3xl:px-[150px] 4xl:px-[300px] ">
       <div className="flex flex-col  gap-y-8 w-auto 3xl:w-[538px] ">
         <Heading
           dataAos={"fade-in"}

@@ -100,7 +100,7 @@ export const SubmitEmail = () => {
               </div>
             </div>
             <Button
-              dataAos={"fade-in"}
+
               onClick={e => {
                 handleEmailSubmit(e);
               }}

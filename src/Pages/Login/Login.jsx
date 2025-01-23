@@ -140,7 +140,6 @@ const Login = () => {
                       />
                       {isShowPass ? (
                         <HiOutlineEyeSlash
-                          data-aos={"fade-in"}
                           onClick={() => {
                             setisShowPass(!isShowPass);
                           }}
@@ -179,7 +178,7 @@ const Login = () => {
                 <>
                   {loading ? (
                     <ClipLoader
-                      data-aos={"fade-in"}
+                      
                       color="#fff"
                       loading={loading}
                       size={25}

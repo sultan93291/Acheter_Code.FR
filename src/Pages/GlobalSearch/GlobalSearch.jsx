@@ -53,32 +53,32 @@ const GlobalSearch = () => {
 
   return (
     <section className="bg-[#F8F8F8]">
-      <div className=" pt-[57px] pb-[123px] flex flex-col relative gap-y-16 w-[1320px] mx-auto ">
-        <div className="flex flex-col gap-y-8 items-center">
-          <div className="flex flex-row gap-x-2 items-center  ">
+      <div className=" pt-[57px] pb-[50px] lg:pb-[123px] flex px-5 flex-col relative gap-y-8 lg:gap-y-16 3xl:w-[1330px] mx-auto ">
+        <div className="flex flex-col   gap-y-8 items-center">
+          <div className="flex flex-row  gap-x-2 items-center  ">
             <Heading
               Variant="h3"
               text={"Search Results:"}
               className={
-                "text-[40px] font-medium text-[#5C5C5C] font-nunito leading-[150%] secondary_gray "
+                "text-[20px] 2xl:text-[30px] 4xl:text-[40px] font-medium text-[#5C5C5C] font-nunito leading-[150%] secondary_gray "
               }
             />
             <Heading
               Variant="h3"
               text={`${filter ? filter : "Gift Cards"}`}
               className={
-                "text-[40px] font-bold text-[#253858] font-nunito leading-[150%] secondary_gray "
+                " text-[20px] 2xl:text-[30px] 3xl:text-[40px] font-bold text-[#253858] font-nunito leading-[150%] secondary_gray "
               }
             />
           </div>
-          <div className="p-3 flex flex-row   h-auto w-full bg-white shadow-custom_shadow rounded-[12px] ">
+          <div className="p-3 flex flex-row flex-wrap 3xl:flex-nowrap justify-between 4xl:justify-normal   h-auto w-full bg-white shadow-custom_shadow rounded-[12px] ">
             {fetechingDataName.map((item, index) => {
               return (
                 <div
                   onClick={() => {
                     setFetehingDataName(item);
                   }}
-                  className={`py-4  text-[20px] cursor-pointer ease-in duration-150  leading-[150%] font-medium  rounded-[16px] px-[30px]  flex border-[1px]   flex-row items-center text-nowrap justify-between uppercase ${
+                  className={` py-2 3xl:py-4  text-[14px] 2xl:text-[20px] cursor-pointer ease-in duration-150  leading-[150%] font-medium  rounded-[16px] px-[15px] 3xl:px-[30px]  flex border-[1px]   flex-row items-center text-nowrap justify-between uppercase ${
                     item === fetechedDataName
                       ? "bg-[#FFF6E6] border-solid border-orange text-orange "
                       : " text-[#5c5c5c] border-transparent"
