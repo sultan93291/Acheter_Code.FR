@@ -77,7 +77,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="flex relative flex-col px-2 md:px-0 bg-owl_black md:items-center pt-[40px] gap-y-[34px] after:absolute after:content-[''] after:w-full  after:bottom-0 after:left-0 after:h-[1px] after:mb-[68px] after:bg-[#D9EDF4] ">
+    <footer className="flex relative flex-col px-2 md:px-0 bg-owl_black md:items-center pt-6 lg:pt-[40px] gap-y-[24px] lg:gap-y-[34px] after:absolute after:content-[''] after:w-full  after:bottom-0 after:left-0 after:h-[1px] after:mb-[68px] after:bg-[#D9EDF4] ">
       <div onClick={handleRootRedirect}>
         <Heading
           Variant={"h4"}

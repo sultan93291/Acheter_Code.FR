@@ -84,7 +84,7 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
     >
       <div
         ref={elementRef}
-        className="  pt-6 pb-5 px-6 w-[530px] bg-white border-[1px] border-solid border-light_gray flex flex-col gap-y-6  "
+        className="  pt-6 pb-5 px-6 w-auto xl:w-[530px] bg-white border-[1px] border-solid border-light_gray flex flex-col gap-y-6  "
       >
         <div className="flex flex-row items-center justify-between ">
           <Heading
@@ -105,7 +105,7 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-y-[170px]">
+        <div className="flex flex-col gap-y-[70px] xl:gap-y-[170px]">
           {shoppingCartData.length ? (
             <div className="flex flex-col overflow-y-scroll h-[536px]  ">
               {shoppingCartData?.map((item, index) => {
@@ -150,7 +150,7 @@ const ShoppingCartModal = ({ isOpen, onClose }) => {
                 handleCheckOutRedirect();
               }}
               className={
-                "w-[450px] bg-orange py-[16px] px-5 rounded-[16px] h-[57px] text-lg font-nunito text-white "
+                " w-full xs:w-auto md:w-[450px] bg-orange py-[16px] px-5 rounded-[16px] h-[57px] text-lg font-nunito text-white "
               }
               text={"CHECKOUT"}
             />
