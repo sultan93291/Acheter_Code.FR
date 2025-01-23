@@ -139,16 +139,16 @@ const BlogPageComponent = ({ id }) => {
     console.warn("created_at is missing or invalid for this item:");
   }
   return (
-    <section className="flex flex-col gap-y-[72px] px-[300px] pb-[160px] ">
+    <section className="flex flex-col gap-y-[40px] 2xl:gap-y-[72px] px-5 xl:px-8 2xl:px-16   3xl:px-[150px] 4xl:px-[300px] pb-[50px] 2xl:pb-[160px] ">
       <Image
         dataAos={"zoom-in"}
         Src={`${SiteURl}/${singleBlogData?.image}`}
-        className={"w-[1320px] h-[560px] object-cover  "}
+        className={" w-full xl:h-[300px] 3xl:w-[1320px] 3xl:h-[560px] object-cover  "}
         AltTxt={"blog background"}
       />
-      <div className="flex flex-row gap-x-[21px] ">
+      <div className="flex flex-col gap-y-[30px] 2xl:flex-row gap-x-[21px] ">
         <div className="flex flex-col gap-y-6 ">
-          <div className="flex flex-col gap-y-8 ">
+          <div className="flex flex-col gap-y-4 2xl:gap-y-8 ">
             <Heading
               dataAos={"fade-in"}
               Variant={"h5"}
@@ -161,7 +161,7 @@ const BlogPageComponent = ({ id }) => {
                 Variant={"h3"}
                 text={singleBlogData?.title}
                 className={
-                  "text-[32px]  font-bold leading-[150%] w-[558px] text-[#B57500]  "
+                  " text-[22px] lg:text-[32px]  font-bold leading-[150%] w-[558px] text-[#B57500]  "
                 }
               />
               <Paragraph
@@ -173,7 +173,7 @@ const BlogPageComponent = ({ id }) => {
               />
             </div>
           </div>
-          <div className="flex flex-col gap-y-10 w-[762px]  ">
+          <div className="flex flex-col gap-y-10 3xl:w-[762px]  ">
             <Paragraph
               dataAos={"fade-in"}
               text={
@@ -259,7 +259,7 @@ const BlogPageComponent = ({ id }) => {
                       Variant={"h2"}
                       text={item?.title}
                       className={
-                        " text-[20px] text-text_black font-bold font-nunito "
+                        " text-[14px] sm:text-[16px] lg:text-[20px] text-text_black font-bold font-nunito "
                       }
                     />
                   </div>
