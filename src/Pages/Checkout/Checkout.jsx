@@ -125,8 +125,8 @@ const Checkout = () => {
   console.log(userData, "user data");
 
   return (
-    <section className="w-full h-auto overflow-hidden pt-20 pb-[194px] flex bg-[#F8F8F8] flex-row gap-x-12 px-[300px] ">
-      <div className="flex flex-col  gap-y-8 w-[538px] ">
+    <section className="w-full h-auto overflow-hidden pt-10 2xl:pt-20 pb-10 2xl:pb-[194px] flex bg-[#F8F8F8] flex-col-reverse gap-y-10 lg:flex-row justify-between 4xl:gap-x-12 4xl:justify-normal items-center  3xl:px-[150px] 4xl:px-[300px] ">
+      <div className="flex flex-col  gap-y-8 w-auto 3xl:w-[538px] ">
         <Heading
           dataAos={"fade-in"}
           Variant={"h4"}
@@ -135,7 +135,7 @@ const Checkout = () => {
         />
         <div className="flex flex-col gap-y-6 ">
           {shoppingCartData.length ? (
-            <div className="flex flex-col gap-y-4 h-[600px]  overflow-y-scroll ">
+            <div className="flex flex-col gap-y-4 max-h-[600px]  overflow-y-scroll ">
               {shoppingCartData.map((item, index) => {
                 return (
                   <DeliveryCard
@@ -159,7 +159,7 @@ const Checkout = () => {
             />
           )}
         </div>
-        <div className="relative flex flex-col items-center gap-y-12 ">
+        <div className="relative flex flex-col items-center md:items-start gap-y-12 ">
           <div className="flex flex-row justify-between w-full">
             <Heading
               dataAos={"fade-in"}
@@ -180,20 +180,23 @@ const Checkout = () => {
               handleCheckOutDataSubmit();
             }}
             className={
-              "w-[538px] bg-orange py-[16px] px-5 rounded-[16px] h-[57px] text-lg font-nunito text-white "
+              " w-auto xl:w-[538px] bg-orange py-[16px] px-5 rounded-[16px] h-[57px] text-lg font-nunito text-white "
             }
             text={`PAY ${formattedTotal}€ `}
           />
         </div>
       </div>
-      <div className="flex flex-col gap-y-8 ">
+      <div className="flex items-center lg:items-start flex-col gap-y-4 lg:gap-y-6 2xl:gap-y-8 ">
         <Heading
           dataAos={"fade-in"}
           Variant={"h4"}
           text={"User Details"}
           className={" text-2xl font-bold text-[#1D1F1E] font-nunito"}
         />
-        <form className="flex flex-col gap-y-8" action="">
+        <form
+          className="flex flex-col items-center gap-y-4 lg:gap-y-6 2xl:gap-y-8"
+          action=""
+        >
           <div className="flex flex-col gap-y-2 ">
             <Heading
               dataAos={"fade-in"}
@@ -206,7 +209,7 @@ const Checkout = () => {
               type={"text"}
               placeholder={"Your full name"}
               className={
-                "w-[734px] rounded-[12px] p-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
+                " w-[280px] sm:w-[380px] lg:w-[500px] 4xl:w-[734px] rounded-[12px] p-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
               }
               onChange={e => {
                 handleUserData(e);
@@ -227,7 +230,7 @@ const Checkout = () => {
               type={"text"}
               placeholder={"Your Country"}
               className={
-                "w-[734px] rounded-[12px] p-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
+                " w-[280px] sm:w-[380px] lg:w-[500px] 4xl:w-[734px]   rounded-[12px] p-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
               }
               onChange={e => {
                 handleUserData(e);
@@ -248,7 +251,7 @@ const Checkout = () => {
               type={"email"}
               placeholder={"Write your email"}
               className={
-                "w-[734px] rounded-[12px] p-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
+                " sm:w-[380px] w-[280px] lg:w-[500px] 4xl:w-[734px] rounded-[12px] p-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
               }
               onChange={e => {
                 handleUserData(e);
@@ -267,7 +270,7 @@ const Checkout = () => {
             <textarea
               data-aos={"fade-in"}
               className={
-                "w-[734px] rounded-[12px] h-[160px] py-4 px-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
+                "sm:w-[380px] w-[280px] lg:w-[500px] 4xl:w-[734px] rounded-[12px] h-[160px] py-4 px-5 bg-white shadow-custom_shadow text-lg font-nunito font-normal  outline-none text-text_gray"
               }
               name="notes"
               id=""

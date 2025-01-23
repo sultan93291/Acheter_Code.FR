@@ -45,7 +45,7 @@ const GeneralInfo = ({ data }) => {
         <div className="flex flex-col gap-y-[38px] mx-auto  ">
           <div className="flex flex-col gap-y-[40px] lg:gap-y-[51px]">
             <div className="flex flex-col gap-y-3 lg:gap-y-6">
-              <div className="flex flex-row gap-x-[105px] items-center ">
+              <div className="flex flex-row gap-x-[80px] md:gap-x-[105px] items-center ">
                 <Heading
                   dataAos={"fade-in"}
                   className={"details_headings"}
@@ -58,7 +58,7 @@ const GeneralInfo = ({ data }) => {
                   className={"details_sub_headings"}
                 />
               </div>
-              <div className="flex flex-row gap-x-[120px] items-center ">
+              <div className="flex flex-row gap-x-[95px] md:gap-x-[120px] items-center ">
                 <Heading
                   dataAos={"fade-in"}
                   className={"details_headings"}
@@ -71,7 +71,7 @@ const GeneralInfo = ({ data }) => {
                   className={"details_sub_headings"}
                 />
               </div>
-              <div className="flex flex-row gap-x-[105px] items-center  ">
+              <div className="flex flex-row gap-x-[80px] md:gap-x-[105px]  items-center  ">
                 <Heading
                   dataAos={"fade-in"}
                   className={"details_headings"}
@@ -95,7 +95,7 @@ const GeneralInfo = ({ data }) => {
               </div>
             </div>
             <div className="flex flex-col gap-y-6">
-              <div className="flex flex-row gap-x-[57px] items-center ">
+              <div className="flex flex-row gap-x-[37px] md:gap-x-[57px] items-center ">
                 <Heading
                   dataAos={"fade-in"}
                   className={"details_headings"}
@@ -162,7 +162,9 @@ const GeneralInfo = ({ data }) => {
                 dataAos={"fade-in"}
                 Variant={"h3"}
                 text={`${data?.stock} in stock `}
-                className={" text-[20px]  lg:text-2xl text-text_black font-semibold "}
+                className={
+                  " text-[20px]  lg:text-2xl text-text_black font-semibold "
+                }
               />
             </div>
             <div className="flex lg:flex-row flex-col gap-y-4  gap-x-5 ">

@@ -18,7 +18,6 @@ import glassMan from "../../../../assets/images/Details/glassMan.png";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { comment } from "postcss";
 import { toast } from "react-toastify";
 import { IoIosArrowRoundDown } from "react-icons/io";
 
@@ -153,27 +152,31 @@ const ReviewSection = ({ data }) => {
   };
 
   return (
-    <section className="flex flex-col gap-y-[36px]">
+    <section className="flex flex-col  px-5 xl:px-10 2xl:px-16 4xl:px-0 gap-y-[25px] xl:gap-y-[36px]">
       {/* Section Title */}
       <Heading
         dataAos={"fade-in"}
         Variant={"h3"}
         text={"Customers Reviews"}
-        className={" font-nunito text-[32px] font-bold text-shade_black "}
+        className={
+          " font-nunito text-[26px] xl:text-[32px] font-bold text-shade_black "
+        }
       />
 
       {/* Main Content */}
-      <div className="flex flex-row gap-x-5">
+      <div className="flex xl:flex-row items-center xl:items-start gap-y-5 flex-col justify-between 4xl:justify-normal 4xl:gap-x-5">
         {/* Left Section: Ratings Summary and Review Form */}
         <div className="flex flex-col gap-y-5">
           {/* Ratings Summary */}
-          <div className="w-[538px] py-[60px] flex flex-col items-center gap-y-5 bg-white shadow-custom_shadow rounded-[16px]">
+          <div className=" w-[280px] sm:w-[400px] xl:w-[450px] 3xl:w-[538px] py-[25px] xl:py-[60px] flex flex-col items-center gap-y-8 xl:gap-y-5 bg-white shadow-custom_shadow rounded-[16px]">
             <div className="flex flex-row gap-x-[44px] items-center">
               <Heading
                 dataAos={"fade-in"}
                 Variant={"h2"}
                 text={parseFloat(data?.card?.reviews_avg_rating).toFixed(1)}
-                className={"text-[40px] font-nunito text-black font-semibold"}
+                className={
+                  " text-[30px] xl:text-[40px] font-nunito text-black font-semibold"
+                }
               />
               <div className="flex flex-col gap-y-[4px]">
                 <Heading
@@ -223,7 +226,7 @@ const ReviewSection = ({ data }) => {
                       </div>
 
                       {/* Progress Bar */}
-                      <div className="w-[305px] h-[9px] rounded-[16px] bg-light_gray relative">
+                      <div className=" w-[120px]  sm:w-[200px] xl:w-[305px] h-[9px] rounded-[16px] bg-light_gray relative">
                         <div
                           data-aos={"fade-in"}
                           className="absolute bg-orange top-0 left-0 h-full rounded-[16px]"
@@ -247,7 +250,7 @@ const ReviewSection = ({ data }) => {
           </div>
 
           {/* Review Form */}
-          <div className="w-[538px] py-[60px] px-[55px] bg-white shadow-custom_shadow rounded-[16px] flex flex-col gap-y-8">
+          <div className=" w-[280px] sm:w-[400px]  xl:w-[450px] 3xl:w-[538px] py-[30px] 2xl:py-[60px] px-5 2xl:px-[55px] bg-white shadow-custom_shadow rounded-[16px] flex flex-col gap-y-8">
             <div className="flex flex-col gap-y-3">
               <Heading
                 dataAos={"fade-in"}
@@ -293,7 +296,7 @@ const ReviewSection = ({ data }) => {
                     dataAos={"fade-in"}
                     type={"text"}
                     className={
-                      "outline-none py-[15px] px-4 rounded-[16px] border-[1px] border-solid border-light_gray text-[16px] font-nunito font-medium text-text_gray"
+                      "outline-none py-[10px] lg:py-[15px] px-4 rounded-[16px] border-[1px] border-solid border-light_gray text-[16px] font-nunito font-medium text-text_gray"
                     }
                     placeholder={
                       loggedInuserData.name
@@ -321,7 +324,7 @@ const ReviewSection = ({ data }) => {
                       setreviewData(e.target.value);
                     }}
                     className={
-                      "outline-none py-[10px] px-4 rounded-[16px] border-[1px] border-solid border-light_gray text-[16px] font-nunito font-medium text-text_gray"
+                      "outline-none py-[5px] lg:py-[10px] px-4 rounded-[16px] border-[1px] border-solid border-light_gray text-[16px] font-nunito font-medium text-text_gray"
                     }
                     value={reviewData}
                     placeholder={"Write here"}
@@ -335,7 +338,7 @@ const ReviewSection = ({ data }) => {
                 }
                 text={"SUBMIT REVIEWS"}
                 className={
-                  "text-lg rounded-[16px] shadow-btn_shadow bg-orange leading-[164%] font-nunito font-medium text-white py-[10px]  px-5 w-[206px] ease-in-out duration-300 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange   "
+                  " text-[16px] lg:text-lg rounded-[16px] shadow-btn_shadow bg-orange leading-[164%] font-nunito font-medium text-white py-[10px]  px-5 w-[206px] ease-in-out duration-300 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange   "
                 }
               />
             </form>
@@ -344,7 +347,7 @@ const ReviewSection = ({ data }) => {
 
         {/* Right Section: Customer Reviews Carousel */}
         <div className="flex flex-row pt-4 gap-x-[16px]">
-          <div className="flex flex-row  gap-x-4 h-[988px]">
+          <div className="flex flex-row  gap-x-4 h-[840px] xl:h-[988px]">
             <Swiper
               ref={swiperRef}
               modules={[Navigation]}
@@ -361,7 +364,7 @@ const ReviewSection = ({ data }) => {
 
                 return (
                   <SwiperSlide key={index}>
-                    <div className=" w-[762px] h-auto py-6 pl-[68px] pr-[96px] bg-white  shadow-custom_shadow rounded-[16px] flex flex-col gap-y-4 ">
+                    <div className=" w-[240px] xs:w-[340px] md:w-[380px] xl:w-[400px] 2xl:w-[500px] 3xl:w-[762px] h-auto p-4 2xl:py-6 2xl:pl-[68px] 2xl:p-0 2xl:pr-[96px] bg-white  shadow-custom_shadow rounded-[16px] flex flex-col gap-y-4 ">
                       <div className="flex flex-row items-center gap-x-4    ">
                         <Image
                           dataAos={"fade-in"}
@@ -372,7 +375,7 @@ const ReviewSection = ({ data }) => {
                           }
                           AltTxt={"not found"}
                           className={
-                            " w-[72px] h-[72px] rounded-full object-cover  "
+                            " w-[50px] h-[50px] xl:w-[72px] xl:h-[72px] rounded-full object-cover  "
                           }
                         />
                         <div className="flex flex-col gap-y-[4px]  ">
@@ -413,7 +416,7 @@ const ReviewSection = ({ data }) => {
                   <IoIosArrowRoundBack className="rotate-[90deg] text-2xl " />
                 }
                 className={
-                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "
+                  "xl:h-12 w-8 md:w-10 md:h-10 h-8 xl:w-12 nav-prev flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "
                 }
               />
               <Button
@@ -421,11 +424,11 @@ const ReviewSection = ({ data }) => {
                 text={
                   <IoIosArrowRoundDown
                     data-aos={"fade-in"}
-                    className=" text-2xl  "
+                    className=" text-2xl nav-next  "
                   />
                 }
                 className={
-                  "h-12 w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "
+                  "xl:h-12 w-8 md:w-10 md:h-10 h-8 xl:w-12 flex items-center justify-center border-[2px] text-2xl border-solid border-black rounded-full text-black hover:border-transparent hover:bg-black  ease-in-out duration-200 hover:text-white  "
                 }
               />
             </div>

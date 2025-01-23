@@ -47,13 +47,13 @@ const DeliveryCard = ({
 
   return (
     <div
-      className={`flex flex-row items-center justify-between ${
+      className={`flex flex-col gap-y-5 sm:flex-row items-start xl:items-center justify-between w-[280px] sm:w-[380px]   3xl:w-auto ${
         isShoppingCart
           ? ` h-auto p-4 ${
               isHrLine &&
               "relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#ADD8E6] after:opacity-50"
             }  `
-          : " p-5 bg-white shadow-custom_shadow rounded-[16px] "
+          : " p-5 w- bg-white shadow-custom_shadow rounded-[16px] "
       }`}
     >
       <Image
@@ -61,8 +61,8 @@ const DeliveryCard = ({
         AltTxt={"not found"}
         className={"w-[64px] h-[64px] rounded-[8px] "}
       />
-      <div className="flex flex-col gap-y-5 ">
-        <div className="flex flex-row justify-between  ">
+      <div className="flex flex-col items-center gap-y-5 ">
+        <div className="flex flex-row gap-x-10  xl:justify-between  ">
           <Heading
             Variant={"h4"}
             text={heading}
@@ -100,7 +100,7 @@ const DeliveryCard = ({
             />
           </svg>
         </div>
-        <div className="flex flex-row items-center gap-x-[46px] ">
+        <div className="flex flex-col gap-y-5 xl:flex-row items-center justify-between xl:gap-x-[46px] ">
           <div className="w-[142px] h-[50px] relative border-[1px] rounded-[16px] border-solid border-ocean_blue   flex flex-row ">
             <div
               onClick={() => {

@@ -119,7 +119,7 @@
     @apply flex flex-col gap-y-6;
   }
   .descretption_wrapper strong {
-    @apply text-2xl text-dark_black font-nunito font-semibold;
+    @apply  text-2xl text-dark_black font-nunito font-semibold;
   }
 
   .descretption_wrapper p {

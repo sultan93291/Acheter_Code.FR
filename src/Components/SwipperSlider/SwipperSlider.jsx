@@ -41,11 +41,11 @@ const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
   }, []);
 
   useEffect(() => {
-    if (innerWidth <= 320 && innerWidth >=321  && innerWidth <= 575) {
+    if (innerWidth <= 320   && innerWidth <= 575) {
       // This block will handle widths from 320px to 575px
       setSlidePreview(1);
       setSliderWidth(300);
-    } else if (innerWidth >= 675 && innerWidth <= 1199) {
+    } else if (innerWidth >= 576 && innerWidth <= 1199) {
       // This block will handle widths 576px and above
       setSlidePreview(2);
       setSliderWidth(550);
@@ -70,12 +70,14 @@ const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
 
 
   return (
-    <div className={`relative w-[250px] md:w-[520px] lg:w-[560px]  2xl:w-[970px] 3xl:w-[1295px]   h-auto`}>
+    <div
+      className={`relative w-[250px] md:w-[520px] lg:w-[560px]  2xl:w-[970px] 3xl:w-[1295px]   h-auto`}
+    >
       {/* Left Navigation Button */}
 
       <Button
         data-aos="fade-in"
-        className={`  absolute left-0 z-20 w-[30px] xs:w-10 xs:h-10 2xl:w-12 h-[30px] 2xl:h-12 transform -translate-y-1/2 border-[2px] border-solid border-transparent bg-white rounded-full top-[50%] flex items-center justify-center ml-[-34px] xs:ml-[-52px] ease-in-out duration-200 hover:bg-transparent hover:border-white group  `}
+        className={`  absolute left-0 z-20 w-[30px] xs:w-10 xs:h-10 2xl:w-12 h-[30px] 2xl:h-12 transform -translate-y-1/2 border-[2px] border-solid border-transparent bg-white rounded-full top-[50%] flex items-center justify-center md:ml-[-24px] lg:ml-[-52px] ml-[-34px] xs:ml-[-52px] ease-in-out duration-200 hover:bg-transparent hover:border-white group  `}
         onClick={() => {
           if (swiperInstance.current) {
             swiperInstance.current.slidePrev();
@@ -124,7 +126,7 @@ const SwipperSlider = ({ data, cardHeight, cardName, customMargin }) => {
       <Button
         data-aos="fade-in"
         className={`absolute  text-[26px] right-0 z-20 
-          2xl:w-12 w-[30px] h-[30px] xs:h-10 xs:w-10 2xl:h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] border-[2px] border-solid border-transparent flex items-center justify-center mr-[-32px]  xs:mr-[-50px] ease-in-out duration-200 hover:bg-transparent hover:border-white group   `}
+          2xl:w-12 w-[30px] h-[30px] xs:h-10 xs:w-10 2xl:h-12 transform -translate-y-1/2 bg-white rounded-full top-[50%] border-[2px] border-solid border-transparent flex items-center justify-center md:mr-[-22px] lg:mr-[-50px]  mr-[-32px]  xs:mr-[-50px] ease-in-out duration-200 hover:bg-transparent hover:border-white group   `}
         onClick={() => {
           if (swiperInstance.current) {
             swiperInstance.current.slideNext();
