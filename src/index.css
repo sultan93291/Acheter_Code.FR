@@ -84,7 +84,7 @@
     @apply text-lg font-semibold text-text_black font-nunito;
   }
   .details_sub_headings {
-    @apply text-lg font-normal text-primary_gray font-nunito;
+    @apply text-[16px] lg:text-lg font-normal text-primary_gray font-nunito;
   }
   .lg_tittle {
     @apply text-lg font-semibold text-specail_black font-nunito;

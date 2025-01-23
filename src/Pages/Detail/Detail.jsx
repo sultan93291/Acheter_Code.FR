@@ -31,7 +31,7 @@ const Detail = data => {
   return (
     <section className="bg-[#F8F8F8]">
       <GeneralInfo data={detailsData?.card} />
-      <DetailsReviewSection data={detailsData} />
+      {/* <DetailsReviewSection data={detailsData} /> */}
     </section>
   );
 };

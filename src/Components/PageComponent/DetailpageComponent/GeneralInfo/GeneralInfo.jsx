@@ -33,16 +33,18 @@ const GeneralInfo = ({ data }) => {
         }}
         isOpen={isopen}
       />
-      <section className="h-auto   px-[290px]  py-[60px] flex flex-row gap-x-[115.5px] ">
+      <section className="h-auto px-5   4xl:px-[290px]  py-[60px] flex flex-col gap-y-[25px] lg:gap-y-[50px] 2xl:flex-row gap-x-[80px] 3xl:gap-x-[115.5px] ">
         <Image
           dataAos={"zoom-in"}
           Src={`https://borisdessy.softvencefsd.xyz/${data?.image}`}
           AltTxt={"not found"}
-          className={" w-[558px] h-[627px] object-cover rounded-[16px] "}
+          className={
+            " w-auto 2xl:w-[450px]  3xl:w-[558px] h-[250px] xl:h-[350px] 2xl:h-[627px] object-cover rounded-[16px] "
+          }
         />
-        <div className="flex flex-col gap-y-[38px]">
-          <div className="flex flex-col gap-y-[51px]">
-            <div className="flex flex-col gap-y-6">
+        <div className="flex flex-col gap-y-[38px] mx-auto  ">
+          <div className="flex flex-col gap-y-[40px] lg:gap-y-[51px]">
+            <div className="flex flex-col gap-y-3 lg:gap-y-6">
               <div className="flex flex-row gap-x-[105px] items-center ">
                 <Heading
                   dataAos={"fade-in"}
@@ -77,7 +79,7 @@ const GeneralInfo = ({ data }) => {
                   text={"Version:"}
                 />
                 <select
-                  className=" w-[380px] py-[17px] rounded-[12px] px-[16px] outline-none details_sub_headings   "
+                  className=" w-auto lg:w-[380px] py-[10px] lg:py-[17px] rounded-[12px] px-[16px] outline-none details_sub_headings   "
                   name="version"
                   id="version"
                 >
@@ -113,7 +115,7 @@ const GeneralInfo = ({ data }) => {
                   Variant={"h6"}
                   text={"Available Amount"}
                 />
-                <div className="flex flex-row flex-wrap  gap-4 w-[591px] ">
+                <div className="flex flex-row flex-wrap  gap-4 w-auto lg:w-[591px] ">
                   {data?.card_avaiale_amounts?.map((item, index) => {
                     return (
                       <div
@@ -140,7 +142,7 @@ const GeneralInfo = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="w-[551px] flex flex-col gap-y-5 rounded-[16px] bg-white shadow-custom_shadow h-auto py-8 pl-[46px] pr-[23px]">
+          <div className=" w-auto lg:w-[551px] flex flex-col gap-y-5 rounded-[16px] bg-white shadow-custom_shadow h-auto py-4 lg:py-8 px-5 lg:pl-[46px] pr-[23px]">
             <div className="flex flex-row items-center ">
               <svg
                 data-aos={"fade-in"}
@@ -160,11 +162,11 @@ const GeneralInfo = ({ data }) => {
                 dataAos={"fade-in"}
                 Variant={"h3"}
                 text={`${data?.stock} in stock `}
-                className={"text-2xl text-text_black font-semibold "}
+                className={" text-[20px]  lg:text-2xl text-text_black font-semibold "}
               />
             </div>
-            <div className="flex flex-row gap gap-x-5 ">
-              <div className="w-[142px] relative border-[1px] rounded-[16px] border-solid border-ocean_blue h-auto  flex flex-row ">
+            <div className="flex lg:flex-row flex-col gap-y-4  gap-x-5 ">
+              <div className="w-[142px] relative border-[1px] rounded-[16px] border-solid border-ocean_blue h-auto py-[10px] lg:py-0  flex flex-row ">
                 <div
                   onClick={() => {
                     increaseCounterValue();
@@ -216,7 +218,7 @@ const GeneralInfo = ({ data }) => {
                 }}
                 text={"BUY NOW"}
                 className={
-                  "text-lg rounded-[16px] shadow-btn_shadow bg-orange leading-[164%] font-nunito font-medium text-white py-[10px] px-5 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange ease-in duration-300  "
+                  " text-[16px] lg:text-lg rounded-[16px] shadow-btn_shadow bg-orange lg:leading-[164%] font-nunito font-medium text-white py-[5px] lg:py-[10px] lg:px-5 border-[2px] border-solid border-transparent hover:border-orange hover:bg-transparent hover:text-orange ease-in duration-300  "
                 }
               />
               <Button
@@ -226,7 +228,7 @@ const GeneralInfo = ({ data }) => {
                 }}
                 text={"ADD TO CART"}
                 className={
-                  "text-lg rounded-[16px] shadow-btn_shadow bg-transparent border-[2px] border-solid border-orange leading-[164%] font-nunito font-medium text-orange py-[10px] px-5 hover:bg-orange hover:text-white hover:border-transparent "
+                  "text-[16px] lg:text-lg rounded-[16px] shadow-btn_shadow bg-transparent border-[2px] border-solid border-orange leading-[164%] font-nunito font-medium text-orange py-[5px] lg:py-[10px] lg:px-5  hover:bg-orange hover:text-white hover:border-transparent "
                 }
               />
             </div>
